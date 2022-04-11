@@ -1,0 +1,6 @@
+rootProject.name = "Play Android"
+include ':app'
+include ':module_common'
+include ':module_common:common-base'
+include ':module_common:common-widgets'
+include ':module_common:common-web-browser'

@@ -1,0 +1,27 @@
+apply plugin: 'com.android.application'
+apply from: "../basic_build.gradle"
+
+
+def isBuildModule = rootProject.ext.module.isBuildModule
+
+android {
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+    }
+}
+
+dependencies {
+
+    implementation project(":module_common:common-base")
+
+    implementation rootProject.ext.ktxLibs
+    implementation rootProject.ext.commonUILibs
+
+    implementation rootProject.ext.other["rvHelper"]
+
+    kapt rootProject.ext.compiler["arouterCompiler"]
+
+    compileOnly(rootProject.ext.jetpack["hilt"])
+    kapt rootProject.ext.compiler["hiltAndroidCompiler"]
+
+}
