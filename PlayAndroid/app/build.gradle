@@ -1,27 +1,88 @@
-apply plugin: 'com.android.application'
-apply from: "../basic_build.gradle"
+plugins{
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+}
 
+apply from: "../basic_build.gradle"
 
 def isBuildModule = rootProject.ext.module.isBuildModule
 
 android {
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
+        applicationId "com.dragon.playandroid"
+        versionCode BuildConfig.versionCode
+        versionName BuildConfig.versionName
+        multiDexEnabled true
+
+
+        signingConfigs {
+            //signingConfigs打包正式版本时才需要放开
+            signConfig {
+                storeFile file('D:\\develop\\keystore\\sign-anqin\\platform.jks')//路径
+                storePassword '123456'
+                keyAlias 'dragon'
+                keyPassword '123456'
+            }
+        }
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+
+        // Enable Coroutines and Flow APIs
+        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
+    }
+
+    //启用dataBinding Compose等
+    buildFeatures {
+        dataBinding true
+    }
+
+    //构建类型配置
+    buildTypes {
+        release {
+            //signingConfig打包正式版本时才需要放开
+            signingConfig signingConfigs.signConfig
+            minifyEnabled true      // 开启代码混淆
+            zipAlignEnabled true    // 开启Zip压缩优化
+            shrinkResources true    // 移除未被使用的资源
+            //release 只arm架构
+            ndk {
+                abiFilters 'armeabi-v7a'
+            }
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "VERSION_NAME", '\"' + project.property("versionName").toString() + '\"'
+        }
+    }
+
+
+    //库依赖分析  https://developer.android.google.cn/studio/releases/gradle-plugin?hl=zh-cn#kts
+    lintOptions {
+        checkDependencies true
+    }
+
+    //ARouter
+//    javaCompileOptions {
+//        annotationProcessorOptions {
+//            arguments += [
+//                    "room.schemaLocation":"$projectDir/schemas".toString(),
+//                    "room.incremental":"true",
+//                    "room.expandProjection":"true",
+//                    AROUTER_MODULE_NAME: project.getName()
+//            ]
+//        }
+//    }
 }
+
+
 
 dependencies {
 
-    implementation project(":module_common:common-base")
+    implementation project(":module_ui:ui-main")
 
-    implementation rootProject.ext.ktxLibs
-    implementation rootProject.ext.commonUILibs
-
-    implementation rootProject.ext.other["rvHelper"]
-
-    kapt rootProject.ext.compiler["arouterCompiler"]
-
-    compileOnly(rootProject.ext.jetpack["hilt"])
-    kapt rootProject.ext.compiler["hiltAndroidCompiler"]
-
+    //内存泄露检测
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 }

@@ -1,29 +1,16 @@
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'version-catalog'
 
+//基础配置
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
-        multiDexEnabled true
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += [
-                        "room.schemaLocation":"$projectDir/schemas".toString(),
-                        "room.incremental":"true",
-                        "room.expandProjection":"true",
-                        AROUTER_MODULE_NAME: project.getName()
-                ]
-            }
-        }
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -37,26 +24,34 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
 
-        // Enable Coroutines and Flow APIs
-        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
-        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
-    }
-    buildFeatures {
-        dataBinding true
-    }
 
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-    generateStubs = true
-    useBuildCache = true
-    javacOptions {
-        option("-Xmaxerrs", 500)
+catalog {
+    versionCatalog {
+        from files('../libs.versions.toml')
     }
 }
+
+dependencies {
+
+    //UI
+    implementation rootProject.ext.commonUILibs
+
+    //test
+    testImplementation libs.testImplementation
+    androidTestImplementation libs.androidTestImplementation1
+    androidTestImplementation libs.androidTestImplementation2
+}
+
+//kapt {
+//    arguments {
+//        arg("AROUTER_MODULE_NAME", project.getName())
+//    }
+//    generateStubs = true
+//    useBuildCache = true
+//    javacOptions {
+//        option("-Xmaxerrs", 500)
+//    }
+//}

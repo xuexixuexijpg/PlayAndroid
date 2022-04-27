@@ -1,0 +1,16 @@
+#参考 https://github.com/shenzhen2017/GradleCatalog/blob/main/libs.versions.toml
+#参考 https://docs.gradle.org/current/userguide/platforms.html
+[versions]
+
+
+[libraries]
+# test lib
+testImplementation =  "junit:junit:4.13.2"
+androidTestImplementation1 = "androidx.test.ext:junit:1.1.3"
+androidTestImplementation2 =  "androidx.test.espresso:espresso-core:3.4.0"
+
+[bundles]
+
+
+
+
