@@ -15,14 +15,24 @@ android {
         versionName BuildConfig.versionName
         multiDexEnabled true
 
-
         signingConfigs {
             //signingConfigs打包正式版本时才需要放开
-            signConfig {
-                storeFile file('D:\\develop\\keystore\\sign-anqin\\platform.jks')//路径
-                storePassword '123456'
-                keyAlias 'dragon'
-                keyPassword '123456'
+            wanandroid {
+                keyAlias 'wanandroid.keystore'
+                keyPassword 'wanandroid'
+                storeFile file('wanandroid.keystore')
+                storePassword 'wanandroid'
+            }
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true",
+//                        AROUTER_MODULE_NAME: project.getName()
+                ]
             }
         }
     }
@@ -37,6 +47,7 @@ android {
 
     //启用dataBinding Compose等
     buildFeatures {
+        //noinspection DataBindingWithoutKapt
         dataBinding true
     }
 
@@ -44,7 +55,7 @@ android {
     buildTypes {
         release {
             //signingConfig打包正式版本时才需要放开
-            signingConfig signingConfigs.signConfig
+            signingConfig signingConfigs.wanandroid
             minifyEnabled true      // 开启代码混淆
             zipAlignEnabled true    // 开启Zip压缩优化
             shrinkResources true    // 移除未被使用的资源
@@ -56,33 +67,27 @@ android {
 
             buildConfigField "String", "VERSION_NAME", '\"' + project.property("versionName").toString() + '\"'
         }
-    }
 
+        debug {//开发自己的debug包
+            initWith release
+            debuggable true
+            minifyEnabled false
+            shrinkResources false // 移除无用的resource文件
+            proguardFiles.clear() // 不混淆
+            signingConfig signingConfigs.wanandroid
+        }
+    }
 
     //库依赖分析  https://developer.android.google.cn/studio/releases/gradle-plugin?hl=zh-cn#kts
     lintOptions {
         checkDependencies true
     }
 
-    //ARouter
-//    javaCompileOptions {
-//        annotationProcessorOptions {
-//            arguments += [
-//                    "room.schemaLocation":"$projectDir/schemas".toString(),
-//                    "room.incremental":"true",
-//                    "room.expandProjection":"true",
-//                    AROUTER_MODULE_NAME: project.getName()
-//            ]
-//        }
-//    }
 }
-
-
 
 dependencies {
 
-    implementation project(":module_ui:ui-main")
-
+    implementation project(':module_ui:domain')
     //内存泄露检测
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 }

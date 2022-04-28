@@ -37,8 +37,9 @@ ext {
     net = [
             retrofit    : "com.squareup.retrofit2:retrofit:2.9.0",
             converter   : "com.squareup.retrofit2:converter-gson:2.9.0",
-            okhttp      : "com.squareup.okhttp3:okhttp:4.9.0",
-            gson        : "com.google.code.gson:gson:2.8.6"
+            okhttp      : "com.squareup.okhttp3:okhttp:4.9.1",
+            gson        : "com.google.code.gson:gson:2.8.6",
+            net         : 'com.github.liangjingkanji:Net:3.4.4'
     ]
 
     room = [
@@ -66,7 +67,7 @@ ext {
             // logger
             logger      : "com.orhanobut:logger:2.2.0",
             // arouter
-            arouter     : "com.alibaba:arouter-api:1.5.0",
+//            arouter     : "com.alibaba:arouter-api:1.5.0",
             // banner
             legacy      : "androidx.legacy:legacy-support-v4:1.0.0",
             banner      : "com.github.bingoogolapple:BGABanner-Android:3.0.1",
@@ -81,9 +82,7 @@ ext {
             // cookie持久化管理工具
             cookieJar   : "com.github.franmontiel:PersistentCookieJar:v1.0.1",
             // toast
-            toast       : 'com.github.getActivity:ToastUtils:9.6',
-            //mavericks
-            mavericks   : 'com.airbnb.android:mavericks:2.6.1'
+            toast       : 'com.github.getActivity:ToastUtils:9.6'
     ]
 
     //自己上传的库
@@ -94,8 +93,8 @@ ext {
     //room hilt
     compiler = [
             roomCompiler            : "androidx.room:room-compiler:${dependVersion.room_version}",
-            glideCompiler           : "com.github.bumptech.glide:compiler:4.11.0",
-            arouterCompiler         : "com.alibaba:arouter-compiler:1.2.2",
+            glideCompiler           : "com.github.bumptech.glide:compiler:4.11.0"
+//            arouterCompiler         : "com.alibaba:arouter-compiler:1.2.2",
     ]
 
     jetpackLibs = jetpack.values()

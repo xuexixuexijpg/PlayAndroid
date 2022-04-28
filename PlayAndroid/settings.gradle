@@ -29,4 +29,7 @@ include ':module_common:common-web-browser'
 include ':module_service'
 include ':module_service:service-data'
 include ':module_ui'
-include ':module_ui:ui-main'
+include ':module_ui:domain'
+
+include ':module_service:service-nav'
+include ':module_ui:ft-main'
