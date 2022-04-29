@@ -88,6 +88,7 @@ android {
 dependencies {
 
     implementation project(':module_ui:domain')
+    implementation project(':module_service:service-di-app')
     //内存泄露检测
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 }
