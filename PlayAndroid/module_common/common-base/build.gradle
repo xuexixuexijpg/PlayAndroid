@@ -8,11 +8,17 @@ apply from: "../../basic_build.gradle"
 
 dependencies {
     // lifecycle
-    implementation LifeCycle.lifeData
-    implementation LifeCycle.lifeVm
-    implementation LifeCycle.lifeRt
+    api LifeCycle.lifeData
+    api LifeCycle.lifeVm
+    api LifeCycle.lifeRt
     kapt LifeCycle.lifeCompiler
     kapt LifeCycle.lifeCompilerJ8
+    //navigation
+    api Navigation.navFragment
+    api Navigation.navUI
+    api Navigation.navModule
+    //Mavericks
+    api OtherLibs.mavericks
 
     // net
     implementation rootProject.ext.netLibs
@@ -31,4 +37,6 @@ dependencies {
     //other
     implementation rootProject.ext.otherLibs
 
+    //防崩溃
+//    implementation 'cat.ereza:customactivityoncrash:2.3.0'
 }

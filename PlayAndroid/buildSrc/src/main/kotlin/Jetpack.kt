@@ -11,6 +11,22 @@ object Hilt {
     const val compilerJetPackHilt = "androidx.hilt:hilt-compiler:$hiltJetPackVersion"
 }
 
+object Navigation{
+    private const val nav_version = "2.5.0-alpha04"
+
+    // Kotlin
+    const val navFragment = "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    const val navUI ="androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    const val runtimeKtx = "androidx.navigation:navigation-runtime-ktx:$nav_version"
+    const val commonKtx = "androidx.navigation:navigation-common-ktx:$nav_version"
+
+    // Feature module Support
+    const val navModule = "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    val navGroupImplements = listOf(navFragment, navUI, navModule)
+}
+
 object Compose{
 
 }

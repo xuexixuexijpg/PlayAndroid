@@ -32,4 +32,10 @@ include ':module_ui'
 include ':module_ui:domain'
 
 include ':module_service:service-di-app'
+
+//main
 include ':module_ui:ft-main'
+include ':module_ui:ft-main:main-home'
+//search
+include ':module_ui:ft-search'
+include ':module_ui:ft-login'
