@@ -2,6 +2,7 @@ plugins{
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 apply from: "../basic_build.gradle"
@@ -75,6 +76,10 @@ android {
             shrinkResources false // 移除无用的resource文件
             proguardFiles.clear() // 不混淆
             signingConfig signingConfigs.wanandroid
+
+            ndk {
+                abiFilters 'armeabi-v7a','x86'
+            }
         }
     }
 
@@ -91,4 +96,6 @@ dependencies {
     implementation project(':module_service:service-di-app')
     //内存泄露检测
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+    //分包后问题 65535
+    kapt 'com.android.support:multidex:1.0.3'
 }
