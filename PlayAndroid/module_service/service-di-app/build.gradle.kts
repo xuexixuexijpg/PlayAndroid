@@ -9,11 +9,20 @@ plugins {
 apply {
     from("../../basic_build.gradle")
 }
+android {
+    buildTypes {
+        getByName("release") {
+            multiDexKeepProguard  = file("multidex-config.pro")
+        }
+        getByName("debug") {
+            multiDexKeepProguard  = file("multidex-config.pro")
+        }
+    }
+}
 
 
 dependencies {
     implementation (Hilt.implHilt)
     implementation(project(mapOf("path" to ":module_common:common-base")))
     kapt(Hilt.compilerHilt)
-    kapt("com.android.support:multidex:1.0.3")
 }

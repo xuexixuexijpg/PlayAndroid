@@ -3,6 +3,7 @@ plugins{
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 apply from: "../basic_build.gradle"
@@ -14,7 +15,6 @@ android {
         applicationId "com.dragon.playandroid"
         versionCode BuildConfig.versionCode
         versionName BuildConfig.versionName
-        multiDexEnabled true
 
         signingConfigs {
             //signingConfigs打包正式版本时才需要放开
@@ -91,11 +91,11 @@ android {
 }
 
 dependencies {
-
+    implementation Hilt.implHilt
+    implementation project(path: ':module_common:common-base')
+    kapt Hilt.compilerHilt
     implementation project(':module_ui:domain')
     implementation project(':module_service:service-di-app')
     //内存泄露检测
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
-    //分包后问题 65535
-    kapt 'com.android.support:multidex:1.0.3'
 }

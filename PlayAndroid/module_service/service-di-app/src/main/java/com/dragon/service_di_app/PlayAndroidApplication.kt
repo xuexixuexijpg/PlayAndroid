@@ -7,8 +7,5 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class PlayAndroidApplication : BaseApplication(){
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-//        MultiDex.install(this)
-    }
+
 }

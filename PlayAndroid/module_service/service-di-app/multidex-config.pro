@@ -1,0 +1,1 @@
+-keep class com.dragon.playandroid.PlayAndroidApplication
