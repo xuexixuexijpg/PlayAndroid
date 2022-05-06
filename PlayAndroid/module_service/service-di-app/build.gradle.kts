@@ -9,20 +9,21 @@ plugins {
 apply {
     from("../../basic_build.gradle")
 }
-android {
-    buildTypes {
-        getByName("release") {
-            multiDexKeepProguard  = file("multidex-config.pro")
-        }
-        getByName("debug") {
-            multiDexKeepProguard  = file("multidex-config.pro")
-        }
-    }
-}
+//android {
+//    buildTypes {
+//        getByName("release") {
+//            multiDexKeepProguard  = file("multidex-config.pro")
+//        }
+//        getByName("debug") {
+//            multiDexKeepProguard  = file("multidex-config.pro")
+//        }
+//    }
+//}
 
 
 dependencies {
     implementation (Hilt.implHilt)
     implementation(project(mapOf("path" to ":module_common:common-base")))
+    implementation(project(mapOf("path" to ":module_service:service-base")))
     kapt(Hilt.compilerHilt)
 }

@@ -39,3 +39,4 @@ include ':module_ui:ft-main:main-home'
 //search
 include ':module_ui:ft-search'
 include ':module_ui:ft-login'
+include ':module_service:service-base'
