@@ -13,4 +13,6 @@ dependencies {
     implementation (Hilt.implHilt)
     implementation(project(mapOf("path" to ":module_common:common-base")))
     kapt(Hilt.compilerHilt)
+
+    implementation(project(mapOf("path" to ":module_service:service-base")))
 }

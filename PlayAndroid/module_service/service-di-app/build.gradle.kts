@@ -18,12 +18,18 @@ apply {
 //            multiDexKeepProguard  = file("multidex-config.pro")
 //        }
 //    }
+
 //}
 
 
 dependencies {
     implementation (Hilt.implHilt)
+    kapt(Hilt.compilerHilt)
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_service:service-base")))
-    kapt(Hilt.compilerHilt)
+
+    implementation(project(mapOf("path" to ":module_ui:domain")))
+    implementation(project(mapOf("path" to ":module_ui:ft-login")))
+    implementation(project(mapOf("path" to ":module_ui:ft-main")))
+    implementation(project(mapOf("path" to ":module_ui:ft-search")))
 }

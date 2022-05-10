@@ -8,7 +8,7 @@ import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
 @HiltAndroidApp
-class PlayAndroidApplication : BaseApplication(){
+open class PlayAndroidApplication : BaseApplication(){
     @Inject
     lateinit var initializers: AppInitializers
 

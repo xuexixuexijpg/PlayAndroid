@@ -18,6 +18,7 @@ package com.dragon.service_di_app.di
 
 import android.app.Application
 import com.dragon.service_base.appinitializers.AppInitializer
+import dagger.Provides
 import javax.inject.Inject
 
 //进行所有的注入模块初始化
