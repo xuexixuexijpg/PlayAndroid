@@ -25,8 +25,5 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.button.setOnClickListener {
-            mainProvider.navigateTo(FragmentNavigator.NavOptions(remember = true))
-        }
     }
 }

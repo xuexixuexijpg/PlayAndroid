@@ -8,6 +8,7 @@ import com.dragon.ft_main.di.MainScope
 import com.dragon.search.SearchFragment
 import com.dragon.search.SearchProvider
 import com.dragon.search.di.SearchScope
+import com.dragon.service_di_app.constants.RouteConstants
 import com.kpstv.navigation.FragmentNavigator
 import javax.inject.Inject
 
@@ -17,7 +18,7 @@ class MainProviderImpl @Inject constructor(
 ) : MainProvider {
     override fun navigateTo(navOptions: FragmentNavigator.NavOptions) {
         if (activity is FragmentNavigator.Transmitter) {
-            activity.getNavigator().navigateTo(SearchFragment::class, navOptions)
+            activity.getNavigator().navigateTo(RouteConstants.searchPage, navOptions)
         } else throw IllegalArgumentException("Could not navigate")
     }
 }

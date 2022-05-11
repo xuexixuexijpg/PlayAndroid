@@ -13,7 +13,7 @@ import dagger.hilt.android.components.FragmentComponent
 
 @Module
 @InstallIn(FragmentComponent::class)
-abstract class ActivityModule {
+abstract class FragmentModule {
 
     //注入接口实例
     @Binds
