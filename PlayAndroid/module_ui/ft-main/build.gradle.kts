@@ -9,9 +9,19 @@ apply {
     from("../../basic_build.gradle")
 }
 
+android {
+    buildFeatures{
+        viewBinding = true
+    }
+}
+
 dependencies {
     implementation (Hilt.implHilt)
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_ui:ft-main:main-home")))
+    implementation(project(mapOf("path" to ":module_service:service-base")))
     kapt(Hilt.compilerHilt)
+
+    implementation(OtherLibs.navigator_core)
+    implementation(OtherLibs.byBinding)
 }

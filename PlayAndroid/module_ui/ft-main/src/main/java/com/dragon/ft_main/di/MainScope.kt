@@ -1,4 +1,4 @@
-package com.dragon.search.di
+package com.dragon.ft_main.di
 
 import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.android.scopes.FragmentScoped
@@ -7,4 +7,4 @@ import javax.inject.Scope
 
 @Scope
 @AliasOf(FragmentScoped::class)
-annotation class SearchScope()
+annotation class MainScope()

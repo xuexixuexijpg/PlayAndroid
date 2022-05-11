@@ -1,25 +1,30 @@
 package com.dragon.ui_main
 
-import android.annotation.SuppressLint
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.dragon.ft_main.MainFragment
+import com.dragon.ui_main.databinding.ActivityMainBinding
+import com.kpstv.navigation.Destination
 import com.kpstv.navigation.FragmentNavigator
 import com.kpstv.navigation.canFinish
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main), FragmentNavigator.Transmitter {
+class MainActivity : AppCompatActivity(R.layout.activity_main) , FragmentNavigator.Transmitter {
 
-//    private val binding by viewBinding(A)
+    private val binding by viewBinding(ActivityMainBinding::bind)
 
     private lateinit var navigator: FragmentNavigator
     override fun getNavigator(): FragmentNavigator = navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        //初始化
+        navigator = FragmentNavigator.with(this,savedInstanceState)
+            .initialize(binding.fragmentNav, Destination.of(MainFragment::class))
     }
 
     override fun onBackPressed() {

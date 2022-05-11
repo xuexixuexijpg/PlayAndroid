@@ -32,4 +32,6 @@ dependencies {
     implementation(project(mapOf("path" to ":module_ui:ft-login")))
     implementation(project(mapOf("path" to ":module_ui:ft-main")))
     implementation(project(mapOf("path" to ":module_ui:ft-search")))
+
+    implementation(OtherLibs.navigator_core)
 }
