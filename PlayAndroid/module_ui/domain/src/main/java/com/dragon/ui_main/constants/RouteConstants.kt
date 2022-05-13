@@ -1,4 +1,4 @@
-package com.dragon.service_di_app.constants
+package com.dragon.ui_main.constants
 
 import com.dragon.ft_main.MainFragment
 import com.dragon.search.SearchFragment

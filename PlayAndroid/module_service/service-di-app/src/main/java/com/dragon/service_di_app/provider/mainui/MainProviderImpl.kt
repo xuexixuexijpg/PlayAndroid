@@ -1,14 +1,8 @@
-package com.dragon.service_di_app.provider
+package com.dragon.service_di_app.provider.mainui
 
-import android.app.Activity
 import androidx.fragment.app.FragmentActivity
-import com.dragon.ft_main.MainFragment
 import com.dragon.ft_main.MainProvider
-import com.dragon.ft_main.di.MainScope
-import com.dragon.search.SearchFragment
-import com.dragon.search.SearchProvider
-import com.dragon.search.di.SearchScope
-import com.dragon.service_di_app.constants.RouteConstants
+import com.dragon.ui_main.constants.RouteConstants
 import com.kpstv.navigation.FragmentNavigator
 import javax.inject.Inject
 

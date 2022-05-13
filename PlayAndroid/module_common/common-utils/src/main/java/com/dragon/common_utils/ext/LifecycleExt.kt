@@ -1,9 +1,19 @@
-package com.dragon.module_base.lifecycle
+package com.dragon.common_utils.ext
 
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+
+/**
+ * 生命周期与 Application 一样长的协程，可以做一些后台作业
+ */
+val globalScope by lazy {
+    CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+}
 
 /**
  * @desc：绑定生命周期的 Handler

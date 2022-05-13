@@ -1,11 +1,8 @@
-package com.dragon.service_di_app.provider
+package com.dragon.service_di_app.provider.searchui
 
-import android.app.Activity
 import androidx.fragment.app.FragmentActivity
-import com.dragon.ft_main.MainFragment
-import com.dragon.ft_main.MainProvider
-import com.dragon.ft_main.di.MainScope
 import com.dragon.search.SearchProvider
+import com.dragon.ui_main.constants.RouteConstants
 import com.kpstv.navigation.FragmentNavigator
 import javax.inject.Inject
 
@@ -18,7 +15,7 @@ class SearchProviderImpl @Inject constructor(
             val nav = activity.getNavigator()
             if (nav.canGoBack()) nav.goBack()
             else
-                activity.getNavigator().navigateTo(MainFragment::class, navOptions)
+                activity.getNavigator().navigateTo(RouteConstants.mainPage, navOptions)
         } else throw IllegalArgumentException("Could not navigate")
     }
 }

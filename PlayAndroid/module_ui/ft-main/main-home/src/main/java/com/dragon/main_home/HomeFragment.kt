@@ -5,18 +5,22 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.dragon.main_home.databinding.FragmentMainHomeBinding
+import com.dragon.module_base.base.fragment.BaseFragment
+import com.dragon.module_base.base.fragment.BaseFragmentController
+import com.dragon.module_base.base.fragment.simpleController
 import com.kpstv.navigation.ValueFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : ValueFragment(R.layout.fragment_main_home) {
+class HomeFragment : BaseFragment() {
 
     private val binding by viewBinding(FragmentMainHomeBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textView.setOnClickListener {
+    }
 
-        }
+    override fun epoxyController() = simpleController {
+
     }
 }

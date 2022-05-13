@@ -1,9 +1,7 @@
 package com.dragon.service_di_app
 
-import android.content.Context
-
 import com.dragon.module_base.base.BaseApplication
-import com.dragon.service_di_app.di.AppInitializers
+import com.dragon.service_di_app.init.AppInitializers
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 

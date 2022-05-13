@@ -1,5 +1,5 @@
 object Hilt {
-    private const val hiltVersion = "2.41"
+    const val hiltVersion = "2.41"
     const val classPathHilt = "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
     const val implHilt =  "com.google.dagger:hilt-android:$hiltVersion"
     const val compilerHilt =  "com.google.dagger:hilt-android-compiler:$hiltVersion"

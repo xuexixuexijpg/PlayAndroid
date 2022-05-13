@@ -6,6 +6,12 @@ plugins {
 }
 apply from: "../../basic_build.gradle"
 
+android {
+    buildFeatures {
+        viewBinding true
+    }
+}
+
 dependencies {
     // lifecycle
     api LifeCycle.lifeData
@@ -19,6 +25,13 @@ dependencies {
     api Navigation.navModule
     //Mavericks
     api OtherLibs.mavericks
+    //epoxy
+    api OtherLibs.epoxy
+    kapt OtherLibs.epoxyCompiler
+    //navigator
+    api OtherLibs.navigator_core
+    //viewBinding
+    api OtherLibs.byBinding
 
     // net
     implementation rootProject.ext.netLibs
