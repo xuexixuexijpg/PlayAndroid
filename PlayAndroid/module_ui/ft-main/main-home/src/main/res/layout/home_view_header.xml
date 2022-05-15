@@ -7,12 +7,21 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearance="@style/Widget.Material3.CircularProgressIndicator.Small"
-        app:srcCompat="@drawable/vector_check"
+        app:shapeAppearance="@style/circleImageStyle"
+        android:src="@drawable/im_header"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <com.lapism.search.widget.MaterialSearchView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:search_scrimColor="@color/cardview_dark_background"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:search_navigationIcon="@drawable/im_header"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
