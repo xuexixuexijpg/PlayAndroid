@@ -1,9 +1,11 @@
 package com.dragon.main_home.views
 
 import android.content.Context
+import android.system.Os.bind
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.airbnb.epoxy.CallbackProp
 import com.airbnb.epoxy.ModelView
 import com.dragon.main_home.R
 import com.dragon.main_home.databinding.HomeViewHeaderBinding
@@ -22,5 +24,10 @@ class HeaderView @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.home_view_header,this)
+    }
+
+    @CallbackProp
+    fun onSearViewClick(listener: OnClickListener){
+        binding.avatar.setOnClickListener(listener)
     }
 }
