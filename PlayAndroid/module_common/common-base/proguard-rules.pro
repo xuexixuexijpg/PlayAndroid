@@ -270,3 +270,21 @@
 -keep class org.jetbrains.** { *; }
 -keep interface org.jetbrains.** { *; }
 -dontwarn org.jetbrains.**
+
+# These classes are used via kotlin reflection and the keep might not be required anymore once Proguard supports
+# Kotlin reflection directly.
+-keep interface kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoader
+-keep class kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoaderImpl
+-keep class kotlin.reflect.jvm.internal.impl.load.java.FieldOverridabilityCondition
+-keep class kotlin.reflect.jvm.internal.impl.load.java.ErasedOverridabilityCondition
+-keep class kotlin.reflect.jvm.internal.impl.load.java.JavaIncompatibilityRulesOverridabilityCondition
+
+# If Companion objects are instantiated via Kotlin reflection and they extend/implement a class that Proguard
+# would have removed or inlined we run into trouble as the inheritance is still in the Metadata annotation
+# read by Kotlin reflection.
+# FIXME Remove if Kotlin reflection is supported by Pro/Dexguard
+-if class **$Companion extends **
+-keep class <2>
+-if class **$Companion implements **
+-keep class <2>
+

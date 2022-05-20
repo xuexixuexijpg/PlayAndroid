@@ -27,4 +27,11 @@ object BuildConfig {
         //正式版本
         const val MASTER = "MASTER"
     }
+
+
+    object TestLib {
+        const val testImpl = "junit:junit:4.13.2"
+        const val testJunitImpl2 = "androidx.test.ext:junit:1.1.3"
+        const val testEspresso = "androidx.test.espresso:espresso-core:3.4.0"
+    }
 }

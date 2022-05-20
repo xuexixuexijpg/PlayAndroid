@@ -4,7 +4,9 @@ package com.dragon.ui_main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.dragon.common_utils.ext.FragClazz
 import com.dragon.ft_main.MainFragment
+import com.dragon.search.SearchFragment
 import com.dragon.ui_main.databinding.ActivityMainBinding
 import com.kpstv.navigation.Destination
 import com.kpstv.navigation.FragmentNavigator

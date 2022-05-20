@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Play.Android" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.Play.Android" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
 <!--        <item name="colorPrimary">@color/purple_500</item>-->
 <!--        <item name="colorOnPrimary">@color/white</item>-->
@@ -10,10 +10,11 @@
 <!--        <item name="colorOnSecondary">@color/black</item>-->
 
         <!-- 应用的主要色调,actionBar默认使用该颜色，Toolbar导航栏的底色 -->
-        <item name="colorPrimary">#FFFFFFFF</item>
+        <item name="colorPrimary">#FFAAAA</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>-->
+
 
 
         <!-- 一般控件的选中效果默认采用该颜色,如 CheckBox,RadioButton,SwitchCompat，ProcessBar等-->

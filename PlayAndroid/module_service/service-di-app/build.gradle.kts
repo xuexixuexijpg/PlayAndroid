@@ -34,4 +34,5 @@ dependencies {
     implementation(project(mapOf("path" to ":module_ui:ft-search")))
 
     implementation(OtherLibs.navigator_core)
+    implementation(OtherLibs.navigator_extensions)
 }

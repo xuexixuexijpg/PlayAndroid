@@ -1,4 +1,4 @@
-apply plugin: 'version-catalog'
+//apply plugin: 'version-catalog'
 
 //基础配置
 android {
@@ -9,8 +9,6 @@ android {
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion
         multiDexEnabled true
-
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -30,11 +28,11 @@ android {
 
 }
 
-catalog {
-    versionCatalog {
-        from files('../libs.versions.toml')
-    }
-}
+//catalog {
+//    versionCatalog {
+//        from files('../libs.versions.toml')
+//    }
+//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -42,9 +40,12 @@ dependencies {
     implementation rootProject.ext.commonUILibs
 
     //test
-    testImplementation libs.testImplementation
-    androidTestImplementation libs.androidTestImplementation1
-    androidTestImplementation libs.androidTestImplementation2
+//    testImplementation libs.testImplementation
+//    androidTestImplementation libs.androidTestImplementation1
+//    androidTestImplementation libs.androidTestImplementation2
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.3"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
 }
 
 //kapt {

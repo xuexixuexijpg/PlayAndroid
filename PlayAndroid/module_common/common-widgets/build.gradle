@@ -5,6 +5,16 @@ plugins {
 
 apply from: "../../basic_build.gradle"
 
+android {
+    buildFeatures {
+        viewBinding true
+    }
+
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+}
+
 dependencies {
 
     implementation rootProject.ext.commonUILibs

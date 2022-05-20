@@ -4,5 +4,5 @@ import com.kpstv.navigation.FragmentNavigator
 
 //导航
 interface Navigate {
-  fun navigateTo(navOptions: FragmentNavigator.NavOptions = FragmentNavigator.NavOptions())
+  fun navigateTo(screenName : String,navOptions: FragmentNavigator.NavOptions = FragmentNavigator.NavOptions())
 }

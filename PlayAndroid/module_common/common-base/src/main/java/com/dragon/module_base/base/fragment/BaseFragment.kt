@@ -25,7 +25,14 @@ abstract class BaseFragment : ValueFragment(R.layout.fragment_base),MavericksVie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        epoxyController.onRestoreInstanceState(savedInstanceState)
+        savedInstanceState?.let {
+            epoxyController.onRestoreInstanceState(savedInstanceState)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        epoxyController.onSaveInstanceState(outState)
     }
 
     //可在此处做一些操作 如全局的viewModel监听

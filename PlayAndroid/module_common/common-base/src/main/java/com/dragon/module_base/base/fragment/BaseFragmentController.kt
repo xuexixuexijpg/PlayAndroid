@@ -1,5 +1,6 @@
 package com.dragon.module_base.base.fragment
 
+import android.util.Log
 import com.airbnb.epoxy.AsyncEpoxyController
 import com.airbnb.epoxy.EpoxyController
 import com.airbnb.mvrx.MavericksState

@@ -24,7 +24,7 @@ class SearchFragment:ValueFragment(R.layout.fragment_ft_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.button.setOnClickListener {
-            searchProvider.navigateTo()
+
         }
     }
 }

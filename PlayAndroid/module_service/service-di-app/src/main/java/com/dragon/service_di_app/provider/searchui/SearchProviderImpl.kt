@@ -10,12 +10,13 @@ import javax.inject.Inject
 class SearchProviderImpl @Inject constructor(
     private val activity: FragmentActivity,
 ) : SearchProvider {
-    override fun navigateTo(navOptions: FragmentNavigator.NavOptions) {
+    override fun navigateTo(screenName: String, navOptions: FragmentNavigator.NavOptions) {
         if (activity is FragmentNavigator.Transmitter) {
             val nav = activity.getNavigator()
             if (nav.canGoBack()) nav.goBack()
             else
-                activity.getNavigator().navigateTo(RouteConstants.mainPage, navOptions)
+                activity.getNavigator().navigateTo(RouteConstants.Main.clazz, navOptions)
         } else throw IllegalArgumentException("Could not navigate")
     }
+
 }
