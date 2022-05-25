@@ -22,6 +22,7 @@ android {
 dependencies {
     implementation (Hilt.implHilt)
     implementation(project(mapOf("path" to ":module_common:common-base")))
+    implementation(project(mapOf("path" to ":module_common:common-imageloading")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-home")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-mine")))
     implementation(project(mapOf("path" to ":module_service:service-base")))
