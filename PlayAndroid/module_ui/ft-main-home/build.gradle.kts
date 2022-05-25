@@ -35,6 +35,7 @@ dependencies {
     implementation(Hilt.implHilt)
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_common:common-widgets")))
+    implementation(project(mapOf("path" to ":module_common:common-imageloading")))
     implementation(project(mapOf("path" to ":module_service:service-base")))
     kapt(Hilt.compilerHilt)
     kapt(OtherLibs.epoxyCompiler)

@@ -25,8 +25,8 @@ class HomeFragment : BaseFragment() {
         headerView {
             id("header")
             //头像点击
-            onAvatarClick { _, _, _, position ->
-                Toast.makeText(requireContext(), "$position", Toast.LENGTH_SHORT).show()
+            onAvatarClick { _, _, _, _ ->
+                homeProvider.navigateTo(NavScreenNames.MINE_PAGE)
             }
             //设置搜索词
             hintText(state.hintText)

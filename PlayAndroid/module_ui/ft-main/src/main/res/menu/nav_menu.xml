@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragment_home"
+        android:checkable="true"
+        android:icon="@drawable/ic_baseline_home"
+        android:title="首页" />
+
+    <item
+        android:id="@+id/fragment_square"
+        android:checkable="true"
+        android:icon="@drawable/ic_baseline_square"
+        android:title="导航" />
+
+    <item
+        android:id="@+id/fragment_playground"
+        android:checkable="true"
+        android:icon="@drawable/ic_baseline_playground"
+         android:title=""/>
+
+    <item
+        android:id="@+id/fragment_route"
+        android:checkable="true"
+        android:icon="@drawable/ic_baseline_route"
+        android:title="导航"/>
+
+    <item
+        android:id="@+id/fragment_mine"
+        android:checkable="true"
+        android:icon="@drawable/ic_baseline_mine"
+        android:title="我的"/>
+</menu>

@@ -3,8 +3,12 @@ package com.dragon.ft_main_home.views
 import android.content.Context
 import android.system.Os.bind
 import android.util.AttributeSet
+import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import by.kirich1409.viewbindingdelegate.viewBinding
+import coil.Coil
+import coil.imageLoader
+import coil.load
 import com.airbnb.epoxy.CallbackProp
 import com.airbnb.epoxy.ModelView
 import com.airbnb.epoxy.TextProp
@@ -26,6 +30,10 @@ class HeaderView @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.home_view_header,this)
+        //coil加载图片 此时的coil的imageLoader已初始化，全局共用一个实例
+        binding.imgAvatar.load(R.drawable.im_header){
+            crossfade(true)
+        }
     }
 
     @CallbackProp

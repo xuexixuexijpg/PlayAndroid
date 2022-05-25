@@ -10,4 +10,6 @@ import kotlinx.parcelize.Parcelize
  */
 object NavScreenNames {
     const val SEARCH_PAGE = "SearchFragment"
+
+    const val MINE_PAGE = "MineFragment"
 }

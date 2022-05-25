@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.airbnb.epoxy.EpoxyRecyclerView
 import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.MavericksView
 import com.dragon.module_base.R
@@ -22,7 +23,6 @@ abstract class BaseFragment : ValueFragment(R.layout.fragment_base),MavericksVie
 
     private val binding by viewBinding(FragmentBaseBinding::bind)
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         savedInstanceState?.let {
@@ -38,9 +38,7 @@ abstract class BaseFragment : ValueFragment(R.layout.fragment_base),MavericksVie
     //可在此处做一些操作 如全局的viewModel监听
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding){
-            recycleView.setController(epoxyController)
-        }
+//        binding.recycleView.setController(epoxyController)
     }
 
     /**
@@ -48,7 +46,8 @@ abstract class BaseFragment : ValueFragment(R.layout.fragment_base),MavericksVie
      */
     override fun invalidate() {
         //建立模型
-        binding.recycleView.requestModelBuild()
+        binding.recycleView.setControllerAndBuildModels(epoxyController)
+//        binding.recycleView.requestModelBuild()
     }
 
     abstract fun epoxyController(): BaseFragmentController
