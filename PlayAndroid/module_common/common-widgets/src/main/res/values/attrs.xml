@@ -21,4 +21,10 @@
         <attr name="android:textColorHint" />
         <attr name="android:inputType" />
     </declare-styleable>
+
+    <declare-styleable name="GapBottomNavigationView">
+        <attr name="anchor_fab" format="reference" />
+        <attr name="shadow_length" format="float" />
+        <attr name="corner_radius" format="float" />
+    </declare-styleable>
 </resources>
