@@ -62,7 +62,7 @@ android {
             shrinkResources true    // 移除未被使用的资源
             //release 只arm架构
             ndk {
-                abiFilters 'armeabi-v7a'
+                abiFilters 'armeabi-v7a','arm64-v8a'
             }
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 

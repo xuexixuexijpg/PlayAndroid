@@ -17,8 +17,14 @@ import javax.inject.Inject
 //提供主页服务注入
 class MainProviderImpl @Inject constructor(
     private val activity: FragmentActivity,
-    private val fragment: Fragment
+    private val fragment: Fragment,
 ) : MainProvider {
+
+    //导航类型
+    private var navType = 1
+    override fun setNavControlType(types: Int) {
+        navType = types
+    }
 
     /**
      * 导航控制中心
@@ -35,7 +41,7 @@ class MainProviderImpl @Inject constructor(
                     //点击时当前注入的[fragment]是home自己的fragment
                     val mainFragment = activity.getNavigator().getCurrentFragment()
                     if (mainFragment != null && mainFragment is MainFragment) {
-                        mainFragment.bottomController.select(R.id.fragment_mine)
+                        mainFragment.navTo(navType,R.id.fragment_mine)
                     }
                 }
             }

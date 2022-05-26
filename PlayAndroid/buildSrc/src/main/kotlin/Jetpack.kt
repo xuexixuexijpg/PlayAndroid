@@ -48,3 +48,7 @@ object LifeCycle{
     const val lifeCompilerJ8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
 }
+
+object Window{
+    const val windowManager = "androidx.window:window:1.1.0-alpha02"
+}

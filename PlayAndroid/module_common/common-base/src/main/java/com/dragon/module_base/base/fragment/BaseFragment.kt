@@ -47,6 +47,7 @@ abstract class BaseFragment : ValueFragment(R.layout.fragment_base),MavericksVie
     override fun invalidate() {
         //建立模型
         binding.recycleView.setControllerAndBuildModels(epoxyController)
+        //此处会内存泄露 recycleView会释放不了
 //        binding.recycleView.requestModelBuild()
     }
 

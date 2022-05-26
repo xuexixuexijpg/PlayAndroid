@@ -34,7 +34,11 @@ class HomeFragment : BaseFragment() {
             onSearchLayoutClick { _, _, _, _ ->
                 homeProvider.navigateTo(
                     NavScreenNames.SEARCH_PAGE,
-                    FragmentNavigator.NavOptions(animation = AnimationDefinition.SlideInRight)
+                    FragmentNavigator.NavOptions(
+                        animation = AnimationDefinition.SlideInRight,
+                        transaction = FragmentNavigator.TransactionType.ADD,
+                        remember = false
+                    )
                 )
             }
         }

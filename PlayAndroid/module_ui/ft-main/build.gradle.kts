@@ -21,6 +21,7 @@ android {
 
 dependencies {
     implementation (Hilt.implHilt)
+    implementation (Window.windowManager)
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_common:common-imageloading")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-home")))
