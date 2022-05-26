@@ -154,6 +154,10 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onDestroyView() {
         Log.e("SSSS", "onDestroyView: ", )
         super.onDestroyView()

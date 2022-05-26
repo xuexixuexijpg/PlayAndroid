@@ -1,5 +1,6 @@
 package com.dragon.service_di_app.provider.mainui
 
+import android.util.Log
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

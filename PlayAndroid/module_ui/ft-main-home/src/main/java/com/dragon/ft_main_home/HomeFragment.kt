@@ -1,5 +1,6 @@
 package com.dragon.ft_main_home
 
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.airbnb.mvrx.fragmentViewModel
@@ -10,6 +11,8 @@ import com.dragon.module_base.base.fragment.simpleController
 import com.dragon.service_base.navigate.NavScreenNames
 import com.kpstv.navigation.AnimationDefinition
 import com.kpstv.navigation.FragmentNavigator
+import com.kpstv.navigation.History
+import com.kpstv.navigation.HistoryOptions
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -37,7 +40,7 @@ class HomeFragment : BaseFragment() {
                     FragmentNavigator.NavOptions(
                         animation = AnimationDefinition.SlideInRight,
                         transaction = FragmentNavigator.TransactionType.ADD,
-                        remember = false
+                        historyOptions = HistoryOptions.SingleTopInstance
                     )
                 )
             }

@@ -4,6 +4,7 @@ package com.dragon.ui_main
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.Consumer
 import androidx.lifecycle.Lifecycle
@@ -57,6 +58,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) , FragmentNavigat
         if (mainFragment != null && mainFragment is MainFragment){
             mainFragment.setLayoutInfo(newLayoutInfo)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
     }
 
     override fun onBackPressed() {
