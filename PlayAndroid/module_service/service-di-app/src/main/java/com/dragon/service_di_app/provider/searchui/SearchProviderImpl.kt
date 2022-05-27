@@ -1,5 +1,6 @@
 package com.dragon.service_di_app.provider.searchui
 
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.dragon.search.SearchProvider
 import com.dragon.ui_main.constants.RouteConstants
@@ -13,6 +14,7 @@ class SearchProviderImpl @Inject constructor(
     override fun navigateTo(screenName: String, navOptions: FragmentNavigator.NavOptions) {
         if (activity is FragmentNavigator.Transmitter) {
             val nav = activity.getNavigator()
+            Log.e("SSSS", ": ${nav.getHistory().count()}" )
             if (nav.canGoBack()) nav.goBack()
             else
                 activity.getNavigator().navigateTo(RouteConstants.Main.clazz, navOptions)

@@ -28,8 +28,6 @@ dependencies {
     //epoxy
     api OtherLibs.epoxy
     kapt OtherLibs.epoxyCompiler
-    //navigator
-    api OtherLibs.navigator_core
     //viewBinding
     api OtherLibs.byBinding
 

@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) , FragmentNavigat
         }
     }
 
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
     }

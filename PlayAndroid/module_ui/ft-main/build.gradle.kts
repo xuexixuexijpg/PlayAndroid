@@ -29,8 +29,5 @@ dependencies {
     implementation(project(mapOf("path" to ":module_service:service-base")))
     kapt(Hilt.compilerHilt)
 
-    implementation(OtherLibs.navigator_core)
-    implementation(OtherLibs.navigator_bottom)
-    implementation(OtherLibs.navigator_rail)
     implementation(OtherLibs.byBinding)
 }

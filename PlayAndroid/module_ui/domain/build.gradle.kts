@@ -33,7 +33,5 @@ dependencies {
     kapt(Hilt.compilerHilt)
 
     //otherLibs
-    implementation(OtherLibs.navigator_core)
-    implementation(OtherLibs.navigator_extensions)
     implementation(OtherLibs.byBinding)
 }

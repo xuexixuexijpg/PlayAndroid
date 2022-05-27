@@ -5,18 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.MavericksView
 import com.dragon.module_base.R
 import com.dragon.module_base.databinding.FragmentBaseBinding
-import com.kpstv.navigation.ValueFragment
+
 
 /**
  * 基础fragment
  */
-abstract class BaseFragment : ValueFragment(R.layout.fragment_base),MavericksView {
+abstract class BaseFragment : Fragment(R.layout.fragment_base),MavericksView {
 
     //控制器
     protected val epoxyController by lazy { epoxyController() }

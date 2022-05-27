@@ -13,5 +13,4 @@ dependencies {
     implementation (Hilt.implHilt)
     kapt(Hilt.compilerHilt)
 
-    implementation(OtherLibs.navigator_core)
 }

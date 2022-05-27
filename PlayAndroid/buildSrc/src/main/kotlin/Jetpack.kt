@@ -12,7 +12,9 @@ object Hilt {
 }
 
 object Navigation{
-    private const val nav_version = "2.5.0-alpha04"
+
+    //https://developer.android.google.cn/jetpack/androidx/releases/navigation?hl=zh-cn
+    private const val nav_version = "2.5.0-rc01"
 
     // Kotlin
     const val navFragment = "androidx.navigation:navigation-fragment-ktx:$nav_version"

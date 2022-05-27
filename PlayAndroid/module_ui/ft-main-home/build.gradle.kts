@@ -40,7 +40,6 @@ dependencies {
     kapt(Hilt.compilerHilt)
     kapt(OtherLibs.epoxyCompiler)
 
-    implementation(OtherLibs.navigator_core)
     implementation(OtherLibs.byBinding)
 
 //    implementation("io.github.lapism:search:1.2.1")

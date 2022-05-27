@@ -32,6 +32,8 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator
 
     //导航控制类型
     private var navType = 1
+    //记住
+    private var layoutInfo = 0
 
     //配置信息
     private lateinit var configuration: Configuration
@@ -48,7 +50,22 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator
             .initialize(binding.ftMainContainer)
         configuration = resources.configuration
 
+        if (savedInstanceState != null){
+            val type = savedInstanceState.getInt(TAG,0)
+            if (type == 0){
+                initBottomNav()
+            }else{
+                initRailNav()
+            }
+        }else {
+            initBottomNav()
+        }
+    }
+
+    private fun initBottomNav(){
         //底部导航结合
+        binding.bottomNav.visibility = View.VISIBLE
+        binding.railNav.visibility = View.GONE
         bottomController = navigator.install(object : FragmentNavigator.BottomNavigation() {
             override val bottomNavigationFragments: Map<Int, KClass<out Fragment>>
                 get() =
@@ -62,10 +79,14 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator
             override val bottomNavigationViewId: Int
                 get() = R.id.bottom_nav
             override val fragmentNavigationTransition = Animation.Fade
-            override val fragmentViewRetentionType: ViewRetention = ViewRetention.RECREATE
+            override val fragmentViewRetentionType: ViewRetention = ViewRetention.RETAIN
         })
+    }
 
+    private fun initRailNav(){
         //侧边导航
+        binding.bottomNav.visibility = View.GONE
+        binding.railNav.visibility = View.VISIBLE
         railController = navigator.install(object : FragmentNavigator.RailNavigation() {
             override val railNavigationFragments: Map<Int, KClass<out Fragment>>
                 get() =
@@ -79,9 +100,8 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator
             override val railNavigationViewId: Int
                 get() = R.id.rail_nav
             override val fragmentNavigationTransition = Animation.Fade
-            override val fragmentViewRetentionType: ViewRetention = ViewRetention.RECREATE
+            override val fragmentViewRetentionType: ViewRetention = ViewRetention.RETAIN
         })
-
     }
 
     //返回拦截需跳转到home页面
@@ -129,6 +149,7 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator
         //w小于600
         if (configuration.screenWidthDp < 600) {
             navType = 1
+            layoutInfo = 0
             mainProvider.setNavControlType(1)
             binding.bottomNav.visibility = View.VISIBLE
             binding.railNav.visibility = View.GONE
@@ -146,6 +167,7 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator
             //不是折叠屏
             if (hasRestView) {
                 navType = 2
+                layoutInfo = 1
                 mainProvider.setNavControlType(2)
                 binding.bottomNav.visibility = View.GONE
                 binding.railNav.visibility = View.VISIBLE
@@ -155,7 +177,12 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(TAG,layoutInfo)
         super.onSaveInstanceState(outState)
+    }
+
+    companion object {
+        val TAG = this::class.simpleName
     }
 
     override fun onDestroyView() {

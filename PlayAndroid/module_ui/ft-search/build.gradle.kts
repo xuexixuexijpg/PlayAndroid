@@ -27,5 +27,4 @@ dependencies {
 
     implementation(project(mapOf("path" to ":module_service:service-base")))
     implementation(OtherLibs.byBinding)
-    implementation(OtherLibs.navigator_core)
 }

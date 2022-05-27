@@ -39,8 +39,8 @@ class HomeFragment : BaseFragment() {
                     NavScreenNames.SEARCH_PAGE,
                     FragmentNavigator.NavOptions(
                         animation = AnimationDefinition.SlideInRight,
+                        historyOptions = HistoryOptions.SingleTopInstance,
                         transaction = FragmentNavigator.TransactionType.ADD,
-                        historyOptions = HistoryOptions.SingleTopInstance
                     )
                 )
             }
