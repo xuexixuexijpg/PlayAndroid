@@ -1,160 +1,124 @@
 package com.dragon.ft_main
 
+import android.app.Activity
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.annotation.IdRes
-import androidx.annotation.IntegerRes
-import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.window.layout.FoldingFeature
+import androidx.window.layout.WindowInfoTracker
 import androidx.window.layout.WindowLayoutInfo
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.dragon.common_utils.mmkvutil.MMKVOwner
+import com.dragon.common_utils.mmkvutil.mmkvParcelable
 import com.dragon.ft_main.databinding.FragmentFtMainBinding
-import com.dragon.ft_main_home.HomeFragment
-import com.dragon.ft_main_mine.MineFragment
-import com.kpstv.navigation.*
+import com.dragon.module_data.mmkv.LayoutChangeInfo
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.lang.ref.WeakReference
 import javax.inject.Inject
-import kotlin.reflect.KClass
-
 /**
  * 主页
  */
 @AndroidEntryPoint
-class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator.Transmitter {
+class MainFragment : Fragment(R.layout.fragment_ft_main), MMKVOwner {
 
-    @Inject
-    lateinit var mainProvider: MainProvider
-    lateinit var bottomController: BottomNavigationController
-    lateinit var railController: RailNavigationController
-
-    //导航控制类型
-    private var navType = 1
-    //记住
-    private var layoutInfo = 0
+    //屏幕信息
+    private var layoutInfo by mmkvParcelable<LayoutChangeInfo>()
 
     //配置信息
     private lateinit var configuration: Configuration
 
-    private lateinit var navigator: FragmentNavigator
-    override fun getNavigator(): FragmentNavigator = navigator
+    @Inject
+    lateinit var mainProvider: MainProvider
+
+    //直接 findNavController()拿到的是父的控制器
+    private lateinit var navController : NavController
 
     private val binding by viewBinding(FragmentFtMainBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //初始化
-        navigator = FragmentNavigator.with(this, savedInstanceState)
-            .initialize(binding.ftMainContainer)
-        configuration = resources.configuration
 
-        if (savedInstanceState != null){
-            val type = savedInstanceState.getInt(TAG,0)
-            if (type == 0){
-                initBottomNav()
-            }else{
-                initRailNav()
+        //https://github.com/android/user-interface-samples/tree/main/WindowManager
+        configuration = resources.configuration
+        context?.let {
+            val activity = WeakReference<Activity>(requireActivity())
+            activity.get()?.let { ac ->
+                lifecycleScope.launch(Dispatchers.Main) {
+                    viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                        WindowInfoTracker.getOrCreate(it)
+                            .windowLayoutInfo(ac)
+                            .collect { newLayoutInfo ->
+                                //根据窗口信息改变状态
+                                saveLayoutInfo(newLayoutInfo)
+                                layoutInfo?.let { info ->
+                                    val type = info.screenWidth
+                                    if (type == 0) {
+                                        initBottomNav()
+                                    } else {
+                                        initRailNav()
+                                    }
+                                }
+                            }
+                    }
+                }
             }
-        }else {
-            initBottomNav()
+
         }
+
+        val hostFragment = childFragmentManager.findFragmentById(R.id.ft_main_container)
+        if (hostFragment != null) {
+            //不先在布局中
+            navController = hostFragment.findNavController()
+            Log.e(TAG, "onCreate: $navController", )
+        }
+
+        binding.bottomNav.setupWithNavController(navController)
+
+        binding.railNav.setupWithNavController(navController)
+
+
     }
 
-    private fun initBottomNav(){
+
+    private fun initBottomNav() {
         //底部导航结合
         binding.bottomNav.visibility = View.VISIBLE
         binding.railNav.visibility = View.GONE
-        bottomController = navigator.install(object : FragmentNavigator.BottomNavigation() {
-            override val bottomNavigationFragments: Map<Int, KClass<out Fragment>>
-                get() =
-                    mapOf(
-                        R.id.fragment_home to HomeFragment::class,
-                        R.id.fragment_mine to MineFragment::class,
-                        R.id.fragment_route to HomeFragment::class,
-                        R.id.fragment_playground to HomeFragment::class,
-                        R.id.fragment_square to HomeFragment::class,
-                    )
-            override val bottomNavigationViewId: Int
-                get() = R.id.bottom_nav
-            override val fragmentNavigationTransition = Animation.Fade
-            override val fragmentViewRetentionType: ViewRetention = ViewRetention.RETAIN
-        })
     }
 
-    private fun initRailNav(){
+    private fun initRailNav() {
         //侧边导航
         binding.bottomNav.visibility = View.GONE
         binding.railNav.visibility = View.VISIBLE
-        railController = navigator.install(object : FragmentNavigator.RailNavigation() {
-            override val railNavigationFragments: Map<Int, KClass<out Fragment>>
-                get() =
-                    mapOf(
-                        R.id.fragment_home to HomeFragment::class,
-                        R.id.fragment_mine to MineFragment::class,
-                        R.id.fragment_route to HomeFragment::class,
-                        R.id.fragment_playground to HomeFragment::class,
-                        R.id.fragment_square to HomeFragment::class,
-                    )
-            override val railNavigationViewId: Int
-                get() = R.id.rail_nav
-            override val fragmentNavigationTransition = Animation.Fade
-            override val fragmentViewRetentionType: ViewRetention = ViewRetention.RETAIN
-        })
     }
 
-    //返回拦截需跳转到home页面
-    override val forceBackPress: Boolean
-        get() = if (binding.bottomNav.visibility ==View.VISIBLE){
-            binding.bottomNav.selectedItemId != R.id.fragment_home
-        }else{
-            binding.railNav.selectedItemId != R.id.fragment_home
-        }
-
-    override fun onBackPressed(): Boolean {
-        if (getNavigator().getCurrentFragment() != HomeFragment::class) {
-            if (binding.bottomNav.visibility ==View.VISIBLE){
-                bottomController.select(R.id.fragment_home)
-                //需要保持选中一致
-                binding.railNav.selectedItemId = R.id.fragment_home
-            }else {
-                railController.select(R.id.fragment_home)
-                binding.bottomNav.selectedItemId = R.id.fragment_home
-            }
-            return true
-        }
-        return super.onBackPressed()
+    companion object {
+        const val TAG = "MainFragment"
     }
 
-    /**
-     * 暴露的内部导航操作
-     */
-    fun navTo(navControlType: Int,@IdRes navDestination: Int){
-        if (navType == 1){
-            bottomController.select(navDestination)
-        }else{
-            bottomController.select(navDestination)
-        }
-    }
 
     /**
      * 拿到窗口信息并更新UI界面
      */
-    fun setLayoutInfo(newLayoutInfo: WindowLayoutInfo) {
+    private fun saveLayoutInfo(newLayoutInfo: WindowLayoutInfo) {
         //横屏状态
-        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
-
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            kv.remove(::LayoutChangeInfo.name)
         }
         //w小于600
         if (configuration.screenWidthDp < 600) {
-            navType = 1
-            layoutInfo = 0
-            mainProvider.setNavControlType(1)
-            binding.bottomNav.visibility = View.VISIBLE
-            binding.railNav.visibility = View.GONE
-            //设置选中状态以保持一致
-            binding.bottomNav.selectedItemId = binding.railNav.selectedItemId
+            layoutInfo = LayoutChangeInfo(0)
         } else {
             var hasRestView = true
             val layoutInfoList = newLayoutInfo.displayFeatures
@@ -165,28 +129,11 @@ class MainFragment : ValueFragment(R.layout.fragment_ft_main), FragmentNavigator
                 }
             }
             //不是折叠屏
-            if (hasRestView) {
-                navType = 2
-                layoutInfo = 1
-                mainProvider.setNavControlType(2)
-                binding.bottomNav.visibility = View.GONE
-                binding.railNav.visibility = View.VISIBLE
-                binding.railNav.selectedItemId = binding.bottomNav.selectedItemId
+            layoutInfo = if (hasRestView && configuration.screenWidthDp < 1024) {
+                LayoutChangeInfo(1)
+            } else {
+                LayoutChangeInfo(2)
             }
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(TAG,layoutInfo)
-        super.onSaveInstanceState(outState)
-    }
-
-    companion object {
-        val TAG = this::class.simpleName
-    }
-
-    override fun onDestroyView() {
-        Log.e("SSSS", "onDestroyView: ", )
-        super.onDestroyView()
     }
 }

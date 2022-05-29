@@ -20,9 +20,6 @@ object Navigation{
     const val navFragment = "androidx.navigation:navigation-fragment-ktx:$nav_version"
     const val navUI ="androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    const val runtimeKtx = "androidx.navigation:navigation-runtime-ktx:$nav_version"
-    const val commonKtx = "androidx.navigation:navigation-common-ktx:$nav_version"
-
     // Feature module Support
     const val navModule = "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 

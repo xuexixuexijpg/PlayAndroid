@@ -1,6 +1,6 @@
 package com.dragon.ft_main_mine
 
-import com.kpstv.navigation.ValueFragment
+import androidx.fragment.app.Fragment
 
-class MineFragment : ValueFragment(R.layout.fragment_ft_mine){
+class MineFragment : Fragment(R.layout.fragment_ft_mine){
 }

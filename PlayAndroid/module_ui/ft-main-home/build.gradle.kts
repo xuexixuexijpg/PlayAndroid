@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    id ("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
 }
 apply {
@@ -33,10 +34,9 @@ android {
 
 dependencies {
     implementation(Hilt.implHilt)
-    implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_common:common-widgets")))
     implementation(project(mapOf("path" to ":module_common:common-imageloading")))
-    implementation(project(mapOf("path" to ":module_service:service-base")))
+    implementation(project(mapOf("path" to ":module_common:common-base")))
     kapt(Hilt.compilerHilt)
     kapt(OtherLibs.epoxyCompiler)
 

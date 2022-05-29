@@ -2,12 +2,12 @@
 package com.dragon.common_imageloading
 
 import android.app.Application
+
 import coil.Coil
 import coil.ImageLoader
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
-import com.dragon.service_base.appinitializers.AppInitializer
-import dagger.assisted.Assisted
+import com.dragon.module_base.service.appinitializers.AppInitializer
 import okhttp3.OkHttpClient
 import javax.inject.Inject
 

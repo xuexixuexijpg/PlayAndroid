@@ -1,4 +1,4 @@
-object Kotlin {
+object  Kotlin {
     const val kotlin_version = "1.6.20"
 
     const val test = "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"

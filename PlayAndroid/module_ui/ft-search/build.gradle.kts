@@ -7,6 +7,7 @@ plugins {
     }
     id ("kotlin-android")
     id ("kotlin-kapt")
+    id ("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
 }
 
@@ -25,6 +26,5 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-base")))
     kapt(Hilt.compilerHilt)
 
-    implementation(project(mapOf("path" to ":module_service:service-base")))
     implementation(OtherLibs.byBinding)
 }

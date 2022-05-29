@@ -12,7 +12,6 @@ apply {
 dependencies {
     implementation (Hilt.implHilt)
     implementation(OtherLibs.coil)
-    implementation(project(mapOf("path" to ":module_service:service-base")))
 
     //通知栏监听网络日志
     implementation("com.github.chuckerteam.chucker:library:3.5.2" )

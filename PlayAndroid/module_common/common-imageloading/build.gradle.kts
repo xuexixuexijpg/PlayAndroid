@@ -12,6 +12,7 @@ apply {
 dependencies {
     implementation (Hilt.implHilt)
     api(OtherLibs.coil)
-    implementation(project(mapOf("path" to ":module_service:service-base")))
+    implementation(project(mapOf("path" to ":module_common:common-base")))
+    implementation("androidx.startup:startup-runtime:1.0.0")
     kapt(Hilt.compilerHilt)
 }

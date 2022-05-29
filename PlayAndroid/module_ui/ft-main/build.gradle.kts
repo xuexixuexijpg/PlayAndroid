@@ -7,6 +7,7 @@ plugins {
     }
     id ("kotlin-android")
     id ("kotlin-kapt")
+    id ("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
 }
 apply {
@@ -23,10 +24,12 @@ dependencies {
     implementation (Hilt.implHilt)
     implementation (Window.windowManager)
     implementation(project(mapOf("path" to ":module_common:common-base")))
+    implementation(project(mapOf("path" to ":module_common:common-utils")))
     implementation(project(mapOf("path" to ":module_common:common-imageloading")))
+    implementation(project(mapOf("path" to ":module_service:service-data")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-home")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-mine")))
-    implementation(project(mapOf("path" to ":module_service:service-base")))
+    implementation(project(mapOf("path" to ":module_ui:ft-main-square")))
     kapt(Hilt.compilerHilt)
 
     implementation(OtherLibs.byBinding)

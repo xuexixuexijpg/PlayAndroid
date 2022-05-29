@@ -4,7 +4,6 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.dragon.common_network.converter.SerializationConverter
-import com.dragon.service_base.BuildConfig
 import com.drake.net.Net
 import com.drake.net.NetConfig
 import com.drake.net.cookie.PersistentCookieJar

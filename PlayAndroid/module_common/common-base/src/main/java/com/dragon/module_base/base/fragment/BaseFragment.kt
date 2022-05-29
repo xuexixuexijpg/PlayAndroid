@@ -12,12 +12,20 @@ import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.MavericksView
 import com.dragon.module_base.R
 import com.dragon.module_base.databinding.FragmentBaseBinding
+import com.dragon.module_base.service.navigate.BaseArgs
 
 
 /**
  * 基础fragment
  */
 abstract class BaseFragment : Fragment(R.layout.fragment_base),MavericksView {
+
+    companion object {
+        fun createArgKey(args: BaseArgs): String = createArgKey(args::class.qualifiedName!!)
+        fun createArgKey(identifier: String): String = "$VALUE_ARGUMENT:$identifier"
+
+        private const val VALUE_ARGUMENT = "com.dragon.BaseArgs"
+    }
 
     //控制器
     protected val epoxyController by lazy { epoxyController() }
