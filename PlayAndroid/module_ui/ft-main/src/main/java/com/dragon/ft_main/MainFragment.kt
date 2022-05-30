@@ -26,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 import javax.inject.Inject
+
 /**
  * 主页
  */
@@ -42,20 +43,20 @@ class MainFragment : Fragment(R.layout.fragment_ft_main), MMKVOwner {
     lateinit var mainProvider: MainProvider
 
     //直接 findNavController()拿到的是父的控制器
-    private lateinit var navController : NavController
+    private lateinit var navController: NavController
 
     private val binding by viewBinding(FragmentFtMainBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         //https://github.com/android/user-interface-samples/tree/main/WindowManager
         configuration = resources.configuration
         context?.let {
-            val activity = WeakReference<Activity>(requireActivity())
-            activity.get()?.let { ac ->
-                lifecycleScope.launch(Dispatchers.Main) {
-                    viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
+            lifecycleScope.launch(Dispatchers.Main) {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                    //照理说不应该会报activity的内存泄露
+                    val activity = WeakReference<Activity>(requireActivity())
+                    activity.get()?.let { ac ->
                         WindowInfoTracker.getOrCreate(it)
                             .windowLayoutInfo(ac)
                             .collect { newLayoutInfo ->
@@ -73,20 +74,17 @@ class MainFragment : Fragment(R.layout.fragment_ft_main), MMKVOwner {
                     }
                 }
             }
-
         }
 
         val hostFragment = childFragmentManager.findFragmentById(R.id.ft_main_container)
         if (hostFragment != null) {
             //不先在布局中
             navController = hostFragment.findNavController()
-            Log.e(TAG, "onCreate: $navController", )
         }
 
         binding.bottomNav.setupWithNavController(navController)
 
         binding.railNav.setupWithNavController(navController)
-
 
     }
 

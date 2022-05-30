@@ -11,6 +11,4 @@ class HomeProviderImpl @Inject constructor():
     override fun navigateTo(navController: NavController, navOptions: HomeArgs?) {
 
     }
-
-
 }

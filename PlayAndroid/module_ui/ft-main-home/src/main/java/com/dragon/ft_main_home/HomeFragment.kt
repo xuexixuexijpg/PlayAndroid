@@ -1,6 +1,7 @@
 package com.dragon.ft_main_home
 
 import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.findNavController
 import com.airbnb.mvrx.fragmentViewModel
 import com.dragon.ft_main_home.viewmodle.HomeViewModel
 import com.dragon.ft_main_home.views.headerView
@@ -17,12 +18,14 @@ class HomeFragment : BaseFragment() {
 
     private val homeViewModel: HomeViewModel by fragmentViewModel()
 
+    private val navController get() = findNavController()
+
     override fun epoxyController() = simpleController(homeViewModel) { state ->
         headerView {
             id("header")
             //头像点击
             onAvatarClick { _, _, _, _ ->
-
+                navController.navigate("mineFragment")
             }
             //设置搜索词
             hintText(state.hintText)
