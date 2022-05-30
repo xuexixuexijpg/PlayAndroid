@@ -28,7 +28,6 @@ include ':module_common:common-widgets'
 include ':module_common:common-web-browser'
 include ':module_common:common-utils'
 include ':module_service'
-include ':module_service:service-data'
 include ':module_ui'
 include ':module_ui:domain'
 
@@ -45,3 +44,4 @@ include ':module_common:common-imageloading'
 include ':module_common:common-network'
 
 include ':module_ui:ft-main-square'
+include ':module_common:common-data'

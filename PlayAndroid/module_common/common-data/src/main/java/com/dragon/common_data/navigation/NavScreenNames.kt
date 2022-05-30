@@ -1,4 +1,4 @@
-package com.dragon.module_data.navigation
+package com.dragon.common_data.navigation
 
 /**
  * 路由名

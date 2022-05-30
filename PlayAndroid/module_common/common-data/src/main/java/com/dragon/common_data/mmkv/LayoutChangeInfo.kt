@@ -1,4 +1,4 @@
-package com.dragon.module_data.mmkv
+package com.dragon.common_data.mmkv
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

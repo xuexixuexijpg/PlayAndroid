@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@id/homeFragment"
         android:checkable="true"
         android:icon="@drawable/ic_baseline_home"
         android:title="首页" />
 
     <item
-        android:id="@+id/squareFragment"
+        android:id="@id/squareFragment"
         android:checkable="true"
         android:icon="@drawable/ic_baseline_square"
         android:title="广场" />
@@ -25,7 +25,7 @@
         android:title="导航"/>
 
     <item
-        android:id="@+id/mineFragment"
+        android:id="@id/mineFragment"
         android:checkable="true"
         android:icon="@drawable/ic_baseline_mine"
         android:title="我的"/>

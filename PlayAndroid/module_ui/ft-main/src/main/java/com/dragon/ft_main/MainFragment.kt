@@ -3,15 +3,15 @@ package com.dragon.ft_main
 import android.app.Activity
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
+import android.system.Os.bind
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.navigation.ui.setupWithNavController
 import androidx.window.layout.FoldingFeature
 import androidx.window.layout.WindowInfoTracker
@@ -20,7 +20,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.dragon.common_utils.mmkvutil.MMKVOwner
 import com.dragon.common_utils.mmkvutil.mmkvParcelable
 import com.dragon.ft_main.databinding.FragmentFtMainBinding
-import com.dragon.module_data.mmkv.LayoutChangeInfo
+import com.dragon.common_data.mmkv.LayoutChangeInfo
+import com.dragon.common_data.navigation.NavViewModel
+import com.dylanc.longan.launchAndCollectIn
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,6 +37,8 @@ class MainFragment : Fragment(R.layout.fragment_ft_main), MMKVOwner {
 
     //屏幕信息
     private var layoutInfo by mmkvParcelable<LayoutChangeInfo>()
+
+    private val navViewModel by navGraphViewModels<NavViewModel>(R.id.main_graph)
 
     //配置信息
     private lateinit var configuration: Configuration
@@ -83,9 +87,14 @@ class MainFragment : Fragment(R.layout.fragment_ft_main), MMKVOwner {
         }
 
         binding.bottomNav.setupWithNavController(navController)
-
         binding.railNav.setupWithNavController(navController)
 
+
+        navViewModel.selectItem.launchAndCollectIn(viewLifecycleOwner){
+            if (it in arrayListOf(R.id.homeFragment,R.id.mineFragment,R.id.squareFragment)){
+                binding.bottomNav.selectedItemId = it
+            }
+        }
     }
 
 

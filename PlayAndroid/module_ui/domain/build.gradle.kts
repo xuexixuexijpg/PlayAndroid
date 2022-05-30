@@ -29,8 +29,8 @@ dependencies {
     implementation (Hilt.implHilt)
     implementation (Window.windowManager)
     implementation(project(mapOf("path" to ":module_common:common-utils")))
+    implementation(project(mapOf("path" to ":module_common:common-data")))
     implementation(project(mapOf("path" to ":module_common:common-base")))
-    implementation(project(mapOf("path" to ":module_service:service-data")))
     kapt(Hilt.compilerHilt)
 
     //otherLibs

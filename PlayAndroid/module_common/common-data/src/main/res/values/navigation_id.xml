@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--首页-->
+    <item name="main_graph" type="id"/>
+    <item name="mainFragment" type="id"/>
+    <item name="squareFragment" type="id"/>
+    <item name="homeFragment" type="id"/>
+    <item name="mineFragment" type="id"/>
+    <item name="home_to_mine" type="id"/>
+
+    <!--搜索页-->
+    <item name="searchFragment" type="id"/>
+</resources>

@@ -16,6 +16,7 @@ apply {
 
 dependencies {
     implementation (Hilt.implHilt)
+    implementation(project(mapOf("path" to ":module_common:common-data")))
     implementation(project(mapOf("path" to ":module_common:common-base")))
     kapt(Hilt.compilerHilt)
 }

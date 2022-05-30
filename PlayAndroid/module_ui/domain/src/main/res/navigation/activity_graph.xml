@@ -10,7 +10,7 @@
         android:name="com.dragon.search.SearchFragment"
         android:label="SearchFragment" />
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@id/mainFragment"
         android:name="com.dragon.ft_main.MainFragment"
         android:label="MainFragment" />
 
