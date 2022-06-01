@@ -19,7 +19,7 @@ public inline fun <reified VM : ViewModel> Fragment.navGraphViewModels(
     noinline extrasProducer: (() -> CreationExtras)? = null,
     noinline factoryProducer: (() -> ViewModelProvider.Factory)? = null
 ): Lazy<VM> {
-    var backStackEntry : NavBackStackEntry? = null
+    val backStackEntry: NavBackStackEntry?
 
     if (navController == null){
         backStackEntry =

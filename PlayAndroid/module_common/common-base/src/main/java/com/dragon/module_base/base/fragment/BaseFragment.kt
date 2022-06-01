@@ -63,6 +63,7 @@ abstract class BaseFragment : Fragment(R.layout.fragment_base),MavericksView {
     abstract fun epoxyController(): BaseFragmentController
 
     override fun onDestroyView() {
+        //TODO 解决view回收导致的内存泄漏问题 暂时，可能还有其他的写法
         binding.recycleView.removeAllViews()
         super.onDestroyView()
     }

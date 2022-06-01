@@ -11,7 +11,8 @@ import com.airbnb.mvrx.MavericksViewModel
  * 数据模型
  */
 data class HomeViewState(
-    val hintText:String ="sdkah"
+    val hintText:String ="sdkah",
+    val data:MutableList<String> = mutableListOf<String>()
 ):MavericksState
 
 /**
@@ -21,5 +22,5 @@ internal class HomeViewModel(initialState: HomeViewState) : MavericksViewModel<H
     //改变数据
     fun setHintText(s: String) = setState { copy(hintText = s) }
 
-
+    fun setData(data:MutableList<String>) = setState { copy(data = data) }
 }
