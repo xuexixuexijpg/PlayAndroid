@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.res.Configuration
 import android.os.Bundle
 import android.system.Os.bind
+import android.view.SubMenu
 import android.view.View
+import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +24,7 @@ import com.dragon.common_utils.mmkvutil.mmkvParcelable
 import com.dragon.ft_main.databinding.FragmentFtMainBinding
 import com.dragon.common_data.mmkv.LayoutChangeInfo
 import com.dragon.common_data.navigation.NavViewModel
+import com.dragon.ft_main.utils.navGraphViewModels
 import com.dylanc.longan.launchAndCollectIn
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -35,19 +38,19 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_ft_main), MMKVOwner {
 
+    //直接 findNavController()拿到的是父的控制器
+    private lateinit var navController: NavController
+
     //屏幕信息
     private var layoutInfo by mmkvParcelable<LayoutChangeInfo>()
 
-    private val navViewModel by navGraphViewModels<NavViewModel>(R.id.main_graph)
+//    private val navViewModel by navGraphViewModels<NavViewModel>(R.id.main_graph,navController)
 
     //配置信息
     private lateinit var configuration: Configuration
 
     @Inject
     lateinit var mainProvider: MainProvider
-
-    //直接 findNavController()拿到的是父的控制器
-    private lateinit var navController: NavController
 
     private val binding by viewBinding(FragmentFtMainBinding::bind)
 
@@ -87,14 +90,23 @@ class MainFragment : Fragment(R.layout.fragment_ft_main), MMKVOwner {
         }
 
         binding.bottomNav.setupWithNavController(navController)
+
         binding.railNav.setupWithNavController(navController)
 
 
-        navViewModel.selectItem.launchAndCollectIn(viewLifecycleOwner){
-            if (it in arrayListOf(R.id.homeFragment,R.id.mineFragment,R.id.squareFragment)){
-                binding.bottomNav.selectedItemId = it
-            }
-        }
+//        navViewModel.selectItem.launchAndCollectIn(viewLifecycleOwner){
+//            if (it in arrayListOf(R.id.homeFragment,R.id.mineFragment,R.id.squareFragment)){
+//                binding.bottomNav.selectedItemId = it
+//            }
+//        }
+    }
+
+
+    /**
+     * 目前的做法是只导航到本地
+     */
+    fun bottomItemSelect(@IdRes id:Int){
+        binding.bottomNav.selectedItemId = id
     }
 
 

@@ -25,7 +25,7 @@
         android:title="导航"/>
 
     <item
-        android:id="@id/mineFragment"
+        android:id="@+id/mineFragment"
         android:checkable="true"
         android:icon="@drawable/ic_baseline_mine"
         android:title="我的"/>

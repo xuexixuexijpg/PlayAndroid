@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.navigation.ui.NavigationUI
 import com.airbnb.mvrx.fragmentViewModel
+import com.dragon.common_data.navigation.NavScreenNames
 import com.dragon.common_data.navigation.NavViewModel
 import com.dragon.ft_main_home.viewmodle.HomeViewModel
 import com.dragon.ft_main_home.views.headerView
@@ -24,7 +25,7 @@ class HomeFragment : BaseFragment() {
 
     private val homeViewModel: HomeViewModel by fragmentViewModel()
 
-    private val navViewModel by navGraphViewModels<NavViewModel>()
+//    private val navViewModel by navGraphViewModels<NavViewModel>()
 
     private val navController get() = findNavController()
 
@@ -33,9 +34,7 @@ class HomeFragment : BaseFragment() {
             id("header")
             //头像点击
             onAvatarClick { _, _, _, _ ->
-                lifecycleScope.launch {
-                    navViewModel.selectItem.emit(R.id.mineFragment)
-                }
+                homeProvider.navigateToNative(NavScreenNames.MINE_PAGE)
             }
             //设置搜索词
             hintText(state.hintText)

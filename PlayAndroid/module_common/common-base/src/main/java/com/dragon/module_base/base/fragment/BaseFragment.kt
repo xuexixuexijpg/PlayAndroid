@@ -61,4 +61,9 @@ abstract class BaseFragment : Fragment(R.layout.fragment_base),MavericksView {
     }
 
     abstract fun epoxyController(): BaseFragmentController
+
+    override fun onDestroyView() {
+        binding.recycleView.removeAllViews()
+        super.onDestroyView()
+    }
 }

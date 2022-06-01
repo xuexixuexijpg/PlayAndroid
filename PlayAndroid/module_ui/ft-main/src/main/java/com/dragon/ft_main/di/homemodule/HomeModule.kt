@@ -1,4 +1,4 @@
-package com.dragon.ft_main_home.di
+package com.dragon.ft_main.di.homemodule
 
 import dagger.Binds
 import dagger.Module
