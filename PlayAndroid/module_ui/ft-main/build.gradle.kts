@@ -30,6 +30,7 @@ dependencies {
     implementation(project(mapOf("path" to ":module_ui:ft-main-home")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-mine")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-square")))
+    implementation(project(mapOf("path" to ":module_ui:ft-search")))
     kapt(Hilt.compilerHilt)
 
     implementation(OtherLibs.byBinding)

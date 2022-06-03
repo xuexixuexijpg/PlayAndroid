@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI
 import com.airbnb.mvrx.fragmentViewModel
 import com.dragon.common_data.navigation.NavScreenNames
 import com.dragon.common_data.navigation.NavViewModel
+import com.dragon.common_data.navigation.RoutePageName
 import com.dragon.ft_main_home.viewmodle.HomeViewModel
 import com.dragon.ft_main_home.views.dataItemView
 import com.dragon.ft_main_home.views.headerView
@@ -52,12 +53,12 @@ class HomeFragment : BaseFragment() {
             hintText(state.hintText)
             //搜索框点击
             onSearchLayoutClick { _, _, _, _ ->
-
+                homeProvider.navigateToPage(routePath = RoutePageName.SEARCH_PAGE.path)
             }
         }
         state.data.forEach {
             dataItemView {
-                id("dataItem")
+                id(it)
                 data(it)
             }
         }

@@ -1,6 +1,5 @@
-package com.dragon.ft_main
+package com.dragon.ft_main.di.mainmodule
 
-import android.os.Parcelable
 import com.dragon.module_base.service.navigate.BaseArgs
 import com.dragon.module_base.service.navigate.Navigator
 import kotlinx.parcelize.Parcelize

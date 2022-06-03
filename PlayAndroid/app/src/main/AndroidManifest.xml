@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Play.Android"
         >
         <activity
-            android:name="com.dragon.ui_main.MainActivity"
+            android:name="com.dragon.ft_main.MainActivity"
             android:exported="true"
             >
             <intent-filter>

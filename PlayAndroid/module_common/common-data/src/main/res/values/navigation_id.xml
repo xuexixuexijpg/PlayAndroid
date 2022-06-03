@@ -13,4 +13,8 @@
 
     <!--搜索页-->
     <item name="searchFragment" type="id"/>
+
+
+    <!--action-->
+    <item name="action_main_to_search" type="id"/>
 </resources>

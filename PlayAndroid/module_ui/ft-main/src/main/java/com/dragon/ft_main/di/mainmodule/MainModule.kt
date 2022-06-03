@@ -1,6 +1,5 @@
-package com.dragon.ft_main.di
+package com.dragon.ft_main.di.mainmodule
 
-import com.dragon.ft_main.MainProvider
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

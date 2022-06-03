@@ -1,4 +1,4 @@
-package com.dragon.ft_main.di
+package com.dragon.ft_main.di.mainmodule
 
 import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.android.scopes.FragmentScoped

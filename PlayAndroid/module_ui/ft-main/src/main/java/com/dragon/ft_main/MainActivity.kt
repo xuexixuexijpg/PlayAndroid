@@ -1,4 +1,4 @@
-package com.dragon.ui_main
+package com.dragon.ft_main
 
 
 import android.os.Bundle
@@ -8,7 +8,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.dragon.common_utils.mmkvutil.MMKVOwner
-import com.dragon.ui_main.databinding.ActivityMainBinding
+import com.dragon.ft_main.databinding.ActivityMainBinding
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,6 +33,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), MMKVOwner {
 
             Log.e(TAG, "onCreate: $navController", )
         }
+    }
+
+    /**
+     * 将导航返出去使用
+     */
+    fun routeControl():NavController{
+        return navController
     }
 
 }

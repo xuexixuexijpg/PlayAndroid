@@ -3,8 +3,6 @@ package com.dragon.ft_main
 import android.app.Activity
 import android.content.res.Configuration
 import android.os.Bundle
-import android.system.Os.bind
-import android.view.SubMenu
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
@@ -13,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import androidx.navigation.ui.setupWithNavController
 import androidx.window.layout.FoldingFeature
 import androidx.window.layout.WindowInfoTracker
@@ -23,9 +20,7 @@ import com.dragon.common_utils.mmkvutil.MMKVOwner
 import com.dragon.common_utils.mmkvutil.mmkvParcelable
 import com.dragon.ft_main.databinding.FragmentFtMainBinding
 import com.dragon.common_data.mmkv.LayoutChangeInfo
-import com.dragon.common_data.navigation.NavViewModel
-import com.dragon.ft_main.utils.navGraphViewModels
-import com.dylanc.longan.launchAndCollectIn
+import com.dragon.ft_main.di.mainmodule.MainProvider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
