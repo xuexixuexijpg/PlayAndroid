@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.navigation.ui.NavigationUI
 import com.airbnb.mvrx.fragmentViewModel
+import com.airbnb.mvrx.withState
 import com.dragon.common_data.navigation.NavScreenNames
 import com.dragon.common_data.navigation.NavViewModel
 import com.dragon.common_data.navigation.RoutePageName
@@ -35,6 +36,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         homeViewModel.setData(mutableListOf<String>().apply {
             for (i in 1..100){
                 add(i.toString())

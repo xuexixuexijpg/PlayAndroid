@@ -10,6 +10,13 @@ plugins {
     id ("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
+
+android {
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
 apply {
     from("../../basic_build.gradle")
 }
@@ -19,4 +26,5 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-data")))
     implementation(project(mapOf("path" to ":module_common:common-base")))
     kapt(Hilt.compilerHilt)
+    implementation(OtherLibs.byBinding)
 }
