@@ -1,6 +1,7 @@
 package com.dragon.module_base.base.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,11 +37,20 @@ abstract class BaseFragment : Fragment(R.layout.fragment_base),MavericksView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        savedInstanceState?.let {
+        savedInstanceState?.let {
             epoxyController.onRestoreInstanceState(savedInstanceState)
-//        }
+        }
         //删除重复的id项
         epoxyController.setFilterDuplicates(true)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        Log.e("Base", "onCreateView: 数据恢复 ${epoxyController.hashCode()}", )
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -68,6 +78,7 @@ abstract class BaseFragment : Fragment(R.layout.fragment_base),MavericksView {
 //        binding.recycleView.requestModelBuild()
         epoxyController.requestModelBuild()
     }
+
 
     abstract fun epoxyController(): BaseFragmentController
 

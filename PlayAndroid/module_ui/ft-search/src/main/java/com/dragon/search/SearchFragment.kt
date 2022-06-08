@@ -3,6 +3,7 @@ package com.dragon.search
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.dragon.search.databinding.FragmentFtSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +22,7 @@ class SearchFragment:Fragment(R.layout.fragment_ft_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.button.setOnClickListener {
-
+            findNavController().navigateUp()
         }
     }
 }

@@ -31,11 +31,11 @@ class HomeProviderImpl @Inject constructor(
             val routeController = activity.routeControl()
             //以id的action为优先
             if (id != 0){
-                routeController.navigate(id,args, navOptions?:NavOption.normalNavOption)
+                routeController.navigate(id,args, navOptions?:NavOption.popUpSaveStateById(id))
                 return
             }
             if (routePath != null){
-                routeController.navigate(routePath, navOptions?:NavOption.normalNavOption)
+                routeController.navigate(routePath, navOptions?:NavOption.popUpSaveStateByRoute(routePath))
             }
         }
     }

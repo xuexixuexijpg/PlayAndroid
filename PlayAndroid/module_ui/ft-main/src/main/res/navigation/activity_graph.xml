@@ -2,18 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_graph"
-    app:startDestination="@id/mainFragment"
-    >
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        app:route="search"
         android:id="@+id/searchFragment"
         android:name="com.dragon.search.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment"
+        app:route="search" />
     <fragment
         android:id="@id/mainFragment"
         android:name="com.dragon.ft_main.MainFragment"
-        android:label="MainFragment" >
+        android:label="MainFragment">
         <action
             android:id="@+id/action_main_to_search"
             app:destination="@id/searchFragment" />

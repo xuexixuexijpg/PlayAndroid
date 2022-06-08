@@ -8,6 +8,7 @@ import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
 import com.airbnb.mvrx.fragmentViewModel
@@ -40,6 +41,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         homeViewModel.setData(mutableListOf<String>().apply {
             for (i in 1..100){
                 add(i.toString())
@@ -55,7 +57,7 @@ class HomeFragment : BaseFragment() {
 //        epoxyController.adapter.getModelAtPosition(it) is HeaderViewModel_
         it % 5 == 0
     }) { state ->
-
+//        epoxyController.adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         headerView {
             id("header")
             //头像点击
@@ -66,7 +68,7 @@ class HomeFragment : BaseFragment() {
             hintText(state.hintText)
             //搜索框点击
             onSearchLayoutClick { _, _, _, _ ->
-                homeProvider.navigateToPage(routePath = RoutePageName.SEARCH_PAGE.path)
+                homeProvider.navigateToPage(id = R.id.action_main_to_search)
             }
 
         }
