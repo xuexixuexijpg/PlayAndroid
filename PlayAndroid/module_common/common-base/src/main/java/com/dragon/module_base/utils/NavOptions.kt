@@ -12,7 +12,7 @@ import com.dragon.module_base.R
 object NavOption{
     val normalNavOption = NavOptions.Builder().apply {
         setLaunchSingleTop(true)
-        setRestoreState(true)
+//        setRestoreState(true)
         setEnterAnim(R.anim.enter_from_right)
         setPopExitAnim(R.anim.pop_from_right)
     }.build()

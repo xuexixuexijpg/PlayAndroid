@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import com.airbnb.epoxy.EpoxyRecyclerView
 
-internal class MyRecyclerView : EpoxyRecyclerView {
+class MyRecyclerView : EpoxyRecyclerView {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
