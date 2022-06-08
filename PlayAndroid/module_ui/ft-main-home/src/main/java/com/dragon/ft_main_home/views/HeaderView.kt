@@ -1,10 +1,12 @@
 package com.dragon.ft_main_home.views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.system.Os.bind
 import android.util.AttributeSet
 import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.Coil
 import coil.imageLoader
@@ -19,6 +21,8 @@ import com.dragon.ft_main_home.databinding.HomeViewHeaderBinding
 /**
  * 建立模型view
  */
+
+
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
 class HeaderView @JvmOverloads constructor(
     context: Context,
@@ -34,6 +38,7 @@ class HeaderView @JvmOverloads constructor(
         binding.imgAvatar.load(R.drawable.im_header){
             crossfade(true)
         }
+        setBackgroundColor(ContextCompat.getColor(context,R.color.white))
     }
 
     @CallbackProp
@@ -50,4 +55,5 @@ class HeaderView @JvmOverloads constructor(
     fun setHintText(title: CharSequence?){
         binding.tvSearch.text = title
     }
+
 }

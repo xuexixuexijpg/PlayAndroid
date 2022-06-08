@@ -40,6 +40,8 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-data")))
     kapt(Hilt.compilerHilt)
     kapt(OtherLibs.epoxyCompiler)
+    implementation(OtherLibs.epoxyPaging)
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation(OtherLibs.byBinding)
 

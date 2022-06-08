@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
 import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.MavericksView
 import com.dragon.module_base.R
@@ -32,11 +33,12 @@ abstract class BaseFragment : Fragment(R.layout.fragment_base),MavericksView {
 
     private val binding by viewBinding(FragmentBaseBinding::bind)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedInstanceState?.let {
+//        savedInstanceState?.let {
             epoxyController.onRestoreInstanceState(savedInstanceState)
-        }
+//        }
         //删除重复的id项
         epoxyController.setFilterDuplicates(true)
     }
@@ -46,9 +48,16 @@ abstract class BaseFragment : Fragment(R.layout.fragment_base),MavericksView {
         epoxyController.onSaveInstanceState(outState)
     }
 
+    protected open fun isSticky():StickyHeaderLinearLayoutManager? {
+        return null
+    }
+
     //可在此处做一些操作 如全局的viewModel监听
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (isSticky() != null){
+            binding.recycleView.layoutManager = isSticky()
+        }
         binding.recycleView.setController(epoxyController)
     }
 
@@ -56,8 +65,8 @@ abstract class BaseFragment : Fragment(R.layout.fragment_base),MavericksView {
      * viewModel数据更新处
      */
     override fun invalidate() {
-        binding.recycleView.requestModelBuild()
-//        epoxyController.requestModelBuild()
+//        binding.recycleView.requestModelBuild()
+        epoxyController.requestModelBuild()
     }
 
     abstract fun epoxyController(): BaseFragmentController
