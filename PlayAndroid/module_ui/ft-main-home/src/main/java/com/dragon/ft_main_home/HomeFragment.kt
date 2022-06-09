@@ -59,7 +59,7 @@ class HomeFragment : BaseFragment() {
     }) { state ->
 //        epoxyController.adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         headerView {
-            id("header")
+            id("headerView")
             //头像点击
             onAvatarClick { _, _, _, _ ->
                 homeProvider.navigateToNative(NavScreenNames.MINE_PAGE)
