@@ -14,9 +14,17 @@ apply {
     from("../../basic_build.gradle")
 }
 
+android{
+    buildFeatures{
+        viewBinding = true
+    }
+}
+
 dependencies {
     implementation (Hilt.implHilt)
     implementation(project(mapOf("path" to ":module_common:common-data")))
     implementation(project(mapOf("path" to ":module_common:common-base")))
+    implementation("com.github.liangjingkanji:BRV:1.3.75")
+    implementation(OtherLibs.byBinding)
     kapt(Hilt.compilerHilt)
 }
