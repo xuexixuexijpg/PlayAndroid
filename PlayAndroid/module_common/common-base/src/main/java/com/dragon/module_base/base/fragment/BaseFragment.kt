@@ -12,6 +12,7 @@ import com.airbnb.epoxy.EpoxyRecyclerView
 import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
 import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.MavericksView
+import com.airbnb.mvrx.withState
 import com.dragon.module_base.R
 import com.dragon.module_base.databinding.FragmentBaseBinding
 import com.dragon.module_base.service.navigate.BaseArgs
