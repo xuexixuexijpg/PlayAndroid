@@ -48,6 +48,11 @@ dependencies {
     //other
     implementation rootProject.ext.otherLibs
 
+    //Androidx Security
+    implementation "androidx.security:security-crypto:1.1.0-alpha03"
+    //Google Guava
+    implementation 'com.google.guava:guava:31.0.1-jre'
+
     //防崩溃
 //    implementation 'cat.ereza:customactivityoncrash:2.3.0'
 }
