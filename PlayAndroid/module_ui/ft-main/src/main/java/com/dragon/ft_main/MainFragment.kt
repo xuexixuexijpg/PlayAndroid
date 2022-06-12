@@ -21,6 +21,8 @@ import com.dragon.common_utils.mmkvutil.mmkvParcelable
 import com.dragon.ft_main.databinding.FragmentFtMainBinding
 import com.dragon.common_data.mmkv.LayoutChangeInfo
 import com.dragon.ft_main.di.mainmodule.MainProvider
+import com.dragon.module_base.base.callback.BackPressedOwner
+import com.dragon.module_base.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,7 +33,7 @@ import javax.inject.Inject
  * 主页
  */
 @AndroidEntryPoint
-class MainFragment : Fragment(R.layout.fragment_ft_main), MMKVOwner {
+class MainFragment : BaseFragment(R.layout.fragment_ft_main), MMKVOwner {
 
     //直接 findNavController()拿到的是父的控制器
     private lateinit var navController: NavController
@@ -150,4 +152,13 @@ class MainFragment : Fragment(R.layout.fragment_ft_main), MMKVOwner {
             }
         }
     }
+
+    override fun handleOnBackPressed(owner: BackPressedOwner): Boolean {
+        if (navController.currentDestination?.id != R.id.homeFragment){
+            binding.bottomNav.selectedItemId = R.id.homeFragment
+            return true
+        }
+        return super.handleOnBackPressed(owner)
+    }
+
 }

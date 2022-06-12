@@ -35,6 +35,7 @@ class MineFragment : Fragment(R.layout.fragment_ft_mine){
 
         //每次创建都是新的一个adapter
         Log.e("onCreateView", "BRV: ${binding.recyclerView.bindingAdapter}", )
+        Log.e("onCreateView", "BRV: ${binding.recyclerView.layoutManager}", )
     }
 
     private fun getData(): MutableList<MineData> {

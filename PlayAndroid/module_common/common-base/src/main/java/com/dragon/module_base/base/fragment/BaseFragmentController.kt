@@ -1,10 +1,7 @@
 package com.dragon.module_base.base.fragment
 
-import android.util.Log
 import com.airbnb.epoxy.AsyncEpoxyController
 import com.airbnb.epoxy.EpoxyController
-import com.airbnb.epoxy.EpoxyModel
-import com.airbnb.epoxy.ModelView
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.withState
@@ -13,7 +10,7 @@ import com.airbnb.mvrx.withState
  * 基础controller
  */
 class BaseFragmentController(
-    val stickyModelView: (Int) -> Boolean = { false },
+    inline val stickyModelView: (Int) -> Boolean = { false },
     val buildModelsCallback: EpoxyController.() -> Unit = {}
 ) : AsyncEpoxyController() {
     override fun buildModels() {
@@ -28,7 +25,7 @@ class BaseFragmentController(
 /**
  * Create a [MvRxEpoxyController] that builds models with the given callback.
  */
-fun BaseFragment.simpleController(
+fun BaseEpoxyFragment.simpleController(
     stickyModelView: (Int) -> Boolean = { false },
     buildModels: EpoxyController.() -> Unit,
 ) = BaseFragmentController(stickyModelView) {
@@ -42,7 +39,7 @@ fun BaseFragment.simpleController(
  * Create a [BaseFragmentController] that builds models with the given callback.
  * When models are built the current state of the viewmodel will be provided.
  */
-fun <S : MavericksState, A : MavericksViewModel<S>> BaseFragment.simpleController(
+fun <S : MavericksState, A : MavericksViewModel<S>> BaseEpoxyFragment.simpleController(
     viewModel: A,
     stickyModelView: (Int) -> Boolean = { false },
     buildModels: EpoxyController.(state: S) -> Unit,
@@ -53,7 +50,7 @@ fun <S : MavericksState, A : MavericksViewModel<S>> BaseFragment.simpleControlle
     }
 }
 
-fun <A : MavericksViewModel<B>, B : MavericksState, C : MavericksViewModel<D>, D : MavericksState> BaseFragment.simpleController(
+fun <A : MavericksViewModel<B>, B : MavericksState, C : MavericksViewModel<D>, D : MavericksState> BaseEpoxyFragment.simpleController(
     viewModel1: A,
     viewModel2: C,
     stickyModelView: (Int) -> Boolean = { false },

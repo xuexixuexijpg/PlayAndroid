@@ -24,6 +24,7 @@ dependencies {
     implementation (Hilt.implHilt)
     implementation(project(mapOf("path" to ":module_common:common-data")))
     implementation(project(mapOf("path" to ":module_common:common-base")))
+    //如果使用这个BRV库结合Navigation的replace的状态保存，多切换还是会出现状态丢失的情况，比如滚动状态
     implementation("com.github.liangjingkanji:BRV:1.3.75")
     implementation(OtherLibs.byBinding)
     kapt(Hilt.compilerHilt)

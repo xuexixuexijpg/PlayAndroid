@@ -1,34 +1,21 @@
 package com.dragon.ft_main_home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
-import androidx.navigation.ui.NavigationUI
-import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
 import com.airbnb.mvrx.fragmentViewModel
-import com.airbnb.mvrx.withState
 import com.dragon.common_data.navigation.NavScreenNames
-import com.dragon.common_data.navigation.NavViewModel
-import com.dragon.common_data.navigation.RoutePageName
 import com.dragon.ft_main_home.viewmodle.HomeViewModel
-import com.dragon.ft_main_home.views.HeaderViewModelBuilder
-import com.dragon.ft_main_home.views.HeaderViewModel_
 import com.dragon.ft_main_home.views.dataItemView
 import com.dragon.ft_main_home.views.headerView
-import com.dragon.module_base.base.fragment.BaseFragment
+import com.dragon.module_base.base.fragment.BaseEpoxyFragment
 import com.dragon.module_base.base.fragment.simpleController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseEpoxyFragment() {
 
     @Inject
     lateinit var homeProvider: HomeProvider
@@ -55,7 +42,7 @@ class HomeFragment : BaseFragment() {
 
     override fun epoxyController() = simpleController(viewModel = homeViewModel,{
 //        epoxyController.adapter.getModelAtPosition(it) is HeaderViewModel_
-        it % 5 == 0
+        it % 5 == 1
     }) { state ->
 //        epoxyController.adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         headerView {

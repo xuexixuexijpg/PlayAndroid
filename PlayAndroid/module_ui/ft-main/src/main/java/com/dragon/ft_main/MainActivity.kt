@@ -9,11 +9,12 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.dragon.common_utils.mmkvutil.MMKVOwner
 import com.dragon.ft_main.databinding.ActivityMainBinding
+import com.dragon.module_base.base.activity.BaseActivity
 
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main), MMKVOwner {
+class MainActivity : BaseActivity(R.layout.activity_main), MMKVOwner {
 
     companion object {
         const val TAG = "MainActivity"
@@ -41,5 +42,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), MMKVOwner {
     fun routeControl():NavController{
         return navController
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
 
 }
