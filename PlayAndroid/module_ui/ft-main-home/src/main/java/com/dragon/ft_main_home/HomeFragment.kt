@@ -1,46 +1,52 @@
 package com.dragon.ft_main_home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
+import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.fragmentViewModel
 import com.dragon.common_data.navigation.NavScreenNames
 import com.dragon.ft_main_home.viewmodle.HomeViewModel
 import com.dragon.ft_main_home.views.dataItemView
 import com.dragon.ft_main_home.views.headerView
 import com.dragon.module_base.base.fragment.BaseEpoxyFragment
+import com.dragon.module_base.base.fragment.BaseFragment
 import com.dragon.module_base.base.fragment.simpleController
+import com.dragon.module_base.databinding.FragmentBaseBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseEpoxyFragment() {
+class HomeFragment : BaseFragment(R.layout.fragment_base),MavericksView {
 
     @Inject
     lateinit var homeProvider: HomeProvider
 
     private val homeViewModel: HomeViewModel by fragmentViewModel()
 
-//    private val navViewModel by navGraphViewModels<NavViewModel>()
+    private val binding by viewBinding(FragmentBaseBinding::bind)
+
+    //控制器
+    private val epoxyController by lazy { epoxyController() }
 
     private val navController get() = findNavController()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.recycleView.layoutManager=StickyHeaderLinearLayoutManager(requireContext())
+        binding.recycleView.setController(epoxyController)
         homeViewModel.setData(mutableListOf<String>().apply {
             for (i in 1..100){
                 add(i.toString())
             }
         })
+        Log.e("Base", "onCreateView: 数据恢复 ${epoxyController().adapter}", )
     }
 
-    override fun isSticky(): StickyHeaderLinearLayoutManager? {
-        return StickyHeaderLinearLayoutManager(requireContext())
-    }
-
-    override fun epoxyController() = simpleController(viewModel = homeViewModel,{
+    private fun epoxyController() = simpleController(viewModel = homeViewModel,{
 //        epoxyController.adapter.getModelAtPosition(it) is HeaderViewModel_
         it % 5 == 1
 //        false
@@ -73,7 +79,7 @@ class HomeFragment : BaseEpoxyFragment() {
                     hintText(state.hintText)
                     //搜索框点击
                     onSearchLayoutClick { _, _, _, _ ->
-                        homeProvider.navigateToPage(id = R.id.searchFragment)
+                        homeProvider.navigateToPage(id = R.id.action_main_to_search)
                     }
 
                 }
@@ -84,7 +90,13 @@ class HomeFragment : BaseEpoxyFragment() {
                 }
             }
         }
+    }
 
+    override fun invalidate() {
+        epoxyController.requestModelBuild()
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }

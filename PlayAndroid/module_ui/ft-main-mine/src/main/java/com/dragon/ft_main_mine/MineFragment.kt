@@ -6,9 +6,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.airbnb.mvrx.MavericksView
-import com.airbnb.mvrx.fragmentViewModel
-import com.airbnb.mvrx.withState
+import com.airbnb.mvrx.*
 import com.dragon.ft_main_mine.databinding.FragmentFtMineBinding
 import com.dragon.module_base.base.fragment.BaseFragment
 import com.drake.brv.BindingAdapter
@@ -41,12 +39,28 @@ class MineFragment : BaseFragment(R.layout.fragment_ft_mine),MavericksView{
                 homeProvider.navigateToPage(id = R.id.action_main_to_search)
             }
         }
-        //每次创建都是新的一个adapter
+        //另一种写法 可直接取属性和设置模式
+        //由于只发送一次独一无二的数据后面页面重建就没有数据了 另一个是，默认的相当于viewModel了
+        //不过viewModel也有扩展函数distinck啥来着的api
+//        mineViewModel.onEach(MineDataList::resultData, deliveryMode = uniqueOnly()){
+//            adapter.setDifferModels(it)
+//        }
     }
 
     override fun invalidate() {
-        withState(mineViewModel){
-            adapter.models = it.resultData
+        withState(mineViewModel){ state ->
+
+            when(state.data){
+                //使用Async包装了一层 直接invoke()可直接取出数据
+                is Success -> {
+                    adapter.setDifferModels(state.data.invoke())
+                }
+                is Loading -> {}
+                is Fail -> {}
+                else -> {}
+            }
+
+//            adapter.models = state.resultData
             Log.e("测试", "invalidate: ", )
         }
     }

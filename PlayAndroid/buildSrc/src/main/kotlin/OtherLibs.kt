@@ -5,8 +5,8 @@ object OtherLibs {
     const val mavericks_hilt = "com.airbnb.android:mavericks-hilt:2.7.0"
 
 
-    //epoxy https://github.com/airbnb/epoxy
-    private const val epoxyVersion = "5.0.0-beta05"
+    //epoxy https://github.com/airbnb/epoxy 5.0.0-beta05
+    private const val epoxyVersion = "4.0.0"
     const val epoxy = "com.airbnb.android:epoxy:$epoxyVersion"
     const val epoxyPaging = "com.airbnb.android:epoxy-paging:$epoxyVersion"
     const val epoxyCompiler = "com.airbnb.android:epoxy-processor:$epoxyVersion"

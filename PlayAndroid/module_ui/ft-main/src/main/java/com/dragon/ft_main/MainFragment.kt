@@ -153,6 +153,7 @@ class MainFragment : BaseFragment(R.layout.fragment_ft_main), MMKVOwner {
         }
     }
 
+    //如果使用NavHost的返回拦截会导致原来额页面状体丢失，故需要重写
     override fun handleOnBackPressed(owner: BackPressedOwner): Boolean {
         if (navController.currentDestination?.id != R.id.homeFragment){
             binding.bottomNav.selectedItemId = R.id.homeFragment
