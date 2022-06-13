@@ -3,6 +3,7 @@ package com.dragon.module_base.base.fragment
 import android.content.Context
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.airbnb.mvrx.MavericksView
 import com.dragon.module_base.base.activity.BaseActivity
 import com.dragon.module_base.base.callback.BackPressedCallback
 import com.dragon.module_base.base.callback.BackPressedOwner

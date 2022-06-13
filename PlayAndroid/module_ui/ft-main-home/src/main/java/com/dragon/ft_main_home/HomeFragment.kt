@@ -43,6 +43,7 @@ class HomeFragment : BaseEpoxyFragment() {
     override fun epoxyController() = simpleController(viewModel = homeViewModel,{
 //        epoxyController.adapter.getModelAtPosition(it) is HeaderViewModel_
         it % 5 == 1
+//        false
     }) { state ->
 //        epoxyController.adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         headerView {

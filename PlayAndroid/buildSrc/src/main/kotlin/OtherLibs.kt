@@ -1,7 +1,8 @@
 object OtherLibs {
 
     //mavericks https://github.com/airbnb/mavericks
-    const val mavericks = "com.airbnb.android:mavericks:2.6.1"
+    const val mavericks = "com.airbnb.android:mavericks:2.7.0"
+    const val mavericks_hilt = "com.airbnb.android:mavericks-hilt:2.7.0"
 
 
     //epoxy https://github.com/airbnb/epoxy

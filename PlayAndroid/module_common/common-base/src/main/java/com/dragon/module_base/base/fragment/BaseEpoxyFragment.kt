@@ -55,7 +55,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base),MavericksVie
             epoxyController.onRestoreInstanceState(savedInstanceState)
 //        }
         //删除重复的id项
-        epoxyController.setFilterDuplicates(true)
+
     }
 
     override fun onCreateView(
@@ -63,6 +63,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base),MavericksVie
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        epoxyController.setFilterDuplicates(true)
         Log.e("Base", "onCreateView: 数据恢复 ${epoxyController.adapter}", )
         Log.e("Base", "onCreateView: holders ${epoxyController.adapter.boundViewHolders.size()}", )
         return super.onCreateView(inflater, container, savedInstanceState)
@@ -100,7 +101,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base),MavericksVie
     override fun onDestroyView() {
         //TODO 解决view回收导致的内存泄漏问题 暂时，可能还有其他的写法
         //https://github.com/airbnb/epoxy/wiki/Avoiding-Memory-Leaks
-//        epoxyController.cancelPendingModelBuild()
+        epoxyController.cancelPendingModelBuild()
         super.onDestroyView()
     }
 

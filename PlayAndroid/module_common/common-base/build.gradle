@@ -25,6 +25,7 @@ dependencies {
     api Navigation.navModule
     //Mavericks
     api OtherLibs.mavericks
+    api OtherLibs.mavericks_hilt
     //epoxy
     api OtherLibs.epoxy
     kapt OtherLibs.epoxyCompiler
