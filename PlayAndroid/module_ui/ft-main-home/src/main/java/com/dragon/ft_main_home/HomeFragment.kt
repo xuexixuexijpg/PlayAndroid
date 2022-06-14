@@ -1,8 +1,10 @@
 package com.dragon.ft_main_home
 
 import android.os.Bundle
+import android.system.Os.bind
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
@@ -20,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment(R.layout.fragment_base),MavericksView {
+class HomeFragment : BaseEpoxyFragment() {
 
     @Inject
     lateinit var homeProvider: HomeProvider
@@ -29,24 +31,18 @@ class HomeFragment : BaseFragment(R.layout.fragment_base),MavericksView {
 
     private val binding by viewBinding(FragmentBaseBinding::bind)
 
-    //控制器
-    private val epoxyController by lazy { epoxyController() }
-
     private val navController get() = findNavController()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recycleView.layoutManager=StickyHeaderLinearLayoutManager(requireContext())
-        binding.recycleView.setController(epoxyController)
         homeViewModel.setData(mutableListOf<String>().apply {
             for (i in 1..100){
                 add(i.toString())
             }
         })
-        Log.e("Base", "onCreateView: 数据恢复 ${epoxyController().adapter}", )
     }
 
-    private fun epoxyController() = simpleController(viewModel = homeViewModel,{
+    override fun epoxyController() = simpleController(viewModel = homeViewModel,{
 //        epoxyController.adapter.getModelAtPosition(it) is HeaderViewModel_
         it % 5 == 1
 //        false
@@ -92,11 +88,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_base),MavericksView {
         }
     }
 
-    override fun invalidate() {
-        epoxyController.requestModelBuild()
+    override fun isSticky(): StickyHeaderLinearLayoutManager? {
+        return StickyHeaderLinearLayoutManager(requireContext())
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
+
 }

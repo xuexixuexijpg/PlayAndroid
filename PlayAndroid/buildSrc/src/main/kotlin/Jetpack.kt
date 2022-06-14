@@ -33,7 +33,7 @@ object Compose{
 object LifeCycle{
     //https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=zh-cn#groovy
 
-    private const val lifecycle_version = "2.4.1"
+    private const val lifecycle_version = "2.5.0-rc01"
     const val lifeVm = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     const val lifeService = "androidx.lifecycle:lifecycle-service:$lifecycle_version"
     const val lifeRt = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
