@@ -35,13 +35,13 @@ class MineFragment : BaseFragment(R.layout.fragment_ft_mine), MavericksView {
 
     private val mineViewModel: MineViewModel by fragmentViewModel()
 
-    private val testViewModel:TestViewModel by viewModels()
+    private val testViewModel: TestViewModel by viewModels()
 
     private lateinit var adapter: BindingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         adapter = binding.recyclerView.linear().setup {
+        adapter = binding.recyclerView.linear().setup {
             addType<MineData>(R.layout.item_mine_data)
             onBind {
                 findView<TextView>(R.id.textView2).text = getModel<MineData>().title
@@ -50,40 +50,40 @@ class MineFragment : BaseFragment(R.layout.fragment_ft_mine), MavericksView {
                 homeProvider.navigateToPage(id = R.id.action_main_to_search)
             }
         }
-        if (testViewModel.testData.value.isNullOrEmpty()){
-            testViewModel.setData()
-        }
-        testViewModel.testData.launchAndCollectIn(viewLifecycleOwner){
-            adapter.setDifferModels(it)
-        }
 
+        //TODO 会保留滚动状态
+//        if (testViewModel.testData.value.isNullOrEmpty()) {
+//            testViewModel.setData(100)
+//        }else{
+//            testViewModel.setData(50)
+//        }
+//        //重建能保持原来的滚动位置
+//        testViewModel.testData.launchAndCollectIn(viewLifecycleOwner,Lifecycle.State.RESUMED){
+//            Log.e("测试", "onViewCreated:  ${lifecycle.currentState}", )
+//            adapter.setDifferModels(it)
+//        }
+
+        //TODO MaveRicks不会保留滚动状态 三种方式都一样
         //另一种写法 可直接取属性和设置模式 deliveryMode = uniqueOnly() 一次性
         //由于只发送一次独一无二的数据后面页面重建就没有数据了 另一个是，默认的相当于viewModel了
         //不过viewModel也有扩展函数distinck啥来着的api
 
-        //跟invalidate()方法一样
-//        mineViewModel.onEach(MineDataList::resultData) {
-//        Log.e("测试", "invalidate: ${lifecycle.currentState}")
-//            adapter.setDifferModels(it)
-//        }
-
-        //生命周发生在 STARTED Async值 试了多次之后列表滚动状态还是会丢失
-//        mineViewModel.onAsync(MineDataList::data) {
-//            adapter.setDifferModels(it)
-//        }
-
-    }
-
-    private fun getData(): List<Any?> {
-        return mutableListOf<MineData>().apply {
-            for (i in 1..100) {
-                add(MineData(i.toString()))
-            }
+        //跟方法一样 发生在RESUMED阶段
+        mineViewModel.onEach(MineDataList::resultData) {
+            Log.e("测试", "invalidate: ${lifecycle.currentState}")
+            adapter.setDifferModels(it)
         }
+
+        //生命周发生在 RESUMED Async值 试了多次之后列表滚动状态还是会丢失
+//        mineViewModel.onAsync(MineDataList::data) {
+//            Log.e("测试", "invalidate: ${lifecycle.currentState}")
+//            adapter.setDifferModels(it)
+//        }
+
     }
 
 
-    //测试这里 invalidate首次创建时会先started再resume 之后只有started
+    //测试这里 invalidate首次创建时会先started再resume
     override fun invalidate() {
 //        withState(mineViewModel) { state ->
 //            Log.e("测试", "invalidate: ${lifecycle.currentState}")

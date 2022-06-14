@@ -14,12 +14,19 @@ class TestViewModel @Inject constructor() :ViewModel() {
 
     val testData = MutableStateFlow<MutableList<MineData>?>(null)
 
-    fun setData(){
+    fun setData(count:Int){
         viewModelScope.launch {
             delay(2000)
             val data = mutableListOf<MineData>().apply {
-                for (i in 1..100) {
-                    add(MineData(i.toString()))
+                if (count == 100){
+                    for (i in 1..count) {
+                        add(MineData(i.toString()))
+                    }
+                }else {
+                    for (i in 1..count) {
+//                        add(MineData(i.toString()+"test"))
+                        add(MineData(i.toString()))
+                    }
                 }
             }
             testData.emit(data)
