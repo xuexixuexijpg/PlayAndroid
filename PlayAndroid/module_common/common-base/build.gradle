@@ -54,6 +54,12 @@ dependencies {
     //Google Guava
     implementation 'com.google.guava:guava:31.0.1-jre'
 
+
+    //so库加载 和 数据库加密相关
+    implementation "net.zetetic:android-database-sqlcipher:4.5.0"
+    //https://github.com/KeepSafe/ReLinker
+    implementation 'com.getkeepsafe.relinker:relinker:1.4.4'
+
     //防崩溃
 //    implementation 'cat.ereza:customactivityoncrash:2.3.0'
 }

@@ -52,16 +52,18 @@ class MineFragment : BaseFragment(R.layout.fragment_ft_mine), MavericksView {
         }
 
         //TODO 会保留滚动状态
-//        if (testViewModel.testData.value.isNullOrEmpty()) {
-//            testViewModel.setData(100)
-//        }else{
+        if (testViewModel.testData.value.isNullOrEmpty()) {
+            testViewModel.setData(100)
+        }
+//        else{
 //            testViewModel.setData(50)
 //        }
-//        //重建能保持原来的滚动位置
-//        testViewModel.testData.launchAndCollectIn(viewLifecycleOwner,Lifecycle.State.RESUMED){
-//            Log.e("测试", "onViewCreated:  ${lifecycle.currentState}", )
+        //重建能保持原来的滚动位置
+        testViewModel.testData.launchAndCollectIn(viewLifecycleOwner,Lifecycle.State.RESUMED){
+            Log.e("测试", "onViewCreated:  ${lifecycle.currentState}", )
 //            adapter.setDifferModels(it)
-//        }
+            adapter.models = it
+        }
 
         //TODO MaveRicks不会保留滚动状态 三种方式都一样
         //另一种写法 可直接取属性和设置模式 deliveryMode = uniqueOnly() 一次性
@@ -69,10 +71,11 @@ class MineFragment : BaseFragment(R.layout.fragment_ft_mine), MavericksView {
         //不过viewModel也有扩展函数distinck啥来着的api
 
         //跟方法一样 发生在RESUMED阶段
-        mineViewModel.onEach(MineDataList::resultData) {
-            Log.e("测试", "invalidate: ${lifecycle.currentState}")
-            adapter.setDifferModels(it)
-        }
+//        mineViewModel.onEach(MineDataList::resultData) {
+//            Log.e("测试", "invalidate: ${lifecycle.currentState}")
+////            adapter.setDifferModels(it)
+//            adapter.models = it
+//        }
 
         //生命周发生在 RESUMED Async值 试了多次之后列表滚动状态还是会丢失
 //        mineViewModel.onAsync(MineDataList::data) {
