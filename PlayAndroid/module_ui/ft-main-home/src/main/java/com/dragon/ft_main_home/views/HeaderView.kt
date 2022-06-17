@@ -22,8 +22,6 @@ import com.dragon.ft_main_home.databinding.HomeViewHeaderBinding
  * 建立模型view
  */
 
-
-@ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
 class HeaderView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -41,17 +39,14 @@ class HeaderView @JvmOverloads constructor(
         setBackgroundColor(ContextCompat.getColor(context,R.color.white))
     }
 
-    @CallbackProp
     fun onAvatarClick(listener: OnClickListener?){
         binding.imgAvatar.setOnClickListener(listener)
     }
 
-    @CallbackProp
     fun onSearchLayoutClick(listener: OnClickListener?){
         binding.layoutSearchArea.setOnClickListener(listener)
     }
 
-    @TextProp
     fun setHintText(title: CharSequence?){
         binding.tvSearch.text = title
     }

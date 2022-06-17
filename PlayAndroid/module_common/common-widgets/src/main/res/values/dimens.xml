@@ -4,4 +4,8 @@
     <dimen name="search_icon_padding">12dp</dimen>
     <dimen name="search_view_text_padding">65dp</dimen>
 
+
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
+    <dimen name="dp_0">0dp</dimen>
 </resources>

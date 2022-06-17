@@ -2,6 +2,7 @@
 package com.dragon.common_imageloading
 
 import android.app.Application
+import android.util.Log
 
 import coil.Coil
 import coil.ImageLoader
@@ -43,5 +44,6 @@ class CoilAppInitializer @Inject constructor(
                 .okHttpClient(coilOkHttpClient)
                 .build()
         }
+        Log.e("测试", "init: coil == ${Coil.imageLoader(application)}", )
     }
 }

@@ -16,19 +16,20 @@ android {
         viewBinding = true
     }
 
-    val srcDirs = listOf(
-        "src/main/res",
-        "src/main/res/drawable/img",
-        "src/main/res/drawable/background",
-        "src/main/res/drawable/vector",
-        "src/main/res/layout/views",
-        "src/main/res/layout/layouts")
-
-    for (src in srcDirs){
-        sourceSets["main"].res.srcDirs(
-            src
-        )
-    }
+    //由于报红色线 就不用了 暂无解决办法
+//    val srcDirs = listOf(
+//        "src/main/res",
+//        "src/main/res/drawable/img",
+//        "src/main/res/drawable/background",
+//        "src/main/res/drawable/vector",
+//        "src/main/res/layout/views",
+//        "src/main/res/layout/layouts")
+//
+//    for (src in srcDirs){
+//        sourceSets["main"].res.srcDirs(
+//            src
+//        )
+//    }
 
 }
 
@@ -39,8 +40,8 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_common:common-data")))
     kapt(Hilt.compilerHilt)
-    kapt(OtherLibs.epoxyCompiler)
-    implementation(OtherLibs.epoxyPaging)
+//    kapt(OtherLibs.epoxyCompiler)
+//    implementation(OtherLibs.epoxyPaging)
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation(OtherLibs.byBinding)

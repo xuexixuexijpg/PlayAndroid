@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="search_layover_bg">#50000000</color>
+
+    <color name="default_shadow_color">#2a000000</color>
+    <color name="default_shadowback_color">#fff</color>
+    <color name="default_textColor">#000</color>
 </resources>

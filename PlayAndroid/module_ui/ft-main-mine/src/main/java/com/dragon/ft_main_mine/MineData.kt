@@ -1,5 +1,6 @@
 package com.dragon.ft_main_mine
 
+import android.util.Log
 import com.airbnb.mvrx.*
 import com.airbnb.mvrx.hilt.AssistedViewModelFactory
 import com.airbnb.mvrx.hilt.hiltMavericksViewModelFactory
@@ -19,6 +20,7 @@ class MineViewModel @AssistedInject constructor(
     @Assisted initData: MineDataList,
     private val mineRepository: MineRepository
 ) : MavericksViewModel<MineDataList>(initData) {
+
     init {
         getData()
     }
@@ -32,7 +34,7 @@ class MineViewModel @AssistedInject constructor(
                     add(MineData(i.toString()))
                 }
             }
-        }.execute { result -> copy(data = result, resultData = result() ?: emptyList()) }
+        }.execute { result -> copy(data = result, resultData = result.invoke() ?: emptyList()) }
     }
 
     @AssistedFactory
