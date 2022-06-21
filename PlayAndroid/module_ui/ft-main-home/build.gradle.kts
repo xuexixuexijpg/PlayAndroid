@@ -4,7 +4,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
-    id ("kotlin-parcelize")
+    id ("kotlinx-serialization")
     id("dagger.hilt.android.plugin")
 }
 apply {
@@ -39,12 +39,16 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-imageloading")))
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_common:common-data")))
+    implementation(project(mapOf("path" to ":module_common:common-network")))
     kapt(Hilt.compilerHilt)
 //    kapt(OtherLibs.epoxyCompiler)
 //    implementation(OtherLibs.epoxyPaging)
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
     implementation(OtherLibs.byBinding)
+
+    implementation(OtherLibs.BRV)
 
 //    implementation("io.github.lapism:search:1.2.1")
 }

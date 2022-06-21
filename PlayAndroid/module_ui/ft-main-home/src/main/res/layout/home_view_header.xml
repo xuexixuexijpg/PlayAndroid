@@ -65,7 +65,6 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="10dp"
-        android:src="@drawable/im_header"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -44,6 +44,6 @@ class CoilAppInitializer @Inject constructor(
                 .okHttpClient(coilOkHttpClient)
                 .build()
         }
-        Log.e("测试", "init: coil == ${Coil.imageLoader(application)}", )
+        Log.e("测试", "init: coil == ${Coil.imageLoader(application)} == $okHttpClient", )
     }
 }

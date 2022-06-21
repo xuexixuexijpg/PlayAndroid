@@ -8,7 +8,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.dragon.ft_main.MainActivity
 import com.dragon.ft_main.MainFragment
-import com.dragon.ft_main_home.HomeArgs
 import com.dragon.ft_main_home.HomeProvider
 import com.dragon.module_base.utils.NavOption
 import javax.inject.Inject
@@ -40,7 +39,7 @@ class HomeProviderImpl @Inject constructor(
         }
     }
 
-    override fun navigateTo(navController: NavController, navOptions: HomeArgs?) {
+    override fun navigateTo(navController: NavController) {
 
     }
 }

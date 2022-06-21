@@ -6,84 +6,31 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.dragon.ft_main_home.views.HeaderView
+            android:id="@+id/ly_header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/img_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_game"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_game"
-                app:srcCompat="@drawable/vector_message" />
-
-            <ImageView
-                android:id="@+id/img_game"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_avatar"
-                app:layout_constraintEnd_toStartOf="@+id/img_message"
-                app:layout_constraintTop_toTopOf="@+id/img_avatar"
-                app:srcCompat="@drawable/vector_game" />
+            android:layout_height="60dp"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            />
 
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/layout_search_area"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/bg_ice_unused_selected"
-                app:layout_constraintBottom_toBottomOf="@+id/img_message"
-                app:layout_constraintEnd_toStartOf="@+id/img_game"
-                app:layout_constraintStart_toEndOf="@+id/img_avatar"
-                app:layout_constraintTop_toTopOf="@+id/img_message">
-
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    app:srcCompat="@drawable/vector_baseline_search_24" />
-
-                <TextView
-                    android:id="@+id/tv_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="Search" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/img_avatar"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/im_header"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/circleImageStyle"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/ly_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="snap"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 
 
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

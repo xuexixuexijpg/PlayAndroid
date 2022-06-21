@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="home_top_article_title">#333333</color>
+    <color name="home_top_article_label">#D35B5A</color>
+    <color name="home_top_article_author">#999999</color>
+</resources>

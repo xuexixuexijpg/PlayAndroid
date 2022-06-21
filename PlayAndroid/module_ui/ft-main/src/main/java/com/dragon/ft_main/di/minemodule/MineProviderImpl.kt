@@ -7,9 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.dragon.ft_main.MainActivity
-import com.dragon.ft_main.MainFragment
-import com.dragon.ft_main_home.HomeArgs
-import com.dragon.ft_main_home.HomeProvider
+
 import com.dragon.ft_main_mine.MineProvider
 import com.dragon.module_base.utils.NavOption
 import javax.inject.Inject

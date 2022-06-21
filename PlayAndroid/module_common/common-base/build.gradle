@@ -32,9 +32,6 @@ dependencies {
     //viewBinding
     api OtherLibs.byBinding
 
-    // net
-    implementation rootProject.ext.netLibs
-
     // glide
 //    implementation rootProject.ext.glideLibs
 //    kapt rootProject.ext.compiler["glideCompiler"]

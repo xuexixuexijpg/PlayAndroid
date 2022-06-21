@@ -5,6 +5,6 @@ import android.content.Intent
 import androidx.navigation.NavController
 
 //导航
-interface Navigator<T : BaseArgs?> {
-    fun navigateTo(navController: NavController, navOptions: T?)
+interface Navigator{
+    fun navigateTo(navController: NavController)
 }

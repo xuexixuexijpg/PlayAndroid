@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.dragon.widgets.shadowLayout.ShadowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:hl_cornerRadius="2dp"
+    app:hl_layoutBackground="@color/white"
+    app:hl_shadowHidden="false"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/home_topticky_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="置顶"
+            android:textColor="@color/home_top_article_label"
+            app:layout_constraintLeft_toLeftOf="@id/home_tv_top_article_title"
+            app:layout_constraintTop_toBottomOf="@id/home_tv_top_article_title" />
+
+
+        <TextView
+            android:id="@+id/tv_top_article_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/home_top_article_author"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toRightOf="@id/home_topticky_type"
+            app:layout_constraintTop_toBottomOf="@id/home_tv_top_article_title"
+            tools:text="sdsdsdssd" />
+
+        <com.dragon.widgets.textview.AlignTextView
+            android:id="@+id/home_tv_top_article_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/home_top_article_title"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="大小厂都问源码，到底有多难大小厂都问源码" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.dragon.widgets.shadowLayout.ShadowLayout>

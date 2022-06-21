@@ -4,7 +4,7 @@ import com.dragon.module_base.service.navigate.BaseArgs
 import com.dragon.module_base.service.navigate.Navigator
 import kotlinx.parcelize.Parcelize
 
-interface MainProvider : Navigator<MainArgs> {
+interface MainProvider : Navigator{
 
     /**
      * 三种不同导航设置
@@ -13,7 +13,3 @@ interface MainProvider : Navigator<MainArgs> {
     fun setNavControlType(types: Int)
 }
 
-@Parcelize
-class MainArgs(
-    val page: String
-) : BaseArgs()

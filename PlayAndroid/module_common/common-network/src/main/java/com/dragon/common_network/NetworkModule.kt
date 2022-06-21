@@ -1,6 +1,7 @@
 package com.dragon.common_network
 
 import android.content.Context
+import android.util.Log
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.dragon.common_network.converter.SerializationConverter
@@ -77,6 +78,7 @@ object NetworkModule {
     @Provides
     fun initNetWork(@ApplicationContext context: Context, client: OkHttpClient.Builder): OkHttpClient {
         NetConfig.initialize(BaseConfig.BASE_URL, context, client)
+        Log.e("测试", "initNetWork: ${NetConfig.okHttpClient}", )
         return NetConfig.okHttpClient
     }
 

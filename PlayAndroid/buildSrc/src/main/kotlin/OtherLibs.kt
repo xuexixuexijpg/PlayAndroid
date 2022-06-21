@@ -23,9 +23,13 @@ object OtherLibs {
 //    const val navigator_rail = "io.github.kaustubhpatange:navigator-rail-navigation:$navigator_version"
 
     //https://github.com/liangjingkanji/Net
-    const val net_lib =  "com.github.liangjingkanji:Net:3.4.6"
+    const val net_lib = "com.github.liangjingkanji:Net:3.4.6"
     const val okhttp_lib = "com.squareup.okhttp3:okhttp:4.9.1"
 
     //https://github.com/coil-kt/coil/blob/main/README-zh.md coil
     const val coil = "io.coil-kt:coil:2.1.0"
+
+    //https://github.com/liangjingkanji/BRV
+    const val BRV = "com.github.liangjingkanji:BRV:1.3.75"
+
 }
