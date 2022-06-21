@@ -11,10 +11,6 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-apply {
-    from("../../basic_build.gradle")
-}
-
 android {
     buildFeatures{
         viewBinding = true

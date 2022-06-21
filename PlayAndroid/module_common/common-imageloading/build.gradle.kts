@@ -6,13 +6,13 @@ plugins {
     id ("kotlin-kapt")
 }
 
-apply {
-    from("../../base_library.gradle")
-}
+
 dependencies {
-    implementation (Hilt.implHilt)
-    api(OtherLibs.coil)
+
+    api(libs.coil.kt)
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation("androidx.startup:startup-runtime:1.0.0")
-    kapt(Hilt.compilerHilt)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 }

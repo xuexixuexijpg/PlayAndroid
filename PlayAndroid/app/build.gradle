@@ -6,15 +6,11 @@ plugins{
     id 'dagger.hilt.android.plugin'
 }
 
-apply from: "../basic_build.gradle"
-
-def isBuildModule = rootProject.ext.module.isBuildModule
-
 android {
     defaultConfig {
         applicationId "com.dragon.playandroid"
-        versionCode BuildConfig.versionCode
-        versionName BuildConfig.versionName
+        versionCode 1
+        versionName "0.0.1"
 
         signingConfigs {
             //signingConfigs打包正式版本时才需要放开
@@ -91,11 +87,13 @@ android {
 }
 
 dependencies {
-    implementation Hilt.implHilt
+
     implementation project(path: ':module_common:common-base')
-    kapt Hilt.compilerHilt
     implementation project(path:':module_ui:ft-main')
     implementation project(':module_service:service-di-app')
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
     //内存泄露检测
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 }

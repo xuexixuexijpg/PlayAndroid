@@ -10,9 +10,6 @@ plugins {
     id ("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
 }
-apply {
-    from("../../basic_build.gradle")
-}
 
 android {
     buildFeatures{

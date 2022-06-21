@@ -23,8 +23,7 @@ apply {
 
 
 dependencies {
-    implementation (Hilt.implHilt)
-    kapt(Hilt.compilerHilt)
+
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_common:common-network")))
     implementation(project(mapOf("path" to ":module_common:common-imageloading")))
@@ -34,5 +33,8 @@ dependencies {
     implementation(project(mapOf("path" to ":module_ui:ft-main-mine")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-home")))
     implementation(project(mapOf("path" to ":module_ui:ft-search")))
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
 }
