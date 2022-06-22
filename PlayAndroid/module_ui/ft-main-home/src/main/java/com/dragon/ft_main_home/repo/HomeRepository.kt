@@ -1,6 +1,8 @@
 package com.dragon.ft_main_home.repo
 
-import com.dragon.ft_main_home.model.TopArticleBean
+import com.dragon.ft_main_home.entity.BannerBean
+import com.dragon.ft_main_home.entity.HomeArticleListBean
+import com.dragon.ft_main_home.entity.TopArticleBean
 import com.dragon.module_base.repository.BaseRepository
 import com.drake.net.Net
 import javax.inject.Inject
@@ -20,6 +22,20 @@ class HomeRepository @Inject constructor():BaseRepository() {
         emit(result)
     }
 
+    /**
+     * 获取banner
+     */
+    fun getBanner() = request<MutableList<BannerBean>> {
+        val result = Net.get("banner/json").execute<MutableList<BannerBean>>()
+        emit(result)
+    }
 
+    /**
+     * 获取公众号数据
+     */
+    fun getOfficialAccount() = request<MutableList<HomeArticleListBean>> {
+        val result = Net.get("wxarticle/chapters/json").execute<MutableList<HomeArticleListBean>>()
+        emit(result)
+    }
 
 }

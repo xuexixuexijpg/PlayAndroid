@@ -1,6 +1,7 @@
 package com.dragon.module_base.base.fragment
 
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.AsyncEpoxyController
 import com.airbnb.epoxy.EpoxyController
 import com.airbnb.mvrx.MavericksState
@@ -14,7 +15,10 @@ class BaseFragmentController(
     inline val stickyModelView: (Int) -> Boolean = { false },
     val buildModelsCallback: EpoxyController.() -> Unit = {}
 ) : AsyncEpoxyController() {
+
     override fun buildModels() {
+        if (adapter.stateRestorationPolicy != RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY)
+        adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         buildModelsCallback()
     }
 

@@ -49,6 +49,7 @@ dependencies {
     implementation(OtherLibs.byBinding)
 
     implementation(OtherLibs.BRV)
+    implementation(OtherLibs.banner)
 
 //    implementation("io.github.lapism:search:1.2.1")
 }

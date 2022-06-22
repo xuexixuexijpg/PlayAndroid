@@ -1,4 +1,4 @@
-package com.dragon.ft_main_home.model
+package com.dragon.ft_main_home.entity
 
 import kotlinx.serialization.Serializable
 

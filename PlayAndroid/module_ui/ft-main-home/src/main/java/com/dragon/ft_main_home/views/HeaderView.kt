@@ -1,19 +1,11 @@
 package com.dragon.ft_main_home.views
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.system.Os.bind
 import android.util.AttributeSet
-import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import by.kirich1409.viewbindingdelegate.viewBinding
-import coil.Coil
-import coil.imageLoader
 import coil.load
-import com.airbnb.epoxy.CallbackProp
-import com.airbnb.epoxy.ModelView
-import com.airbnb.epoxy.TextProp
 import com.dragon.ft_main_home.R
 import com.dragon.ft_main_home.databinding.HomeViewHeaderBinding
 

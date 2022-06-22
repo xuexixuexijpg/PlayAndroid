@@ -19,7 +19,7 @@ import com.google.android.material.textview.MaterialTextView
 
 class SquareFragment : Fragment(R.layout.fragment_ft_square) {
 
-    val tabs = mutableListOf<String>("测试1", "测试2")
+    private val tabs = mutableListOf("测试1", )
 
     private val binding by viewBinding(FragmentFtSquareBinding::bind)
 

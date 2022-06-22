@@ -563,7 +563,6 @@ class ShadowLayout @JvmOverloads constructor(
                         }
                     }
                     .build()
-                Log.e("测试", "setmBackGround:阴影库的 ${imageLoader(context)}")
                 imageLoader(context).enqueue(request)
             }
         }

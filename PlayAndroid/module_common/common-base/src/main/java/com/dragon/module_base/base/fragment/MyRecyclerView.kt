@@ -14,8 +14,8 @@ class MyRecyclerView : EpoxyRecyclerView {
     )
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-//        adapter = null
-        swapAdapter(null, true)
+        adapter = null
+//        swapAdapter(null, true)
         // Or use swapAdapter(null, true) so that the existing views are recycled to the view pool
     }
 }

@@ -25,6 +25,8 @@ dependencies {
     implementation (Hilt.implHilt)
     implementation(project(mapOf("path" to ":module_common:common-data")))
     implementation(project(mapOf("path" to ":module_common:common-base")))
+    implementation(project(mapOf("path" to ":module_common:common-imageloading")))
     kapt(Hilt.compilerHilt)
+    kapt(OtherLibs.epoxyCompiler)
     implementation(OtherLibs.byBinding)
 }

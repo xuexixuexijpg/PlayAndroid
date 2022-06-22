@@ -8,6 +8,7 @@
     app:hl_cornerRadius="2dp"
     app:hl_layoutBackground="@color/white"
     app:hl_shadowHidden="false"
+    android:layout_margin="2dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:textColor="@color/home_top_article_author"
-            android:textSize="14sp"
+            android:textSize="@dimen/home_tv_top_author_text_size"
             app:layout_constraintLeft_toRightOf="@id/home_topticky_type"
             app:layout_constraintTop_toBottomOf="@id/home_tv_top_article_title"
             tools:text="sdsdsdssd" />
@@ -40,11 +41,11 @@
             android:id="@+id/home_tv_top_article_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="@dimen/home_tv_top_title"
             android:layout_marginTop="10dp"
             android:layout_marginRight="16dp"
             android:textColor="@color/home_top_article_title"
-            android:textSize="16sp"
+            android:textSize="@dimen/home_tv_top_title_text_size"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
