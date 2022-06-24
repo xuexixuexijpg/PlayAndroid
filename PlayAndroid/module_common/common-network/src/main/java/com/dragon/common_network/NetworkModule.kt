@@ -77,8 +77,7 @@ object NetworkModule {
     @Singleton
     @Provides
     fun initNetWork(@ApplicationContext context: Context, client: OkHttpClient.Builder): OkHttpClient {
-//        if (NetConfig.host.isEmpty())
-        if (NetConfig.app != context)
+        if (NetConfig.host.isEmpty())
         NetConfig.initialize(BaseConfig.BASE_URL, context, client)
         Log.e("测试", "initNetWork 初始化网络框架: ${NetConfig.okHttpClient}", )
         return NetConfig.okHttpClient

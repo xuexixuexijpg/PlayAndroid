@@ -1,7 +1,9 @@
 package com.dragon.ft_main_home.repo
 
+import android.util.Log
 import com.dragon.ft_main_home.entity.BannerBean
 import com.dragon.ft_main_home.entity.HomeArticleListBean
+import com.dragon.ft_main_home.entity.OfficialAccountEntity
 import com.dragon.ft_main_home.entity.TopArticleBean
 import com.dragon.module_base.repository.BaseRepository
 import com.drake.net.Net
@@ -33,8 +35,8 @@ class HomeRepository @Inject constructor():BaseRepository() {
     /**
      * 获取公众号数据
      */
-    fun getOfficialAccount() = request<MutableList<HomeArticleListBean>> {
-        val result = Net.get("wxarticle/chapters/json").execute<MutableList<HomeArticleListBean>>()
+    fun getOfficialAccount() = request<MutableList<OfficialAccountEntity>> {
+        val result = Net.get("wxarticle/chapters/json").execute<MutableList<OfficialAccountEntity>>()
         emit(result)
     }
 

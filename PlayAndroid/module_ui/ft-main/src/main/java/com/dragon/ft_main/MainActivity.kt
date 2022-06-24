@@ -31,8 +31,6 @@ class MainActivity : BaseActivity(R.layout.activity_main), MMKVOwner {
             //不先在布局中
             navController = hostFragment.findNavController()
             navController.setGraph(R.navigation.activity_graph)
-
-            Log.e(TAG, "onCreate: $navController", )
         }
     }
 

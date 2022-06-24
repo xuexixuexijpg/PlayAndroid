@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
 import com.airbnb.mvrx.MavericksView
@@ -83,6 +84,8 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base),MavericksVie
             binding.recycleView.layoutManager = isSticky()
         }
         binding.recycleView.setController(epoxyController)
+        binding.recycleView.adapter?.stateRestorationPolicy =
+            RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
     }
 
     /**

@@ -17,8 +17,6 @@ class BaseFragmentController(
 ) : AsyncEpoxyController() {
 
     override fun buildModels() {
-        if (adapter.stateRestorationPolicy != RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY)
-        adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         buildModelsCallback()
     }
 

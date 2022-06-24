@@ -15,4 +15,5 @@ class SquareViewModel(private val data:SquareData) :MavericksViewModel<SquareDat
         copy(textData = list)
     }
 
+    fun getData() = data
 }

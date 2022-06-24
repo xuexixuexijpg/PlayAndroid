@@ -54,26 +54,7 @@ class ItemTabFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //多模型adapter
-        adapter = binding.rvList.linear().setup { initAdapter(this) }
-        val type = arguments?.getString(TYPE)
-        if (type.isNullOrEmpty()){
-            when (type) {
-
-            }
-        }
-    }
-
-    override fun invalidate() = withState(itemTabViewModel){ data ->
-        if (data.data is Loading || data.bannerData is Loading)return@withState
-//        Log.e("测试", "onViewCreated: 填充数据 ${data.data.invoke()?.size} ==  ${data.bannerData.invoke()?.size}", )
-        val info = mutableListOf<Any>()
-        data.data.invoke()?.let { info.addAll(it) }
-        data.let { info.add(data) }
-        adapter.setDifferModels(info)
-    }
-
-    private fun initAdapter(bindingAdapter: BindingAdapter) {
-        bindingAdapter.apply {
+        adapter = binding.rvList.linear().setup {
             stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
             addType<TopArticleBean>(R.layout.home_top_article_item)
             addType<HomeArticle>(R.layout.home_banner)
@@ -118,5 +99,23 @@ class ItemTabFragment :
                 }
             }
         }
+        val type = arguments?.getString(TYPE)
+        if (type.isNullOrEmpty()){
+            when (type) {
+
+            }
+        }
+    }
+
+    override fun invalidate() = withState(itemTabViewModel){ data ->
+        if (data.data is Loading || data.bannerData is Loading)return@withState
+        val info = mutableListOf<Any>()
+        data.data.invoke()?.let { info.addAll(it) }
+        data.let { info.add(data) }
+        adapter.setDifferModels(info)
+    }
+
+    private fun initAdapter(bindingAdapter: BindingAdapter) {
+
     }
 }

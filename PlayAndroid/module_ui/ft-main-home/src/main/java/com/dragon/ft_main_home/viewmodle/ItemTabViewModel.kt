@@ -5,6 +5,7 @@ import com.airbnb.mvrx.hilt.AssistedViewModelFactory
 import com.airbnb.mvrx.hilt.hiltMavericksViewModelFactory
 import com.dragon.ft_main_home.entity.BannerBean
 import com.dragon.ft_main_home.entity.HomeArticleListBean
+import com.dragon.ft_main_home.entity.OfficialAccountEntity
 import com.dragon.ft_main_home.entity.TopArticleBean
 import com.dragon.ft_main_home.repo.HomeRepository
 import com.drake.net.Net
@@ -24,7 +25,7 @@ data class HomeArticle(
     val hasRefresh: Boolean = false,
     val data: Async<MutableList<TopArticleBean>> = Uninitialized,
     val bannerData: Async<MutableList<BannerBean>> = Uninitialized,
-    val officialData: Async<MutableList<HomeArticleListBean>> = Uninitialized
+    val officialData: Async<MutableList<OfficialAccountEntity>> = Uninitialized
 ) :
     MavericksState
 
