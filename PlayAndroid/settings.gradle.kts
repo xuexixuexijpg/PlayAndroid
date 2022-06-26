@@ -22,22 +22,18 @@ dependencyResolutionManagement {
 rootProject.name = "PlayAndroid"
 include (":app")
 include (":module_common")
-include (":module_common:common-base")
-include (":module_common:common-utils")
-include (":module_service")
-include (":module_ui")
+//include (":module_common:common-base")
+//include (":module_common:common-utils")
+//include (":module_service")
+//include (":module_ui")
 
-include (":module_service:service-di-app")
+//include (":module_service:service-di-app")
 
 //main
-include (":module_ui:ft-main")
-//search
-include (":module_ui:ft-search")
-include (":module_ui:ft-login")
-include (":module_ui:ft-main-home")
-include (":module_ui:ft-main-mine")
-include (":module_common:common-imageloading")
-include (":module_common:common-network")
+//include (":module_ui:ft-main")
 
-include (":module_ui:ft-main-square")
+//include (":module_common:common-imageloading")
+//include (":module_common:common-network")
 
+
+include(":module_common:common-navigation")

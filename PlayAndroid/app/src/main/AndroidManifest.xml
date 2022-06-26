@@ -4,7 +4,7 @@
     package="com.dragon.playandroid">
 
     <application
-        android:name="com.dragon.service_di_app.PlayAndroidApplication"
+        android:name="com.dargon.playandroid.PlayAndroidApplication"
         android:allowBackup="true"
         android:enabled="true"
         android:icon="@drawable/ic_launcher_foreground"

@@ -14,32 +14,15 @@ android {
         viewBinding = true
     }
 
-    val srcDirs = listOf(
-        "src/main/res",
-        "src/main/res/drawable/img",
-        "src/main/res/drawable/background",
-        "src/main/res/drawable/vector",
-        "src/main/res/layout/views",
-        "src/main/res/layout/layouts")
-
-    for (src in srcDirs){
-        sourceSets["main"].res.srcDirs(
-            src
-        )
-    }
-
 }
 
 dependencies {
-    implementation(Hilt.implHilt)
-    implementation(project(mapOf("path" to ":module_common:common-widgets")))
-    implementation(project(mapOf("path" to ":module_common:common-imageloading")))
-    implementation(project(mapOf("path" to ":module_common:common-base")))
-    implementation(project(mapOf("path" to ":module_common:common-data")))
-    kapt(Hilt.compilerHilt)
-    kapt(OtherLibs.epoxyCompiler)
 
-    implementation(OtherLibs.byBinding)
+//    implementation(project(mapOf("path" to ":module_common:common-imageloading")))
+//    implementation(project(mapOf("path" to ":module_common:common-base")))
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
 //    implementation("io.github.lapism:search:1.2.1")
 }

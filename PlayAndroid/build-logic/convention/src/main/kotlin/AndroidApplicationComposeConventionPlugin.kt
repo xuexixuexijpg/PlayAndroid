@@ -1,6 +1,6 @@
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import com.google.samples.apps.nowinandroid.configureAndroidCompose
+import com.dragon.playandroid.configureAndroidCompose
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType

@@ -1,8 +1,8 @@
 
 
 import com.android.build.gradle.LibraryExtension
-import com.google.samples.apps.nowinandroid.configureFlavors
-import com.google.samples.apps.nowinandroid.configureKotlinAndroid
+import com.dragon.playandroid.configureFlavors
+import com.dragon.playandroid.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension

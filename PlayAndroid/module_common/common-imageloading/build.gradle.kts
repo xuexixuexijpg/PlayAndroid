@@ -10,9 +10,8 @@ plugins {
 dependencies {
 
     api(libs.coil.kt)
-    implementation(project(mapOf("path" to ":module_common:common-base")))
-    implementation("androidx.startup:startup-runtime:1.0.0")
-
+    api(libs.coil.kt.compose)
     implementation(libs.hilt.android)
+    implementation(project(mapOf("path" to ":module_common:common-base")))
     kapt(libs.hilt.compiler)
 }

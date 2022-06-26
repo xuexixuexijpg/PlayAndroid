@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
-import com.airbnb.mvrx.Mavericks
+
 
 open class BaseApplication : Application() , ViewModelStoreOwner {
 
@@ -13,7 +13,6 @@ open class BaseApplication : Application() , ViewModelStoreOwner {
 
     override fun onCreate() {
         super.onCreate()
-        Mavericks.initialize(this)
     }
 
     override fun getViewModelStore(): ViewModelStore {

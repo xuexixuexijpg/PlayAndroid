@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), MMKVOwner {
         const val TAG = "MainActivity"
     }
 
-    private val binding by viewBinding(ActivityMainBinding::bind)
-
-    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,15 +28,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), MMKVOwner {
             navController = hostFragment.findNavController()
             navController.setGraph(R.navigation.activity_graph)
 
-            Log.e(TAG, "onCreate: $navController", )
         }
     }
 
-    /**
-     * 将导航返出去使用
-     */
-    fun routeControl():NavController{
-        return navController
-    }
 
 }
