@@ -10,6 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
+import com.airbnb.mvrx.Async
+import com.airbnb.mvrx.Loading
+import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksView
 import com.dragon.module_base.R
 import com.dragon.module_base.base.activity.BaseActivity
@@ -22,7 +25,7 @@ import com.dragon.module_base.service.navigate.BaseArgs
 /**
  * 基础fragment
  */
-abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base),MavericksView {
+abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksView {
 
     companion object {
         fun createArgKey(args: BaseArgs): String = createArgKey(args::class.qualifiedName!!)
@@ -53,7 +56,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base),MavericksVie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        savedInstanceState?.let {
-            epoxyController.onRestoreInstanceState(savedInstanceState)
+        epoxyController.onRestoreInstanceState(savedInstanceState)
 //        }
         //删除重复的id项
 
@@ -68,25 +71,67 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base),MavericksVie
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
+    /**
+     * 设置是否可以下拉刷新 默认true
+     */
+    protected open fun setCanRefresh(): Boolean {
+        return true
+    }
+
+    /**
+     * 请求刷新数据处
+     */
+    protected open fun requestRefresh(): Boolean {
+        return false
+    }
+
+    /**
+     * 设置刷新标志
+     *  0 加载中
+     *  1 成功
+     *  2 失败
+     */
+    fun setIsRefreshing(isRefresh: Int) {
+        with(binding) {
+            when (isRefresh) {
+                0 -> lyRefresh.isRefreshing = true
+                1 -> lyRefresh.isRefreshing = false
+                2 -> {
+                    lyRefresh.isRefreshing = false
+                    Log.e("测试", "setIsRefreshing: 加载失败了")
+                }
+                else -> {}
+            }
+        }
+
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         epoxyController.onSaveInstanceState(outState)
     }
 
-    protected open fun isSticky():StickyHeaderLinearLayoutManager? {
+    protected open fun isSticky(): StickyHeaderLinearLayoutManager? {
         return null
     }
 
     //可在此处做一些操作 如全局的viewModel监听
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (isSticky() != null){
+        if (isSticky() != null) {
             binding.recycleView.layoutManager = isSticky()
+        }
+        binding.lyRefresh.isEnabled = setCanRefresh()
+        if (setCanRefresh()) {
+            binding.lyRefresh.setOnRefreshListener {
+                requestRefresh()
+            }
         }
         binding.recycleView.setController(epoxyController)
         binding.recycleView.adapter?.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
     }
+
 
     /**
      * viewModel数据更新处

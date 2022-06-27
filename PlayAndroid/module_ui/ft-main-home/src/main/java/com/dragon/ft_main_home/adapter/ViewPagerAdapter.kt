@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.dragon.ft_main_home.views.ItemEpoxyFragment
 import com.dragon.ft_main_home.views.ItemTabFragment
 
 
@@ -17,9 +18,9 @@ class ViewPagerAdapter(fragment: FragmentManager,lifecycle: Lifecycle, private v
 
     override fun createFragment(position: Int): Fragment {
         return when(position){
-            0 -> ItemTabFragment.getInstance(list[0])
-            1 -> ItemTabFragment.getInstance(list[1])
-            else -> ItemTabFragment.getInstance(list[0])
+            0 -> ItemEpoxyFragment.getInstance(list[0])
+            1 -> ItemEpoxyFragment.getInstance(list[1])
+            else -> ItemEpoxyFragment.getInstance(list[0])
         }
     }
 }

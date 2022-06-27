@@ -47,6 +47,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
     implementation(OtherLibs.byBinding)
+    kapt(OtherLibs.epoxyCompiler)
 
     implementation(OtherLibs.BRV)
     implementation(OtherLibs.banner)

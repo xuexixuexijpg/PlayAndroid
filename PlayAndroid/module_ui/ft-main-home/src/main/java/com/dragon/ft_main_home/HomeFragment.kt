@@ -48,7 +48,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_main_home),MavericksView {
     private fun initTabView() {
         tabs = mutableListOf<String>().apply {
             add("测试")
-//            add("测试2")
+            add("测试2")
         }
         binding.lyTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {

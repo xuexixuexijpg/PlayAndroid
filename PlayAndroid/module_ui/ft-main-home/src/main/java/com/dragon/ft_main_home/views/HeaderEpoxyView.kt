@@ -8,8 +8,9 @@ import com.airbnb.epoxy.ModelProp
 import com.airbnb.epoxy.ModelView
 import com.dragon.ft_main_home.R
 import com.dragon.ft_main_home.databinding.HomeEpoxyTopViewBinding
+import com.dragon.ft_main_home.entity.TopArticleBean
 
-@ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
+@ModelView( autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
 class HeaderEpoxyView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -23,7 +24,8 @@ class HeaderEpoxyView @JvmOverloads constructor(
     }
 
     @ModelProp
-    fun setTopArticle(){
-
+    fun setTopArticle(topArticleBean: TopArticleBean){
+        binding.tvTopArticleAuthor.text = topArticleBean.author
+        binding.homeTvTopArticleTitle.text = topArticleBean.title
     }
 }

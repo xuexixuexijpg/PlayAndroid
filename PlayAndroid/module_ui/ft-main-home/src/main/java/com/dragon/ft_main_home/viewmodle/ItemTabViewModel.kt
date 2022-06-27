@@ -42,7 +42,7 @@ class ItemTabViewModel @AssistedInject constructor(
     /**
      * 获取首页初始化数据
      */
-    private fun initData() {
+    fun initData() {
         mRepo.getTopArticle()
             .execute {
                 copy(data = it)
