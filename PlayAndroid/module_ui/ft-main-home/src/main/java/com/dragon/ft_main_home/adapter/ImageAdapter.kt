@@ -13,6 +13,10 @@ import com.dragon.ft_main_home.entity.BannerBean
 import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.util.BannerUtils
 
+/**
+ * 自定义Banner适配器
+ *
+ */
 class ImageAdapter(@Nullable imageUrls: List<BannerBean>?) :
     BannerAdapter<BannerBean, ImageAdapter.ImageHolder>(imageUrls) {
 

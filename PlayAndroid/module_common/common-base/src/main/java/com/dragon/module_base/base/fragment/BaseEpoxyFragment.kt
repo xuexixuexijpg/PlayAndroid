@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
@@ -19,6 +20,7 @@ import com.dragon.module_base.base.activity.BaseActivity
 import com.dragon.module_base.base.callback.BackPressedCallback
 import com.dragon.module_base.base.callback.BackPressedOwner
 import com.dragon.module_base.databinding.FragmentBaseBinding
+import com.dragon.module_base.event.LoadResult
 import com.dragon.module_base.service.navigate.BaseArgs
 
 
@@ -81,9 +83,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
     /**
      * 请求刷新数据处
      */
-    protected open fun requestRefresh(): Boolean {
-        return false
-    }
+    protected open fun requestRefresh(){}
 
     /**
      * 设置刷新标志
@@ -94,9 +94,9 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
     fun setIsRefreshing(isRefresh: Int) {
         with(binding) {
             when (isRefresh) {
-                0 -> lyRefresh.isRefreshing = true
-                1 -> lyRefresh.isRefreshing = false
-                2 -> {
+                LoadResult.LOADING.state -> lyRefresh.isRefreshing = true
+                LoadResult.SUCCESS.state -> lyRefresh.isRefreshing = false
+                LoadResult.FAIL.state -> {
                     lyRefresh.isRefreshing = false
                     Log.e("测试", "setIsRefreshing: 加载失败了")
                 }
@@ -111,7 +111,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
         epoxyController.onSaveInstanceState(outState)
     }
 
-    protected open fun isSticky(): StickyHeaderLinearLayoutManager? {
+    protected open fun isSticky(): LinearLayoutManager? {
         return null
     }
 
@@ -120,6 +120,8 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
         super.onViewCreated(view, savedInstanceState)
         if (isSticky() != null) {
             binding.recycleView.layoutManager = isSticky()
+        }else{
+            binding.recycleView.layoutManager = LinearLayoutManager(requireContext())
         }
         binding.lyRefresh.isEnabled = setCanRefresh()
         if (setCanRefresh()) {
@@ -137,8 +139,8 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
      * viewModel数据更新处
      */
     override fun invalidate() {
-//        binding.recycleView.requestModelBuild()
-        epoxyController.requestModelBuild()
+        binding.recycleView.requestModelBuild()
+//        epoxyController.requestModelBuild()
     }
 
 
@@ -147,7 +149,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
     override fun onDestroyView() {
         //TODO 解决view回收导致的内存泄漏问题 暂时，可能还有其他的写法
         //https://github.com/airbnb/epoxy/wiki/Avoiding-Memory-Leaks
-//        epoxyController.cancelPendingModelBuild()
+        epoxyController.cancelPendingModelBuild()
         super.onDestroyView()
     }
 

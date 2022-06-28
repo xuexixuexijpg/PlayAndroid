@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 data class TopArticleBean(
     val apkLink: String,
     val audit: Int,
-    val author: String,
+    var author: String,
     val canEdit: Boolean,
     val chapterId: Int,
     val chapterName: String,

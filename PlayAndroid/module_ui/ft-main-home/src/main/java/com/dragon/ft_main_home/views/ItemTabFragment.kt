@@ -108,9 +108,9 @@ class ItemTabFragment :
     }
 
     override fun invalidate() = withState(itemTabViewModel){ data ->
-        if (data.data is Loading || data.bannerData is Loading)return@withState
+        if (data.topArticleData is Loading || data.bannerData is Loading)return@withState
         val info = mutableListOf<Any>()
-        data.data.invoke()?.let { info.addAll(it) }
+        data.topArticleData.invoke()?.let { info.addAll(it) }
         data.let { info.add(data) }
         adapter.setDifferModels(info)
     }

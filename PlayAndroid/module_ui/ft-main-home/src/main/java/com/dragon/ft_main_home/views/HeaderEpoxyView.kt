@@ -2,10 +2,13 @@ package com.dragon.ft_main_home.views
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.ModelProp
 import com.airbnb.epoxy.ModelView
+import com.airbnb.epoxy.PackageModelViewConfig
+import com.airbnb.epoxy.TextProp
 import com.dragon.ft_main_home.R
 import com.dragon.ft_main_home.databinding.HomeEpoxyTopViewBinding
 import com.dragon.ft_main_home.entity.TopArticleBean
@@ -23,9 +26,14 @@ class HeaderEpoxyView @JvmOverloads constructor(
         inflate(context, R.layout.home_epoxy_top_view,this)
     }
 
-    @ModelProp
-    fun setTopArticle(topArticleBean: TopArticleBean){
-        binding.tvTopArticleAuthor.text = topArticleBean.author
-        binding.homeTvTopArticleTitle.text = topArticleBean.title
+    @TextProp
+    fun setAuthor(author: CharSequence?){
+        binding.tvTopArticleAuthor.text = author
     }
+
+    @TextProp
+    fun setTitle(title: CharSequence?){
+        binding.homeTvTopArticleTitle.text = title
+    }
+
 }
