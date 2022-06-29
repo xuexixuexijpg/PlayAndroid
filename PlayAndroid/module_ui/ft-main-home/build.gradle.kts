@@ -51,6 +51,7 @@ dependencies {
 
     implementation(OtherLibs.BRV)
     implementation(OtherLibs.banner)
+    implementation(OtherLibs.bannerViewPager)
 
 //    implementation("io.github.lapism:search:1.2.1")
 }

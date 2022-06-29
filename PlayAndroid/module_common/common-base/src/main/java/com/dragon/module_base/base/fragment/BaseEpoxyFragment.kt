@@ -74,7 +74,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
     }
 
     /**
-     * 设置是否可以下拉刷新 默认true
+     * 设置是否可以下拉刷新 默认false
      */
     protected open fun setCanRefresh(): Boolean {
         return true

@@ -72,7 +72,6 @@ class MineFragment : BaseFragment(R.layout.fragment_ft_mine), MavericksView {
     //测试这里 invalidate首次创建时会先started再resume
     override fun invalidate() {
         withState(mineViewModel) { state ->
-            Log.e("测试", "invalidate: ${lifecycle.currentState}")
             when(state.data){
                 //使用Async包装了一层 直接invoke()可直接取出数据
                 is Success -> {

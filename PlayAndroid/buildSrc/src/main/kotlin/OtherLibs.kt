@@ -35,4 +35,7 @@ object OtherLibs {
     //https://github.com/youth5201314/banner
     const val banner = "io.github.youth5201314:banner:2.2.2"
 
+    //https://github.com/zhpanvip/BannerViewPager/wiki/06.%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B
+    const val bannerViewPager = "com.github.zhpanvip:bannerviewpager:3.5.6"
+
 }

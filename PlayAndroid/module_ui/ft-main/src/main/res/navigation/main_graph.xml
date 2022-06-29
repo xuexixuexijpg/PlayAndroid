@@ -15,8 +15,8 @@
     <fragment
         android:id="@id/homeFragment"
         android:name="com.dragon.ft_main_home.HomeFragment"
-        android:label="HomeFragment" >
-    </fragment>
+        android:label="HomeFragment" />
+
 
 
 </navigation>

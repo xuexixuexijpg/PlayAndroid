@@ -21,6 +21,7 @@ import com.youth.banner.config.IndicatorConfig
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.util.BannerUtils
 
+@Deprecated("由于使用navigation后页面重建后广告的滚动位置无法恢复")
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT, saveViewState = true)
 class BannerView @JvmOverloads constructor(
     context: Context,

@@ -1,9 +1,8 @@
-package com.dragon.ft_main_home.views
+package com.dragon.ft_main_home.fragment
 
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -23,15 +22,16 @@ import com.dragon.ft_main_home.viewmodle.ItemTabViewModel
 import com.drake.brv.BindingAdapter
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
-import com.drake.net.NetConfig.init
 import com.youth.banner.Banner
-import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.config.BannerConfig
 import com.youth.banner.config.IndicatorConfig
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.util.BannerUtils
-import java.util.Collections.addAll
 
+/**
+ * 使用BRV
+ *
+ */
 class ItemTabFragment :
     Fragment(R.layout.fragment_item_tab), MavericksView {
 

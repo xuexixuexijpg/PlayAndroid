@@ -26,6 +26,10 @@ class TestFragment : BaseEpoxyFragment() {
         }
     }
 
+    override fun setCanRefresh(): Boolean {
+        return false
+    }
+
 //    override fun isSticky(): StickyHeaderLinearLayoutManager? {
 //        return StickyHeaderLinearLayoutManager(requireContext())
 //    }

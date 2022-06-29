@@ -2,7 +2,6 @@ package com.dragon.ft_main_home
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewTreeLifecycleOwner
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.mvrx.MavericksView
@@ -11,7 +10,6 @@ import com.dragon.ft_main_home.adapter.ViewPagerAdapter
 import com.dragon.ft_main_home.databinding.FragmentMainHomeBinding
 import com.dragon.ft_main_home.viewmodle.HomeViewModel
 import com.dragon.module_base.base.fragment.BaseFragment
-import com.dragon.module_base.databinding.FragmentBaseBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint

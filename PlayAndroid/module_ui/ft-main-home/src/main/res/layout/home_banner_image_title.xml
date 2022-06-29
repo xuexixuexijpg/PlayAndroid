@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.dragon.widgets.shadowLayout.ShadowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:clickable="false"
+    app:hl_cornerRadius="20dp"
+    >
 
     <ImageView
         android:id="@+id/image"
@@ -15,13 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#FE333333"
+        android:background="#A3333333"
         android:ellipsize="marquee"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:gravity="center_vertical"
+        android:layout_gravity="bottom"
         android:padding="10dp"
         android:singleLine="true"
+        android:gravity="start"
         android:textColor="@color/white"
         android:textIsSelectable="true" />
-</RelativeLayout>
+</com.dragon.widgets.shadowLayout.ShadowLayout>
