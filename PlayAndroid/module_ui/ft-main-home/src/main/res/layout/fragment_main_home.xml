@@ -24,7 +24,7 @@
             android:id="@+id/ly_tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="snap"
+            app:layout_scrollFlags="snap|enterAlways"
             />
 
     </com.google.android.material.appbar.AppBarLayout>

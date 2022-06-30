@@ -17,7 +17,7 @@ class TestFragment : BaseEpoxyFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (squareViewModel.getData().textData.isNullOrEmpty()) {
+        if (squareViewModel.getData().textData.isEmpty()) {
             squareViewModel.setData(mutableListOf<String>().apply {
                 for (i in 1..100) {
                     add(i.toString())
@@ -30,9 +30,9 @@ class TestFragment : BaseEpoxyFragment() {
         return false
     }
 
-//    override fun isSticky(): StickyHeaderLinearLayoutManager? {
-//        return StickyHeaderLinearLayoutManager(requireContext())
-//    }
+    override fun isSticky(): StickyHeaderLinearLayoutManager {
+        return StickyHeaderLinearLayoutManager(requireContext())
+    }
 
     override fun epoxyController() = simpleController(squareViewModel,{
         it % 5 == 0

@@ -28,6 +28,7 @@ data class HomeArticle(
     val isRefresh: Int = LoadResult.LOADING.state,
     val dataTopArticle: List<TopArticleBean> = emptyList(),
     val dataBanner: List<BannerBean> = emptyList(),
+    val dataOfficial:List<OfficialAccountEntity> = emptyList(),
     val topArticleData: Async<MutableList<TopArticleBean>> = Uninitialized,
     val bannerData: Async<MutableList<BannerBean>> = Uninitialized,
     val officialData: Async<MutableList<OfficialAccountEntity>> = Uninitialized
@@ -71,7 +72,7 @@ class ItemTabViewModel @AssistedInject constructor(
         mRepo.getOfficialAccount()
             .execute {
                 setHasRefresh()
-                copy(officialData = it)
+                copy(officialData = it,dataOfficial = it()?:dataOfficial)
             }
     }
 

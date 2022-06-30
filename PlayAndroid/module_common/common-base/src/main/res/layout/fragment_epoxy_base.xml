@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.dragon.module_base.base.fragment.MyRecyclerView
+    <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

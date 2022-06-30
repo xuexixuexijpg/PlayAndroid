@@ -80,7 +80,7 @@ class MainFragment : BaseFragment(R.layout.fragment_ft_main), MMKVOwner {
             }
         }
 
-        val hostFragment = childFragmentManager.findFragmentById(R.id.ft_main_container)
+        val hostFragment = childFragmentManager.findFragmentById(R.id.nav_host_fragment)
         if (hostFragment != null) {
             //不先在布局中
             navController = hostFragment.findNavController()

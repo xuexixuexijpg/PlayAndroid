@@ -3,12 +3,14 @@ package com.dragon.ft_main_home.fragment
 import android.os.Bundle
 import android.view.View
 import com.airbnb.mvrx.*
+import com.dragon.ft_main_home.helpers.carouselSnapBuilder
 import com.dragon.ft_main_home.viewmodle.HomeArticle
 import com.dragon.ft_main_home.viewmodle.ItemTabViewModel
 import com.dragon.ft_main_home.views.bannerPageView
-import com.dragon.ft_main_home.views.bannerView
 import com.dragon.ft_main_home.views.headerEpoxyView
+import com.dragon.ft_main_home.views.officialAccountView
 import com.dragon.module_base.base.fragment.BaseEpoxyFragment
+import com.dragon.module_base.base.fragment.BaseOriginEpoxyFragment
 import com.dragon.module_base.base.fragment.simpleController
 
 /**
@@ -59,6 +61,19 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                         id("banner-page")
                         addBannerLifeCycle(lifecycle)
                         imageData(state.dataBanner)
+                    }
+                }
+
+                if (state.dataOfficial.isNotEmpty()){
+                    carouselSnapBuilder {
+                        id("official")
+                        initialPrefetchItemCount(7)
+                        state.dataOfficial.forEachIndexed { index, officialAccountEntity ->
+                            officialAccountView {
+                                id("official$index")
+                                authorName(officialAccountEntity.name)
+                            }
+                        }
                     }
                 }
             }

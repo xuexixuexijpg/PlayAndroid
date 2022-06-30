@@ -3,6 +3,7 @@ package com.dragon.ft_main_home
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.fragmentViewModel
@@ -35,6 +36,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_main_home),MavericksView {
         with(binding){
             viewpager.offscreenPageLimit = 1
             viewpager.adapter = ViewPagerAdapter(childFragmentManager,viewLifecycleOwner.lifecycle,tabs)
+            viewpager.adapter?.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
             TabLayoutMediator(lyTab,viewpager
             ) { tab, position ->
                 tab.text = tabs[position]

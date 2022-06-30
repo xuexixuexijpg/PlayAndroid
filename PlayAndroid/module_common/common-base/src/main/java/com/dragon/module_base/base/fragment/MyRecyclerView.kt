@@ -1,10 +1,11 @@
 package com.dragon.module_base.base.fragment
 
 import android.content.Context
+import android.os.Parcelable
 import android.util.AttributeSet
 import com.airbnb.epoxy.EpoxyRecyclerView
 
-class MyRecyclerView : EpoxyRecyclerView {
+open class MyRecyclerView : EpoxyRecyclerView {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -17,5 +18,9 @@ class MyRecyclerView : EpoxyRecyclerView {
         adapter = null
 //        swapAdapter(null, true)
         // Or use swapAdapter(null, true) so that the existing views are recycled to the view pool
+    }
+
+    override fun onSaveInstanceState(): Parcelable? {
+        return super.onSaveInstanceState()
     }
 }

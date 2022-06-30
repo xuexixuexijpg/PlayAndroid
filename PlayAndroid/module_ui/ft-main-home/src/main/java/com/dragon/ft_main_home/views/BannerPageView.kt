@@ -19,7 +19,7 @@ import com.zhpan.bannerview.constants.IndicatorGravity
 import com.zhpan.indicator.enums.IndicatorSlideMode
 
 /**
- * banner
+ * banner  必须加saveViewState记住滚动位置
  */
 @ModelView(autoLayout = ModelView.Size.WRAP_WIDTH_WRAP_HEIGHT, saveViewState = true)
 class BannerPageView  @JvmOverloads constructor(

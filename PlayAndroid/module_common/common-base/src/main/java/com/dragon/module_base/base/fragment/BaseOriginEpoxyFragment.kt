@@ -20,14 +20,15 @@ import com.dragon.module_base.base.activity.BaseActivity
 import com.dragon.module_base.base.callback.BackPressedCallback
 import com.dragon.module_base.base.callback.BackPressedOwner
 import com.dragon.module_base.databinding.FragmentBaseBinding
+import com.dragon.module_base.databinding.FragmentEpoxyBaseBinding
 import com.dragon.module_base.event.LoadResult
 import com.dragon.module_base.service.navigate.BaseArgs
 
 
 /**
- * 基础fragment 用的MyRecyclerView
+ * 基础fragment 用的EpoxyView
  */
-abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksView {
+abstract class BaseOriginEpoxyFragment : Fragment(R.layout.fragment_epoxy_base), MavericksView {
 
     companion object {
         fun createArgKey(args: BaseArgs): String = createArgKey(args::class.qualifiedName!!)
@@ -39,7 +40,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
     //控制器
     protected val epoxyController by lazy { epoxyController() }
 
-    private val binding by viewBinding(FragmentBaseBinding::bind)
+    private val binding by viewBinding(FragmentEpoxyBaseBinding::bind)
 
 
     override fun onAttach(context: Context) {
@@ -48,7 +49,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
             //注册返回键事件
             context.backPressedDispatcherAM.addCallback(this, object : BackPressedCallback() {
                 override fun handleOnBackPressed(owner: BackPressedOwner): Boolean {
-                    return this@BaseEpoxyFragment.handleOnBackPressed(owner)
+                    return this@BaseOriginEpoxyFragment.handleOnBackPressed(owner)
                 }
             })
         }
@@ -69,9 +70,8 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState).apply {
-            epoxyController.setFilterDuplicates(true)
-        }
+        epoxyController.setFilterDuplicates(true)
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     /**

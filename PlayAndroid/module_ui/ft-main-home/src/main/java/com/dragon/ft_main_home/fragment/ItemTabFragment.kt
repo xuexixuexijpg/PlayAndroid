@@ -38,14 +38,14 @@ class ItemTabFragment :
     private lateinit var adapter: BindingAdapter
     private val binding by viewBinding(FragmentItemTabBinding::bind)
 
-    private val itemTabViewModel:ItemTabViewModel by fragmentViewModel()
+    private val itemTabViewModel: ItemTabViewModel by fragmentViewModel()
 
     companion object {
         const val TYPE = "TYPE_FRAGMENT"
         fun getInstance(title: String): ItemTabFragment {
             val fragment = ItemTabFragment()
             fragment.arguments = Bundle().apply {
-                putString(TYPE,title)
+                putString(TYPE, title)
             }
             return fragment
         }
@@ -57,65 +57,61 @@ class ItemTabFragment :
         adapter = binding.rvList.linear().setup {
             stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
             addType<TopArticleBean>(R.layout.home_top_article_item)
-            addType<HomeArticle>(R.layout.home_banner)
-            onCreate { type ->
-                if (type == R.layout.home_banner)
-                    findView<Banner<BannerBean, ImageAdapter>>(R.id.banner).setAdapter(ImageAdapter(null))
-                        .addBannerLifecycleObserver(viewLifecycleOwner).apply {
-                            //设置圆点指示器
-                            indicator = CircleIndicator(context)
-                            //设置被选中颜色
-                            setIndicatorSelectedColorRes(android.R.color.holo_blue_bright)
-                            //设置位置
-                            setIndicatorGravity(IndicatorConfig.Direction.RIGHT)
-                            //设置边距
-                            setIndicatorMargins(IndicatorConfig.Margins(0, 0, BannerConfig.INDICATOR_MARGIN, BannerUtils.dp2px(15f)))
-                        }
-            }
+//            addType<HomeArticle>(R.layout.home_banner)
+//            onCreate { type ->
+//                if (type == R.layout.home_banner)
+//                    findView<Banner<BannerBean, ImageAdapter>>(R.id.banner).setAdapter(ImageAdapter(null))
+//                        .addBannerLifecycleObserver(viewLifecycleOwner).apply {
+//                            //设置圆点指示器
+//                            indicator = CircleIndicator(context)
+//                            //设置被选中颜色
+//                            setIndicatorSelectedColorRes(android.R.color.holo_blue_bright)
+//                            //设置位置
+//                            setIndicatorGravity(IndicatorConfig.Direction.RIGHT)
+//                            //设置边距
+//                            setIndicatorMargins(IndicatorConfig.Margins(0, 0, BannerConfig.INDICATOR_MARGIN, BannerUtils.dp2px(15f)))
+//                        }
+//            }
             onBind {
-                when(itemViewType){
-                    R.layout.home_top_article_item -> {
-                        getModel<TopArticleBean>().run {
-                            //设置标题
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                findView<TextView>(R.id.home_tv_top_article_title).text =
-                                    Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY)
-                            } else {
-                                findView<TextView>(R.id.home_tv_top_article_title).text = Html.fromHtml(title)
-                            }
-                            if (author.isNotEmpty()){
-                                findView<TextView>(R.id.tv_top_article_author).text = author
-                            }else{
-                                findView<TextView>(R.id.tv_top_article_author).text = shareUser
-                            }
-                        }
+//                when(itemViewType){
+//                    R.layout.home_top_article_item -> {
+                getModel<TopArticleBean>().run {
+                    //设置标题
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        findView<TextView>(R.id.home_tv_top_article_title).text =
+                            Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY)
+                    } else {
+                        findView<TextView>(R.id.home_tv_top_article_title).text =
+                            Html.fromHtml(title)
                     }
-                    R.layout.home_banner -> {
-                        getModel<HomeArticle>().run {
-                            (findView<Banner<BannerBean, ImageAdapter>>(R.id.banner).adapter as ImageAdapter)
-                                .setDatas(this.bannerData.invoke())
-                        }
+                    if (author.isNotEmpty()) {
+                        findView<TextView>(R.id.tv_top_article_author).text = author
+                    } else {
+                        findView<TextView>(R.id.tv_top_article_author).text = shareUser
                     }
                 }
+//                    }
+//                    R.layout.home_banner -> {
+//                        getModel<HomeArticle>().run {
+//                            (findView<Banner<BannerBean, ImageAdapter>>(R.id.banner).adapter as ImageAdapter)
+//                                .setDatas(this.bannerData.invoke())
+//                        }
+//                    }
+//                }
             }
         }
         val type = arguments?.getString(TYPE)
-        if (type.isNullOrEmpty()){
+        if (type.isNullOrEmpty()) {
             when (type) {
 
             }
         }
     }
 
-    override fun invalidate() = withState(itemTabViewModel){ data ->
-        if (data.topArticleData is Loading || data.bannerData is Loading)return@withState
-        val info = mutableListOf<Any>()
-        data.topArticleData.invoke()?.let { info.addAll(it) }
-        data.let { info.add(data) }
-        adapter.setDifferModels(info)
+    override fun invalidate() = withState(itemTabViewModel) { data ->
+        if (data.topArticleData is Loading) return@withState
+        adapter.setDifferModels(data.dataTopArticle)
     }
 
-    private fun initAdapter(bindingAdapter: BindingAdapter) {
 
-    }
 }

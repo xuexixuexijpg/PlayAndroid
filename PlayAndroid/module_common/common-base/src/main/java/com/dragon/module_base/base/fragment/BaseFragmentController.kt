@@ -28,7 +28,7 @@ class BaseFragmentController(
 /**
  * Create a [MvRxEpoxyController] that builds models with the given callback.
  */
-fun BaseEpoxyFragment.simpleController(
+fun Fragment.simpleController(
     stickyModelView: (Int) -> Boolean = { false },
     buildModels: EpoxyController.() -> Unit,
 ) = BaseFragmentController(stickyModelView) {
@@ -42,7 +42,7 @@ fun BaseEpoxyFragment.simpleController(
  * Create a [BaseFragmentController] that builds models with the given callback.
  * When models are built the current state of the viewmodel will be provided.
  */
-fun <S : MavericksState, A : MavericksViewModel<S>> BaseEpoxyFragment.simpleController(
+fun <S : MavericksState, A : MavericksViewModel<S>> Fragment.simpleController(
     viewModel: A,
     stickyModelView: (Int) -> Boolean = { false },
     buildModels: EpoxyController.(state: S) -> Unit,
@@ -53,7 +53,7 @@ fun <S : MavericksState, A : MavericksViewModel<S>> BaseEpoxyFragment.simpleCont
     }
 }
 
-fun <A : MavericksViewModel<B>, B : MavericksState, C : MavericksViewModel<D>, D : MavericksState> BaseEpoxyFragment.simpleController(
+fun <A : MavericksViewModel<B>, B : MavericksState, C : MavericksViewModel<D>, D : MavericksState> Fragment.simpleController(
     viewModel1: A,
     viewModel2: C,
     stickyModelView: (Int) -> Boolean = { false },
