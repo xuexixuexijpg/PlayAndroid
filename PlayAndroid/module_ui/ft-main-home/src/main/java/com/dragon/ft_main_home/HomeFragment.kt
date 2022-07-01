@@ -2,6 +2,7 @@ package com.dragon.ft_main_home
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -17,12 +18,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment(R.layout.fragment_main_home),MavericksView {
+class HomeFragment : Fragment(R.layout.fragment_main_home) {
 
     @Inject
     lateinit var homeProvider: HomeProvider
 
-    private val homeViewModel: HomeViewModel by fragmentViewModel()
+//    private val homeViewModel: HomeViewModel by fragmentViewModel()
 
     private val binding by viewBinding(FragmentMainHomeBinding::bind)
 
@@ -35,6 +36,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_main_home),MavericksView {
         initTabView()
         with(binding){
             viewpager.offscreenPageLimit = 1
+            //这样使用主要是有个消息队列会泄露所以才这样做
             viewpager.adapter = ViewPagerAdapter(childFragmentManager,viewLifecycleOwner.lifecycle,tabs)
             viewpager.adapter?.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
             TabLayoutMediator(lyTab,viewpager
@@ -48,7 +50,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_main_home),MavericksView {
     private fun initTabView() {
         tabs = mutableListOf<String>().apply {
             add("测试")
-            add("测试2")
+//            add("测试2")
         }
         binding.lyTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -65,10 +67,5 @@ class HomeFragment : BaseFragment(R.layout.fragment_main_home),MavericksView {
 
         })
     }
-
-    override fun invalidate() {
-
-    }
-
 
 }

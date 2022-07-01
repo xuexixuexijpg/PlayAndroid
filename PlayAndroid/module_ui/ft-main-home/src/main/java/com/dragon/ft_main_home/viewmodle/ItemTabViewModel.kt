@@ -28,10 +28,12 @@ data class HomeArticle(
     val isRefresh: Int = LoadResult.LOADING.state,
     val dataTopArticle: List<TopArticleBean> = emptyList(),
     val dataBanner: List<BannerBean> = emptyList(),
-    val dataOfficial:List<OfficialAccountEntity> = emptyList(),
+    val dataOfficial: List<OfficialAccountEntity> = emptyList(),
+    val dataHomeArticle: HomeArticleListBean? = null,
     val topArticleData: Async<MutableList<TopArticleBean>> = Uninitialized,
     val bannerData: Async<MutableList<BannerBean>> = Uninitialized,
-    val officialData: Async<MutableList<OfficialAccountEntity>> = Uninitialized
+    val officialData: Async<MutableList<OfficialAccountEntity>> = Uninitialized,
+    val homeArticleData: Async<HomeArticleListBean> = Uninitialized
 ) :
     MavericksState
 
@@ -48,7 +50,8 @@ class ItemTabViewModel @AssistedInject constructor(
     /**
      * 获取首页初始化数据
      */
-    private  var getDataJob:Job?=null
+    private var getDataJob: Job? = null
+    private var currentPage = -1
     fun initData() {
 //        getDataJob?.cancel()
 //        getDataJob = viewModelScope.launch(Dispatchers.IO) {
@@ -67,12 +70,33 @@ class ItemTabViewModel @AssistedInject constructor(
         mRepo.getBanner()
             .execute(Dispatchers.IO) {
                 setHasRefresh()
-                copy(bannerData = it,dataBanner =  it() ?: dataBanner)
+                copy(bannerData = it, dataBanner = it() ?: dataBanner)
             }
         mRepo.getOfficialAccount()
             .execute {
                 setHasRefresh()
-                copy(officialData = it,dataOfficial = it()?:dataOfficial)
+                copy(officialData = it, dataOfficial = it() ?: dataOfficial)
+            }
+        getHomeArticle()
+    }
+
+
+    /**
+     * 获取首页文章
+     */
+    fun getHomeArticle() {
+        currentPage++
+        mRepo.getHomeArticle(currentPage)
+            .execute {
+                setHasRefresh()
+                val list = dataHomeArticle?.datas
+                copy(
+                    homeArticleData = it, dataHomeArticle = list?.run {
+                        it()?.let { its -> list.addAll(its.datas) }
+                        it()?.datas = list
+                        it()
+                    } ?: it()
+                )
             }
     }
 
@@ -81,14 +105,14 @@ class ItemTabViewModel @AssistedInject constructor(
      */
     private fun setHasRefresh() {
         withState {
-            if (it.topArticleData is Loading || it.bannerData is Loading || it.officialData is Loading){
+            if (it.topArticleData is Loading || it.bannerData is Loading || it.officialData is Loading || it.homeArticleData !is Loading) {
                 setState { copy(isRefresh = LoadResult.LOADING.state) }
             }
-            if (it.topArticleData is Fail && it.bannerData is Fail && it.officialData is Fail){
+            if (it.topArticleData is Fail && it.bannerData is Fail && it.officialData is Fail && it.homeArticleData is Fail) {
                 //全部失败才显示失败，有部分数据显示也是成功
                 setState { copy(isRefresh = LoadResult.FAIL.state) }
             }
-            if (it.topArticleData !is Loading && it.bannerData !is Loading && it.officialData !is Loading){
+            if (it.topArticleData !is Loading && it.bannerData !is Loading && it.officialData !is Loading && it.homeArticleData !is Loading) {
                 //不是加载中的则三个无论什么状态，有成功就代表加载完成
                 setState { copy(isRefresh = LoadResult.SUCCESS.state) }
             }

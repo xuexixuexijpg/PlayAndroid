@@ -84,7 +84,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
     /**
      * 请求刷新数据处
      */
-    protected open fun requestRefresh(){}
+    protected open fun requestRefresh() {}
 
     /**
      * 设置刷新标志
@@ -121,7 +121,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
         super.onViewCreated(view, savedInstanceState)
         if (isSticky() != null) {
             binding.recycleView.layoutManager = isSticky()
-        }else{
+        } else {
             binding.recycleView.layoutManager = LinearLayoutManager(requireContext())
         }
         binding.lyRefresh.isEnabled = setCanRefresh()

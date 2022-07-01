@@ -4,4 +4,10 @@
     <color name="home_top_article_title">#333333</color>
     <color name="home_top_article_label">#D35B5A</color>
     <color name="home_top_article_author">#999999</color>
+    <color name="home_article_author_color">#999999</color>
+    <color name="base_color_theme">#55aff4</color>
+    <color name="home_tv_article_superchaptername_color">#999999</color>
+    <color name="home_tv_article_title_color">#333333</color>
+    <color name="home_tv">#999999</color>
+    <color name="home_item_article_bottom_color">#EFF2F5</color>
 </resources>

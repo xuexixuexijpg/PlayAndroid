@@ -1,6 +1,7 @@
 package com.dragon.ft_main_home.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.airbnb.mvrx.*
 import com.dragon.ft_main_home.helpers.carouselSnapBuilder
@@ -8,6 +9,7 @@ import com.dragon.ft_main_home.viewmodle.HomeArticle
 import com.dragon.ft_main_home.viewmodle.ItemTabViewModel
 import com.dragon.ft_main_home.views.bannerPageView
 import com.dragon.ft_main_home.views.headerEpoxyView
+import com.dragon.ft_main_home.views.homeArticlePageView
 import com.dragon.ft_main_home.views.officialAccountView
 import com.dragon.module_base.base.fragment.BaseEpoxyFragment
 import com.dragon.module_base.base.fragment.BaseOriginEpoxyFragment
@@ -46,6 +48,7 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
     override fun epoxyController() = simpleController(itemTabViewModel) { state ->
         when(arguments?.getString(TYPE)){
             "测试" -> {
+                Log.e("测试生命周期", "epoxyController:首页 ${lifecycle.currentState}", )
                 if (state.dataTopArticle.isNotEmpty()){
                     state.dataTopArticle.forEachIndexed { index, topArticleBean ->
                         headerEpoxyView {
@@ -67,7 +70,6 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                 if (state.dataOfficial.isNotEmpty()){
                     carouselSnapBuilder {
                         id("official")
-                        initialPrefetchItemCount(7)
                         state.dataOfficial.forEachIndexed { index, officialAccountEntity ->
                             officialAccountView {
                                 id("official$index")
@@ -76,6 +78,17 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                         }
                     }
                 }
+                state.dataHomeArticle?.run {
+                    if (datas.isNotEmpty()){
+                        datas.forEachIndexed{index, homeArticleEntity ->
+                            homeArticlePageView {
+                                id("homearticle$index")
+                                content(homeArticleEntity)
+                            }
+                        }
+                    }
+                }
+
             }
         }
     }

@@ -3,6 +3,7 @@ package com.dragon.ft_main_square
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.Lifecycle
 import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
 import com.airbnb.mvrx.fragmentViewModel
 import com.airbnb.mvrx.withState
@@ -13,7 +14,7 @@ import com.dragon.module_base.base.fragment.simpleController
 
 class TestFragment : BaseEpoxyFragment() {
 
-    private val squareViewModel:SquareViewModel by fragmentViewModel()
+    private val squareViewModel: SquareViewModel by fragmentViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,14 +31,13 @@ class TestFragment : BaseEpoxyFragment() {
         return false
     }
 
-    override fun isSticky(): StickyHeaderLinearLayoutManager {
-        return StickyHeaderLinearLayoutManager(requireContext())
-    }
+//    override fun isSticky(): StickyHeaderLinearLayoutManager {
+//        return StickyHeaderLinearLayoutManager(requireContext())
+//    }
 
-    override fun epoxyController() = simpleController(squareViewModel,{
-        it % 5 == 0
-    }) {state ->
-        for (s in state.textData){
+    override fun epoxyController() = simpleController(squareViewModel) { state ->
+        Log.e("测试生命周期", "epoxyController:广场 ${lifecycle.currentState}", )
+        for (s in state.textData) {
             squareHeaderView {
                 id(s)
                 text(s)

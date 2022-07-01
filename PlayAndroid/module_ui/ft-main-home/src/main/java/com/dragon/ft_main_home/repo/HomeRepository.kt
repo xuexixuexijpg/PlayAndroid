@@ -40,4 +40,13 @@ class HomeRepository @Inject constructor():BaseRepository() {
         emit(result)
     }
 
+    /**
+     * 获取置顶文章数据
+     *
+     */
+    fun getHomeArticle(page:Int = 0) = request<HomeArticleListBean> {
+        val result = Net.get("article/list/${page}/json?page_size=10").execute<HomeArticleListBean>()
+        emit(result)
+    }
+
 }

@@ -5,4 +5,27 @@
     <dimen name="home_tv_top_title">16dp</dimen>
     <dimen name="home_tv_top_title_text_size">16sp</dimen>
     <dimen name="home_tv_top_author_text_size">14sp</dimen>
+    <dimen name="home_item_article_author_margin_left">16dp</dimen>
+    <dimen name="home_item_article_author_margin_top">16dp</dimen>
+    <dimen name="home_item_article_author_padding_right">8dp</dimen>
+    <dimen name="home_item_article_author_text_size">12sp</dimen>
+    <dimen name="home_item_article_new_flag_margin_right">8dp</dimen>
+    <dimen name="home_item_article_new_flag_text_size">12sp</dimen>
+    <dimen name="home_item_article_chaptername_margin_right">8dp</dimen>
+    <dimen name="home_item_article_chapter_name_padding_left">4dp</dimen>
+    <dimen name="home_item_article_chapter_name_padding_top">2dp</dimen>
+    <dimen name="home_item_article_chapter_name_padding_right">4dp</dimen>
+    <dimen name="home_item_article_chapter_name_padding_bottom">2dp</dimen>
+    <dimen name="home_item_article_chaptername_text_size">12sp</dimen>
+    <dimen name="home_icon_collect_margin_right">8dp</dimen>
+    <dimen name="home_tv_articletitle_margin_left">16dp</dimen>
+    <dimen name="home_tv_articletitle_margin_top">10dp</dimen>
+    <dimen name="home_tv_article_title_text_size">16sp</dimen>
+    <dimen name="home_tv_articledesc_margin_top">10dp</dimen>
+    <dimen name="home_tv_articledesc_text_size">12sp</dimen>
+    <dimen name="home_article_data_margin_top">10dp</dimen>
+    <dimen name="home_article_data_margin_right">8dp</dimen>
+    <dimen name="home_article_data_margin_bottom">16dp</dimen>
+    <dimen name="home_article_data_text_size">12sp</dimen>
+    <dimen name="home_article_bottom_view_height">8dp</dimen>
 </resources>

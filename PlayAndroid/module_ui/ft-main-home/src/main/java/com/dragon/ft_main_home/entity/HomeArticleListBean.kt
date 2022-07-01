@@ -15,7 +15,7 @@ data class HomeArticleListBean(
     val pageCount: Int,
     val size: Int,
     val total: Int,
-    val datas: MutableList<HomeArticleEntity>
+    var datas: MutableList<HomeArticleEntity>
 )
 
 @Serializable
@@ -53,7 +53,6 @@ data class HomeArticleEntity(
     val userId: Int?,
     val visible: Int?,
     val zan: Int?,
-    var top: Boolean?
 )
 
 @Serializable
