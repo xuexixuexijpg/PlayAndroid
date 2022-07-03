@@ -25,15 +25,17 @@ include (":module_common")
 //include (":module_common:common-base")
 //include (":module_common:common-utils")
 //include (":module_service")
-//include (":module_ui")
+include (":module_ui")
 
 //include (":module_service:service-di-app")
 
 //main
 //include (":module_ui:ft-main")
 
-//include (":module_common:common-imageloading")
-//include (":module_common:common-network")
+include (":module_common:common-imageloading")
+include (":module_common:common-network")
 
 
 include(":module_common:common-navigation")
+include(":module_ui:ft-home")
+include(":module_common:common-ui")
