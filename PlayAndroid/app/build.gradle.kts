@@ -98,6 +98,7 @@ dependencies {
 //    implementation(project(mapOf("path" to ":module_ui:ft-main")))
 
     implementation(project(mapOf("path" to ":module_common:common-navigation")))
+    implementation(project(mapOf("path" to ":module_common:common-base")))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
@@ -110,5 +111,5 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     //内存泄露检测
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.8.1")
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.9.1")
 }

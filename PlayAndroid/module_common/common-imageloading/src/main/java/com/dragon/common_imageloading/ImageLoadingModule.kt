@@ -1,5 +1,6 @@
 package com.dragon.common_imageloading
-import com.dragon.module_base.service.appinitializers.AppInitializer
+
+import com.dragon.common_base.init.AppInitializer
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

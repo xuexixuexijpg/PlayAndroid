@@ -6,6 +6,7 @@ import coil.Coil
 import coil.ImageLoader
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
+import com.dragon.common_base.init.AppInitializer
 
 import okhttp3.OkHttpClient
 import javax.inject.Inject
