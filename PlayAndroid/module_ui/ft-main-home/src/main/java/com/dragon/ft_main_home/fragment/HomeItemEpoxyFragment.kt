@@ -7,13 +7,10 @@ import com.airbnb.mvrx.*
 import com.dragon.ft_main_home.helpers.carouselSnapBuilder
 import com.dragon.ft_main_home.viewmodle.HomeArticle
 import com.dragon.ft_main_home.viewmodle.ItemTabViewModel
-import com.dragon.ft_main_home.views.bannerPageView
-import com.dragon.ft_main_home.views.headerEpoxyView
-import com.dragon.ft_main_home.views.homeArticlePageView
-import com.dragon.ft_main_home.views.officialAccountView
+import com.dragon.ft_main_home.views.*
 import com.dragon.module_base.base.fragment.BaseEpoxyFragment
-import com.dragon.module_base.base.fragment.BaseOriginEpoxyFragment
 import com.dragon.module_base.base.fragment.simpleController
+import com.dragon.module_base.event.LoadResult
 
 /**
  * 使用Epoxy
@@ -27,7 +24,7 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
         fun getInstance(title: String): HomeItemEpoxyFragment {
             val fragment = HomeItemEpoxyFragment()
             fragment.arguments = Bundle().apply {
-                putString(TYPE,title)
+                putString(TYPE, title)
             }
             return fragment
         }
@@ -37,19 +34,36 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
         itemTabViewModel.initData()
     }
 
+    override fun requestLoadMore() {
+        itemTabViewModel.getHomeArticle()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        itemTabViewModel.onEach(deliveryMode = uniqueOnly(), prop1 = HomeArticle::isRefresh){
-            setIsRefreshing(it)
+        itemTabViewModel.onEach(
+            deliveryMode = uniqueOnly(),
+            prop1 = HomeArticle::isRefresh,
+            prop2 = HomeArticle::isLoadMore
+        ) { re, load ->
+            setIsRefreshing(re)
+            setIsRefreshing(load, 1)
+        }
+        itemTabViewModel.onAsync(
+            asyncProp = HomeArticle::homeArticleData,
+            deliveryMode = uniqueOnly(),{
+                itemTabViewModel.changeVmState(0)
+            }
+        ) {
+            itemTabViewModel.changeVmState()
         }
     }
 
 
     override fun epoxyController() = simpleController(itemTabViewModel) { state ->
-        when(arguments?.getString(TYPE)){
+        when (arguments?.getString(TYPE)) {
             "测试" -> {
-                Log.e("测试生命周期", "epoxyController:首页 ${lifecycle.currentState}", )
-                if (state.dataTopArticle.isNotEmpty()){
+                Log.e("测试生命周期", "epoxyController:首页 ${lifecycle.currentState}")
+                if (state.dataTopArticle.isNotEmpty()) {
                     state.dataTopArticle.forEachIndexed { index, topArticleBean ->
                         headerEpoxyView {
                             id("TopArticle$index")
@@ -59,7 +73,7 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                     }
                 }
 
-                if (state.dataBanner.isNotEmpty()){
+                if (state.dataBanner.isNotEmpty()) {
                     bannerPageView {
                         id("banner-page")
                         addBannerLifeCycle(lifecycle)
@@ -67,7 +81,7 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                     }
                 }
 
-                if (state.dataOfficial.isNotEmpty()){
+                if (state.dataOfficial.isNotEmpty()) {
                     carouselSnapBuilder {
                         id("official")
                         state.dataOfficial.forEachIndexed { index, officialAccountEntity ->
@@ -78,9 +92,10 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                         }
                     }
                 }
-                state.dataHomeArticle?.run {
-                    if (datas.isNotEmpty()){
-                        datas.forEachIndexed{index, homeArticleEntity ->
+
+                state.dataHomeArticle.run {
+                    if (isNotEmpty()) {
+                        forEachIndexed { index, homeArticleEntity ->
                             homeArticlePageView {
                                 id("homearticle$index")
                                 content(homeArticleEntity)
@@ -89,6 +104,12 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                     }
                 }
 
+                if (LoadResult.SUCCESS.state != state.isLoadMore) {
+                    loadMoreTipView {
+                        id("loadMore")
+                        loadMoreState(state.isLoadMore)
+                    }
+                }
             }
         }
     }

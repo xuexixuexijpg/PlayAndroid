@@ -41,6 +41,12 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
 
     private val binding by viewBinding(FragmentBaseBinding::bind)
 
+    //是否正在下拉刷新上拉加载更多
+    private var isRefreshing = false
+
+    private var isLoadingNextPage = false
+    private var isNoMoreData = false
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -75,10 +81,10 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
     }
 
     /**
-     * 设置是否可以下拉刷新 默认false
+     * 设置是否可以下拉刷新，上拉加载更多 默认true,true
      */
-    protected open fun setCanRefresh(): Boolean {
-        return true
+    protected open fun setCanRefresh(): Pair<Boolean, Boolean> {
+        return Pair(true, true)
     }
 
     /**
@@ -87,22 +93,56 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
     protected open fun requestRefresh() {}
 
     /**
-     * 设置刷新标志
+     * 加载更多数据
+     */
+    protected open fun requestLoadMore() {}
+
+    /**
+     * 设置刷新 或 加载更多标志  freshType默认为0为设置刷新头状态 其他为加载更多
      *  0 加载中
      *  1 成功
      *  2 失败
      */
-    fun setIsRefreshing(isRefresh: Int) {
+    fun setIsRefreshing(isRefresh: Int, freshType: Int = 0) {
         with(binding) {
-            when (isRefresh) {
-                LoadResult.LOADING.state -> lyRefresh.isRefreshing = true
-                LoadResult.SUCCESS.state -> lyRefresh.isRefreshing = false
-                LoadResult.FAIL.state -> {
-                    lyRefresh.isRefreshing = false
-                    Log.e("测试", "setIsRefreshing: 加载失败了")
+            if (freshType == 0)
+                when (isRefresh) {
+                    LoadResult.LOADING.state -> {
+                        lyRefresh.isRefreshing = true
+                        isRefreshing = true
+                    }
+                    LoadResult.SUCCESS.state -> {
+                        lyRefresh.isRefreshing = false
+                        isRefreshing = false
+                    }
+                    LoadResult.FAIL.state -> {
+                        lyRefresh.isRefreshing = false
+                        isRefreshing = false
+                        Log.e("测试", "setIsRefreshing: 刷新失败了")
+                    }
+                    else -> {}
                 }
-                else -> {}
-            }
+            else
+                //加载状态
+                when (isRefresh) {
+                    LoadResult.LOADING.state -> {
+                        isLoadingNextPage = true
+                        isNoMoreData = false
+                    }
+                    LoadResult.SUCCESS.state -> {
+                        isLoadingNextPage = false
+                        isNoMoreData = false
+                    }
+                    LoadResult.FAIL.state -> {
+                        isLoadingNextPage = false
+                        isNoMoreData = false
+                    }
+                    LoadResult.NO_MORE_DATA.state -> {
+                        isLoadingNextPage = false
+                        isNoMoreData = true
+                    }
+                    else -> {}
+                }
         }
 
     }
@@ -112,6 +152,9 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
         epoxyController.onSaveInstanceState(outState)
     }
 
+    /**
+     * 默认LinearLayoutManager
+     */
     protected open fun isSticky(): LinearLayoutManager? {
         return null
     }
@@ -124,8 +167,8 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
         } else {
             binding.recycleView.layoutManager = LinearLayoutManager(requireContext())
         }
-        binding.lyRefresh.isEnabled = setCanRefresh()
-        if (setCanRefresh()) {
+        binding.lyRefresh.isEnabled = setCanRefresh().first
+        if (setCanRefresh().first) {
             binding.lyRefresh.setOnRefreshListener {
                 requestRefresh()
             }
@@ -133,6 +176,29 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
         binding.recycleView.setController(epoxyController)
         binding.recycleView.adapter?.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+        if (setCanRefresh().second) {
+            binding.recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val lm = recyclerView.layoutManager as? LinearLayoutManager ?: return
+                    val lastVisibleItem = lm.findLastVisibleItemPosition()
+                    val totalItemCount = lm.itemCount
+
+                    if (lastVisibleItem == totalItemCount - 1 && !isLoadingNextPage && !isRefreshing && !isNoMoreData) {
+                        if (totalItemCount > 0) {
+                            // 在前面addLoadItem后，itemCount已经变化
+                            // 增加一层判断，确保用户是滑到了正在加载的地方，才加载更多
+                            val findLastVisibleItemPosition = lm.findLastVisibleItemPosition()
+                            if (findLastVisibleItemPosition == lm.itemCount - 1) {
+                                isLoadingNextPage = true
+                                requestLoadMore()
+                            }
+                        }
+                    }
+                }
+            })
+        }
     }
 
 

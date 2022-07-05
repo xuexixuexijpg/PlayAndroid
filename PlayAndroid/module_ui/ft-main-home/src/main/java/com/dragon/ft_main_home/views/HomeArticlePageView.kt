@@ -20,6 +20,7 @@ import com.dragon.ft_main_home.databinding.HomeBannerPageViewBinding
 import com.dragon.ft_main_home.entity.HomeArticleEntity
 import com.dragon.module_base.utils.ext.toHtml
 import com.dragon.module_base.utils.ui.ColorUtils
+import com.dragon.widgets.shadowLayout.ShadowLayout
 import com.google.android.material.card.MaterialCardView
 
 /**
@@ -37,6 +38,7 @@ class HomeArticlePageView @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.home_article_page_view, this)
+        isClickable = true
     }
 
     @ModelProp

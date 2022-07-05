@@ -23,13 +23,13 @@ import kotlin.math.abs
 
 
 /**
- * https://github.com/lihangleo2/ShadowLayout
+ * @link(https://github.com/lihangleo2/ShadowLayout)
  *
  * 阴影库 使用kotlin重写以及使用  coil来实现圆角
  *
  */
 
-class ShadowLayout @JvmOverloads constructor(
+open class ShadowLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -879,6 +879,14 @@ class ShadowLayout @JvmOverloads constructor(
             }
             setPadding()
         }
+    }
+
+    /**
+     * 设置选中类型
+     */
+    fun setSelectType(selectType:Int){
+        this.selectorType = selectType
+        postInvalidate()
     }
 
 
