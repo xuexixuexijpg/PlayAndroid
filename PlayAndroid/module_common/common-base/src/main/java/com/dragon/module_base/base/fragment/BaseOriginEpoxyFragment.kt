@@ -10,16 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
-import com.airbnb.mvrx.Async
-import com.airbnb.mvrx.Loading
-import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksView
 import com.dragon.module_base.R
-import com.dragon.module_base.base.activity.BaseActivity
+import com.dragon.module_base.base.activity.BaseRouteActivity
 import com.dragon.module_base.base.callback.BackPressedCallback
 import com.dragon.module_base.base.callback.BackPressedOwner
-import com.dragon.module_base.databinding.FragmentBaseBinding
 import com.dragon.module_base.databinding.FragmentEpoxyBaseBinding
 import com.dragon.module_base.event.LoadResult
 import com.dragon.module_base.service.navigate.BaseArgs
@@ -45,7 +40,7 @@ abstract class BaseOriginEpoxyFragment : Fragment(R.layout.fragment_epoxy_base),
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is BaseActivity) {
+        if (context is BaseRouteActivity) {
             //注册返回键事件
             context.backPressedDispatcherAM.addCallback(this, object : BackPressedCallback() {
                 override fun handleOnBackPressed(owner: BackPressedOwner): Boolean {

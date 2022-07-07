@@ -6,7 +6,11 @@ import com.airbnb.mvrx.MavericksView
 import com.dragon.module_base.base.callback.BackPressedDispatcher
 import com.dragon.module_base.base.callback.BackPressedOwner
 
-abstract class BaseActivity(@LayoutRes id: Int) : AppCompatActivity(id), MavericksView, BackPressedOwner {
+/**
+ *
+ * 单Activity架构中导航直接用这个
+ */
+abstract class BaseRouteActivity(@LayoutRes id: Int) : AppCompatActivity(id), MavericksView, BackPressedOwner {
 
     //返回键分发器
     private val _backPressedDispatcher = BackPressedDispatcher(this)

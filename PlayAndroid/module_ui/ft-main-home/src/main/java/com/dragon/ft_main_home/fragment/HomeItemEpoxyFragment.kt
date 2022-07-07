@@ -3,7 +3,10 @@ package com.dragon.ft_main_home.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import com.airbnb.mvrx.*
+import com.dragon.common_data.constant.Keys
+import com.dragon.ft_main_home.HomeProvider
 import com.dragon.ft_main_home.helpers.carouselSnapBuilder
 import com.dragon.ft_main_home.viewmodle.HomeArticle
 import com.dragon.ft_main_home.viewmodle.ItemTabViewModel
@@ -11,11 +14,18 @@ import com.dragon.ft_main_home.views.*
 import com.dragon.module_base.base.fragment.BaseEpoxyFragment
 import com.dragon.module_base.base.fragment.simpleController
 import com.dragon.module_base.event.LoadResult
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * 使用Epoxy
  */
+@AndroidEntryPoint
 class HomeItemEpoxyFragment : BaseEpoxyFragment() {
+
+    @Inject
+    lateinit var homProvider: HomeProvider
+
 
     private val itemTabViewModel: ItemTabViewModel by fragmentViewModel()
 
@@ -51,7 +61,7 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
         itemTabViewModel.onAsync(
             asyncProp = HomeArticle::homeArticleData,
             deliveryMode = uniqueOnly(),{
-                itemTabViewModel.changeVmState(0)
+                Log.e("出错", "onViewCreated: $it", )
             }
         ) {
             itemTabViewModel.changeVmState()
@@ -99,6 +109,9 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                             homeArticlePageView {
                                 id("homearticle$index")
                                 content(homeArticleEntity)
+                                homeArticleClick { _, _, _, _ ->
+                                    homProvider.navigateToPage(routePath = getString(R.string.webFragmentRoute), args = bundleOf(Keys.URL to homeArticleEntity.link))
+                                }
                             }
                         }
                     }

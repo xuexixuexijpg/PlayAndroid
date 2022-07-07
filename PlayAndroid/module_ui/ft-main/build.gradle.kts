@@ -27,6 +27,7 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-utils")))
     implementation(project(mapOf("path" to ":module_common:common-data")))
     implementation(project(mapOf("path" to ":module_common:common-imageloading")))
+    implementation(project(mapOf("path" to ":module_common:common-web-browser")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-home")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-mine")))
     implementation(project(mapOf("path" to ":module_ui:ft-main-square")))

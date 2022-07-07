@@ -29,6 +29,7 @@ class OfficialAccountView @JvmOverloads constructor(
     init {
         inflate(context,R.layout.home_official_view,this)
         id = R.id.save_state
+        isClickable = true
         val gradientDrawable = GradientDrawable()
         gradientDrawable.shape = GradientDrawable.OVAL
         gradientDrawable.setColor(0xff000000.toInt() or Random.nextInt(0x00ffffff))

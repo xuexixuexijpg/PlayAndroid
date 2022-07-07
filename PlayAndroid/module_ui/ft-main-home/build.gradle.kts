@@ -40,6 +40,7 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_common:common-data")))
     implementation(project(mapOf("path" to ":module_common:common-network")))
+    implementation(project(mapOf("path" to ":module_common:common-utils")))
     kapt(Hilt.compilerHilt)
 //    kapt(OtherLibs.epoxyCompiler)
 //    implementation(OtherLibs.epoxyPaging)

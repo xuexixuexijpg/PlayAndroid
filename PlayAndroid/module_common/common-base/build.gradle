@@ -44,7 +44,7 @@ dependencies {
 //    kapt rootProject.ext.compiler["arouterCompiler"]
 
     //other
-    implementation rootProject.ext.otherLibs
+//    implementation rootProject.ext.otherLibs
 
     //Androidx Security
     implementation "androidx.security:security-crypto:1.1.0-alpha03"

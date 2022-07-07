@@ -18,4 +18,6 @@
             app:destination="@id/searchFragment" />
     </fragment>
 
+    <include app:graph="@navigation/web_graph" />
+
 </navigation>

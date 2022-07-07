@@ -14,6 +14,10 @@
     <!--搜索页-->
     <item name="searchFragment" type="id"/>
 
+    <!--web页-->
+    <item name="webFragment" type="id"/>
+
+
 
     <!--action-->
     <item name="action_main_to_search" type="id"/>

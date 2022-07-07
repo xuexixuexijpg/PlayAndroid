@@ -4,6 +4,7 @@ import android.util.Log
 import com.airbnb.mvrx.*
 import com.airbnb.mvrx.hilt.AssistedViewModelFactory
 import com.airbnb.mvrx.hilt.hiltMavericksViewModelFactory
+import com.dragon.common_utils.ext.upsert
 import com.dragon.ft_main_home.entity.*
 import com.dragon.ft_main_home.repo.HomeRepository
 import com.dragon.module_base.event.LoadResult
@@ -57,7 +58,8 @@ class ItemTabViewModel @AssistedInject constructor(
 //            }
 //        }
         currentPage = 0
-        setState { copy(isRefresh = LoadResult.LOADING.state, dataHomeArticle = emptyList()) }
+        //初始化要保留原来的分页数据
+        setState { copy(isRefresh = LoadResult.LOADING.state, dataHomeArticle = dataHomeArticle.take(10)) }
         mRepo.getTopArticle()
             .execute {
                 setHasRefresh()
@@ -88,7 +90,8 @@ class ItemTabViewModel @AssistedInject constructor(
                 //会发射两次Loading 和 Success
                 copy(
                     homeArticleData = it, dataHomeArticle = it()?.run {
-                        dataHomeArticle+datas
+                        if (currentPage == 0)datas
+                        else dataHomeArticle + datas
                     }?:dataHomeArticle
                 )
             }
@@ -123,7 +126,6 @@ class ItemTabViewModel @AssistedInject constructor(
             if (it.topArticleData !is Loading && it.bannerData !is Loading && it.officialData !is Loading && it.homeArticleData !is Loading) {
                 //不是加载中的则三个无论什么状态，有成功就代表加载完成
                 if (it.homeArticleData is Fail) {
-                    currentPage--
                     setState {
                         copy(
                             isRefresh = LoadResult.SUCCESS.state,
@@ -145,10 +147,8 @@ class ItemTabViewModel @AssistedInject constructor(
     /**
      * 由于execute会执行发射两次Loading,Success事件
      */
-    fun changeVmState(it: Int = 1) {
-        if (it == 1 )
+    fun changeVmState() {
         currentPage++
-        else  currentPage--
     }
 
 

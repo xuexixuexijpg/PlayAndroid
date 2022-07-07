@@ -2,19 +2,17 @@ package com.dragon.ft_main
 
 
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.dragon.common_utils.mmkvutil.MMKVOwner
 import com.dragon.ft_main.databinding.ActivityMainBinding
-import com.dragon.module_base.base.activity.BaseActivity
+import com.dragon.module_base.base.activity.BaseRouteActivity
 
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity(R.layout.activity_main), MMKVOwner {
+class MainActivity : BaseRouteActivity(R.layout.activity_main), MMKVOwner {
 
     companion object {
         const val TAG = "MainActivity"

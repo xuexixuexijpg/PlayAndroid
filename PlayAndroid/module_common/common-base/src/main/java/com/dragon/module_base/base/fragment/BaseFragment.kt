@@ -3,8 +3,7 @@ package com.dragon.module_base.base.fragment
 import android.content.Context
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import com.airbnb.mvrx.MavericksView
-import com.dragon.module_base.base.activity.BaseActivity
+import com.dragon.module_base.base.activity.BaseRouteActivity
 import com.dragon.module_base.base.callback.BackPressedCallback
 import com.dragon.module_base.base.callback.BackPressedOwner
 
@@ -14,15 +13,22 @@ import com.dragon.module_base.base.callback.BackPressedOwner
  */
 
 abstract class BaseFragment (@LayoutRes id: Int) : Fragment(id) {
+
+    /**
+     * 获取RouterActivity方便调用navigation进行页面切换
+     */
+    lateinit var activity: BaseRouteActivity
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is BaseActivity) {
+        if (context is BaseRouteActivity) {
             //注册返回键事件
             context.backPressedDispatcherAM.addCallback(this, object : BackPressedCallback() {
                 override fun handleOnBackPressed(owner: BackPressedOwner): Boolean {
                     return this@BaseFragment.handleOnBackPressed(owner)
                 }
             })
+            activity = context
         }
     }
 

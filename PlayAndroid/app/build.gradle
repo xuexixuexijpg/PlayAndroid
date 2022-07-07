@@ -97,5 +97,5 @@ dependencies {
     implementation project(path:':module_ui:ft-main')
     implementation project(':module_service:service-di-app')
     //内存泄露检测
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 }

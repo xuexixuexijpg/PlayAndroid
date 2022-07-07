@@ -1,11 +1,36 @@
-//plugins {
-//    id 'com.android.library'
-//    id 'kotlin-android'
-//}
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+    id ("kotlin-kapt")
+}
 apply from: "../../base_library.gradle"
+
+android{
+    buildFeatures{
+        viewBinding  true
+    }
+}
 
 dependencies {
 
-    implementation rootProject.ext.commonUILibs
+    //接入腾讯Web内核X5 https://x5.tencent.com/docs/access.html
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    api 'com.tencent.tbs:tbssdk:44199'
 
+    api 'androidx.webkit:webkit:1.4.0'
+    implementation Hilt.implHilt
+    kapt Hilt.compilerHilt
+    implementation OtherLibs.byBinding
+
+    // https://mvnrepository.com/artifact/com.squareup.okio/okio-jvm
+    runtimeOnly group: 'com.squareup.okio', name: 'okio-jvm', version: '3.2.0'
+
+    implementation project(path: ':module_common:common-base')
+    implementation project(path: ':module_common:common-widgets')
+    implementation project(path: ':module_common:common-utils')
+    implementation project(path: ':module_common:common-network')
+    implementation project(path: ':module_common:common-imageloading')
+    implementation project(path: ':module_common:common-data')
+
+    implementation rootProject.ext.commonUILibs
 }

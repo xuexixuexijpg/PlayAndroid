@@ -10,13 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
-import com.airbnb.mvrx.Async
-import com.airbnb.mvrx.Loading
-import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksView
 import com.dragon.module_base.R
-import com.dragon.module_base.base.activity.BaseActivity
+import com.dragon.module_base.base.activity.BaseRouteActivity
 import com.dragon.module_base.base.callback.BackPressedCallback
 import com.dragon.module_base.base.callback.BackPressedOwner
 import com.dragon.module_base.databinding.FragmentBaseBinding
@@ -28,6 +24,13 @@ import com.dragon.module_base.service.navigate.BaseArgs
  * 基础fragment 用的MyRecyclerView
  */
 abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksView {
+
+    /**
+     * 获取RouterActivity方便调用navigation进行页面切换
+     */
+    lateinit var activity: BaseRouteActivity
+
+
 
     companion object {
         fun createArgKey(args: BaseArgs): String = createArgKey(args::class.qualifiedName!!)
@@ -50,13 +53,14 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is BaseActivity) {
+        if (context is BaseRouteActivity) {
             //注册返回键事件
             context.backPressedDispatcherAM.addCallback(this, object : BackPressedCallback() {
                 override fun handleOnBackPressed(owner: BackPressedOwner): Boolean {
                     return this@BaseEpoxyFragment.handleOnBackPressed(owner)
                 }
             })
+            activity = context
         }
     }
 

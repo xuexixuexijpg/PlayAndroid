@@ -28,6 +28,7 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-base")))
     implementation(project(mapOf("path" to ":module_common:common-network")))
     implementation(project(mapOf("path" to ":module_common:common-imageloading")))
+    implementation(project(mapOf("path" to ":module_common:common-web-browser")))
 
     implementation(project(mapOf("path" to ":module_ui:ft-login")))
     implementation(project(mapOf("path" to ":module_ui:ft-main")))

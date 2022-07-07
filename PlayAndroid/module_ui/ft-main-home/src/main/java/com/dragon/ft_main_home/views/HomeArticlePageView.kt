@@ -4,14 +4,21 @@ import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.Coil
 import coil.ImageLoader
 import coil.load
 import coil.request.ImageRequest
+import com.airbnb.epoxy.CallbackProp
 import com.airbnb.epoxy.ModelProp
 import com.airbnb.epoxy.ModelView
 import com.dragon.ft_main_home.R
@@ -32,7 +39,7 @@ class HomeArticlePageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : MaterialCardView(context, attrs, defStyleAttr) {
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val binding by viewBinding(HomeArticlePageViewBinding::bind)
 
@@ -52,13 +59,13 @@ class HomeArticlePageView @JvmOverloads constructor(
                 }
                 //是否是新文章
                 if (it.fresh == true) {
-                    homeItemArticleNewFlag.visibility = View.VISIBLE
+                    homeItemArticleNewFlag.isVisible
                 } else {
-                    homeItemArticleNewFlag.visibility = View.GONE
+                    homeItemArticleNewFlag.isGone
                 }
                 //二级分类
                 if (!it.chapterName.isNullOrEmpty()) {
-                    homeItemArticleChaptername.visibility = View.VISIBLE
+                    homeItemArticleChaptername.isVisible
                     homeItemArticleChaptername.text = it.chapterName
                     val gradientDrawable = GradientDrawable()
                     val color = ColorUtils.convertToColorInt("55aff4")
@@ -69,7 +76,7 @@ class HomeArticlePageView @JvmOverloads constructor(
                     }.build())
                     homeItemArticleChaptername.setTextColor(color)
                 } else {
-                    homeItemArticleChaptername.visibility = View.GONE
+                    homeItemArticleChaptername.isGone
                 }
                 //时间赋值
                 if (!it.niceDate.isNullOrEmpty()) {
@@ -81,17 +88,17 @@ class HomeArticlePageView @JvmOverloads constructor(
                 homeTvArticletitle.text = it.title.toHtml()
                 //描述
                 if (!it.desc.isNullOrEmpty()) {
-                    homeTvArticledesc.visibility = View.VISIBLE
+                    homeTvArticledesc.isVisible
                     homeTvArticledesc.text = it.desc.toHtml()
                 }else{
-                    homeTvArticledesc.visibility = View.GONE
+                    homeTvArticledesc.isGone
                 }
                 //一级分类
                 if (!it.superChapterName.isNullOrEmpty()) {
-                    homeTvArticleSuperchaptername.visibility =View.VISIBLE
+                    homeTvArticleSuperchaptername.isVisible
                     homeTvArticleSuperchaptername.text = it.superChapterName
                 }else{
-                    homeTvArticleSuperchaptername.visibility =View.GONE
+                    homeTvArticleSuperchaptername.isGone
                 }
                 if (it.collect){
                     homeIconCollect.load(R.drawable.base_icon_collect){
@@ -104,5 +111,10 @@ class HomeArticlePageView @JvmOverloads constructor(
                 }
             }
         }
+    }
+
+    @CallbackProp
+    fun setHomeArticleClick(listener: OnClickListener?){
+        setOnClickListener(listener)
     }
 }
