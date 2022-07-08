@@ -14,6 +14,7 @@ import com.dragon.web_browser.helper.WebViewHelper
 import com.dragon.web_browser.helper.WebViewManager
 
 import com.tencent.smtt.sdk.WebView
+import dagger.hilt.android.AndroidEntryPoint
 
 class WebFragment : BaseFragment(R.layout.fragment_web_browser) {
 
@@ -42,7 +43,7 @@ class WebFragment : BaseFragment(R.layout.fragment_web_browser) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val url = Uri.decode(requireArguments().getString(com.dragon.common_data.constant.Keys.URL))
-        val webView = WebViewManager.obtain(activity)
+        val webView = WebViewManager.obtain(myActivity)
         binding.webContainer.addView(
             webView, ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,

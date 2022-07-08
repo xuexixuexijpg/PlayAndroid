@@ -2,4 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dragon.service_di_app">
 
+    <application>
+        <activity
+            android:name="com.dragon.ft_main.MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:launchMode="standard"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <nav-graph android:value="@navigation/web_graph" />
+        </activity>
+
+        <service
+            android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+            android:label="dexopt"
+            android:process=":dexopt" />
+    </application>
 </manifest>

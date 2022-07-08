@@ -1,47 +1,39 @@
 package com.dragon.ft_main
 
 
-import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import by.kirich1409.viewbindingdelegate.viewBinding
+import android.util.Log
+import android.widget.Toast
 import com.dragon.common_utils.mmkvutil.MMKVOwner
-import com.dragon.ft_main.databinding.ActivityMainBinding
 import com.dragon.module_base.base.activity.BaseRouteActivity
+import com.dragon.web_browser.helper.WebViewManager
 
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseRouteActivity(R.layout.activity_main), MMKVOwner {
 
-    companion object {
-        const val TAG = "MainActivity"
-    }
+    private var exitTime = 0L
 
-    private val binding by viewBinding(ActivityMainBinding::bind)
+    override fun controllerId() = R.id.fragmentNav
 
-    private lateinit var navController: NavController
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val hostFragment = supportFragmentManager.findFragmentById(R.id.fragmentNav)
-        if (hostFragment != null) {
-            //不先在布局中
-            navController = hostFragment.findNavController()
-            navController.setGraph(R.navigation.activity_graph)
-        }
-    }
-
-    /**
-     * 将导航返出去使用
-     */
-    fun routeControl():NavController{
-        return navController
+    override fun onDestroy() {
+        super.onDestroy()
+        WebViewManager.destroy()
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        if (routeControl().currentDestination?.id == R.id.mainFragment) {
+            if (System.currentTimeMillis() - exitTime > 2000) {
+                exitTime = System.currentTimeMillis()
+                val msg = "再按一次返回桌面"
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+                return
+            } else {
+                moveTaskToBack(true)
+            }
+        }else {
+            super.onBackPressed()
+        }
     }
-
 
 }

@@ -15,11 +15,6 @@ class MainProviderImpl @Inject constructor(
         navType = types
     }
 
-    override fun navigateTo(navController: NavController) {
-
-    }
-
-
 }
 
 

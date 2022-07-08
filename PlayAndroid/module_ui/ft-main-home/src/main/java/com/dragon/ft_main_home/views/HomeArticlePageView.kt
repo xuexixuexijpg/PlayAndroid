@@ -115,6 +115,6 @@ class HomeArticlePageView @JvmOverloads constructor(
 
     @CallbackProp
     fun setHomeArticleClick(listener: OnClickListener?){
-        setOnClickListener(listener)
+        binding.cardContent.setOnClickListener(listener)
     }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import com.airbnb.mvrx.*
 import com.dragon.common_data.constant.Keys
+import com.dragon.common_data.navigation.NavScreenNames
 import com.dragon.ft_main_home.HomeProvider
 import com.dragon.ft_main_home.helpers.carouselSnapBuilder
 import com.dragon.ft_main_home.viewmodle.HomeArticle
@@ -110,7 +111,7 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                                 id("homearticle$index")
                                 content(homeArticleEntity)
                                 homeArticleClick { _, _, _, _ ->
-                                    homProvider.navigateToPage(routePath = getString(R.string.webFragmentRoute), args = bundleOf(Keys.URL to homeArticleEntity.link))
+                                    homProvider.navigateToDeepLink(activity = requireActivity(),routePath = NavScreenNames.WEB_ROUTE, args = bundleOf(Keys.URL to homeArticleEntity.link))
                                 }
                             }
                         }

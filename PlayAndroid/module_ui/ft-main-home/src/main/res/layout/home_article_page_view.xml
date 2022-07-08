@@ -7,6 +7,7 @@
     tools:parentTag="android.widget.FrameLayout">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
@@ -15,7 +16,8 @@
         app:cardCornerRadius="5dp"
         app:strokeWidth="@dimen/dp_0"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        >
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

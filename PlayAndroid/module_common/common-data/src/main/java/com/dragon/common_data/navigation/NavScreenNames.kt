@@ -7,13 +7,12 @@ import com.dragon.common_data.R
  */
 object NavScreenNames {
     val MINE_PAGE = R.id.mineFragment
+    val web = R.string.webFragmentRoute
+
+    /*web*/
+    const val WEB_ROUTE = "web/{url}"
 }
 
-/**
- * 路由名
- */
-enum class RoutePageName( var path:String){
-   SEARCH_PAGE("search")
-}
+
 
 

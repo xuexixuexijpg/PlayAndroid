@@ -17,7 +17,7 @@ abstract class BaseFragment (@LayoutRes id: Int) : Fragment(id) {
     /**
      * 获取RouterActivity方便调用navigation进行页面切换
      */
-    lateinit var activity: BaseRouteActivity
+    lateinit var myActivity: BaseRouteActivity
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -28,7 +28,7 @@ abstract class BaseFragment (@LayoutRes id: Int) : Fragment(id) {
                     return this@BaseFragment.handleOnBackPressed(owner)
                 }
             })
-            activity = context
+            myActivity = context
         }
     }
 

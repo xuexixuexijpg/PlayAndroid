@@ -28,7 +28,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
     /**
      * 获取RouterActivity方便调用navigation进行页面切换
      */
-    lateinit var activity: BaseRouteActivity
+    lateinit var myActivity: BaseRouteActivity
 
 
 
@@ -60,7 +60,7 @@ abstract class BaseEpoxyFragment : Fragment(R.layout.fragment_base), MavericksVi
                     return this@BaseEpoxyFragment.handleOnBackPressed(owner)
                 }
             })
-            activity = context
+            myActivity = context
         }
     }
 

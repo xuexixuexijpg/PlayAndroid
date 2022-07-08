@@ -73,7 +73,6 @@ class WebViewHelper(private val webView: WebView) {
                 request: WebResourceRequest?
             ): WebResourceResponse? {
                 if (view != null && request != null) {
-                    Log.e("QbSdkAppInitializer", "shouldInterceptRequest: ", )
                     when {
                         canAssetsResource(request) -> {
                             return assetsResourceRequest(view.context, request)

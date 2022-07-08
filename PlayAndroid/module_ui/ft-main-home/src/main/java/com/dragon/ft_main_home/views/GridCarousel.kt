@@ -11,7 +11,7 @@ class GridCarousel(
 ): Carousel(context) {
 
     override fun createLayoutManager(): LayoutManager {
-        return GridLayoutManager(context, 7, GridLayoutManager.HORIZONTAL, false)
+        return GridLayoutManager(context, 5, GridLayoutManager.HORIZONTAL, false)
     }
 
     override fun getSnapHelperFactory(): Nothing? = null

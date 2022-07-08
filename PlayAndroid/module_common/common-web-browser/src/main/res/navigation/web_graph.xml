@@ -5,14 +5,13 @@
     app:startDestination="@id/webFragment">
 
     <fragment
-        app:route="@string/webFragmentRoute"
-        android:id="@id/webFragment"
+        android:id="@+id/webFragment"
         android:name="com.dragon.web_browser.WebFragment"
         android:label="WebFragment" >
         <!--
             通过将占位符名称与已定义的参数（为深层链接目的地所定义）相匹配，尝试将占位符值解析为相应的类型
         -->
         <argument android:name="url" />
-        <deepLink app:uri="fragment.example.com/web/{url}" />
+        <deepLink app:uri="playandroid.dragon.com/web/{url}" />
     </fragment>
 </navigation>

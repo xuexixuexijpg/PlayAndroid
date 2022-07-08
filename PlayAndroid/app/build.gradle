@@ -93,6 +93,7 @@ android {
 dependencies {
     implementation Hilt.implHilt
     implementation project(path: ':module_common:common-base')
+    implementation project(path: ':module_common:common-web-browser')
     kapt Hilt.compilerHilt
     implementation project(path:':module_ui:ft-main')
     implementation project(':module_service:service-di-app')

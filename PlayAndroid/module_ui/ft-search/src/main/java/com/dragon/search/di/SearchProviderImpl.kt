@@ -12,7 +12,5 @@ import javax.inject.Inject
 class SearchProviderImpl @Inject constructor(
     private val activity: FragmentActivity,
 ) : SearchProvider {
-    override fun navigateTo(navController: NavController) {
 
-    }
 }
