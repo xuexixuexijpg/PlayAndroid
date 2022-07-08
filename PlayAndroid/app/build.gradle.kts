@@ -99,6 +99,7 @@ dependencies {
 
     implementation(project(mapOf("path" to ":module_common:common-navigation")))
     implementation(project(mapOf("path" to ":module_common:common-base")))
+    implementation(project(mapOf("path" to ":module_common:common-ui")))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
