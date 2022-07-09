@@ -61,8 +61,8 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
         }
         itemTabViewModel.onAsync(
             asyncProp = HomeArticle::homeArticleData,
-            deliveryMode = uniqueOnly(),{
-                Log.e("出错", "onViewCreated: $it", )
+            deliveryMode = uniqueOnly(), {
+                Log.e("出错", "onViewCreated: $it")
             }
         ) {
             itemTabViewModel.changeVmState()
@@ -111,7 +111,14 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                                 id("homearticle$index")
                                 content(homeArticleEntity)
                                 homeArticleClick { _, _, _, _ ->
-                                    homProvider.navigateToDeepLink(activity = requireActivity(),routePath = NavScreenNames.WEB_ROUTE, args = bundleOf(Keys.URL to homeArticleEntity.link))
+                                    homProvider.navigateToDeepLink(
+                                        activity = requireActivity(),
+                                        routePath = NavScreenNames.WEB_ROUTE,
+                                        args = bundleOf(
+                                            Keys.URL to homeArticleEntity.link,
+                                            Keys.VALUE to homeArticleEntity.title
+                                        )
+                                    )
                                 }
                             }
                         }

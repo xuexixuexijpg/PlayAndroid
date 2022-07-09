@@ -11,8 +11,8 @@
 
         <!-- 应用的主要色调,actionBar默认使用该颜色，Toolbar导航栏的底色 -->
         <item name="colorPrimary">#FFAAAA</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>-->
 
 
         <!-- 一般控件的选中效果默认采用该颜色,如 CheckBox,RadioButton,SwitchCompat，ProcessBar等-->

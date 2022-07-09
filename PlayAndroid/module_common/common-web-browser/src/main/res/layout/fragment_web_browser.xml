@@ -1,47 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.dragon.widgets.viewgroup.FitsWindowsLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    app:status_bar_color="@color/white"
-    app:status_bar_light="true">
+    >
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinator"
+    <!-- app:layout_scrollFlags="scroll|enterAlways|snap"-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="45dp">
 
-
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
+            app:navigationIcon="@drawable/ic_action_navigation_close"
+            app:title="" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                style="?attr/toolbarNavigationButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:elevation="0dp"
-                app:layout_collapseMode="pin"
-                app:title="" />
+        <com.dragon.widgets.viewgroup.SnailBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
 
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <com.dragon.widgets.viewgroup.SnailBar
-                android:id="@+id/progress_bar"
-                android:layout_width="match_parent"
-                android:layout_height="3dp" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <FrameLayout
         android:id="@+id/web_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        />
 
-
-</com.dragon.widgets.viewgroup.FitsWindowsLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

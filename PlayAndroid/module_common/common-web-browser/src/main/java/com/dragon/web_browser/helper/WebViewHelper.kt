@@ -26,6 +26,7 @@ import com.dragon.common_utils.files.CacheUtils
 import com.dragon.common_utils.helpers.UIModeUtils.isNightMode
 import com.dragon.common_utils.helpers.saveSystemAlbum
 import com.drake.net.Net
+import com.drake.net.Net.printStackTrace
 import com.dylanc.longan.download
 
 import com.tencent.smtt.export.external.interfaces.IX5WebSettings
@@ -156,6 +157,9 @@ class WebViewHelper(private val webView: WebView) {
         }
     }
 
+    /**
+     * 注入js代码
+     */
     fun evaluateJavascript(js: String, callback: (String) -> Unit): WebViewHelper {
         webView.evaluateJavascript(js, callback)
         return this
@@ -171,6 +175,9 @@ class WebViewHelper(private val webView: WebView) {
         return this
     }
 
+    /**
+     * 一层层返回
+     */
     fun canGoBack(): Boolean {
         val canBack = webView.canGoBack()
         if (canBack) webView.goBack()
@@ -198,6 +205,7 @@ class WebViewHelper(private val webView: WebView) {
             webView.loadUrl(url)
             originalUrl = url
         }
+        Log.e("测试", "loadUrl: x5内核 ${webView.isX5Core}", )
         return webView
     }
 
@@ -215,6 +223,7 @@ class WebViewHelper(private val webView: WebView) {
 
     fun onDestroyView() {
         onPageChangedListener = null
+        webView.clearHistory()
         WebViewManager.recycle(webView)
     }
 

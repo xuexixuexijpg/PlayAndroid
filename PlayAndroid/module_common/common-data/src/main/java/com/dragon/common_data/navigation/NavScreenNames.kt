@@ -10,7 +10,7 @@ object NavScreenNames {
     val web = R.string.webFragmentRoute
 
     /*web*/
-    const val WEB_ROUTE = "web/{url}"
+    const val WEB_ROUTE = "web/{url}/{value}"
 }
 
 

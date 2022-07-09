@@ -1,5 +1,7 @@
 package com.dragon.ft_main_home
 
+import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -12,6 +14,9 @@ import com.dragon.ft_main_home.adapter.ViewPagerAdapter
 import com.dragon.ft_main_home.databinding.FragmentMainHomeBinding
 import com.dragon.ft_main_home.viewmodle.HomeViewModel
 import com.dragon.module_base.base.fragment.BaseFragment
+import com.dylanc.longan.isLightStatusBar
+import com.dylanc.longan.isStatusBarVisible
+import com.dylanc.longan.statusBarColor
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint

@@ -2,20 +2,14 @@ package com.dragon.module_base.base.activity
 
 import android.net.Uri
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import com.dragon.module_base.R
 import com.dragon.module_base.base.callback.BackPressedDispatcher
 import com.dragon.module_base.base.callback.BackPressedOwner
 import com.dragon.module_base.service.navigate.NavOption.navigateOption
-import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import java.util.regex.Pattern
 
@@ -66,13 +60,14 @@ abstract class BaseRouteActivity(@LayoutRes id: Int) : AppCompatActivity(id), Ba
             while (matcher.find()) {
                 val key = matcher.group(2)
                 if (containsKey(key)) {
-                    val newUrl = Uri.encode(get(key).toString())
+                    val allowedChars ="._-$,;~() "
+                    val newUrl = Uri.encode(get(key).toString(),allowedChars)
                     newDeepLink = newDeepLink.replace("{$key}", newUrl)
                 }
             }
         }
         if (navOptions != null){
-            navController.navigate(Uri.parse(newDeepLink), navOptions,)
+            navController.navigate(Uri.parse(newDeepLink), navOptions)
         }else{
             navController.navigate(Uri.parse(newDeepLink), navigateOption())
         }

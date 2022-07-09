@@ -101,11 +101,11 @@ class HomeArticlePageView @JvmOverloads constructor(
                     homeTvArticleSuperchaptername.isGone
                 }
                 if (it.collect){
-                    homeIconCollect.load(R.drawable.base_icon_collect){
+                    homeIconCollect.load(R.drawable.ic_collect_checked){
                         crossfade(true)
                     }
                 }else{
-                    homeIconCollect.load(R.drawable.base_icon_collect){
+                    homeIconCollect.load(R.drawable.ic_collect_unchecked_stroke){
                         crossfade(true)
                     }
                 }
