@@ -4,6 +4,7 @@ import android.util.Log
 import com.airbnb.mvrx.*
 import com.airbnb.mvrx.hilt.AssistedViewModelFactory
 import com.airbnb.mvrx.hilt.hiltMavericksViewModelFactory
+import com.dragon.common_database.model.LocalReadHistoryEntity
 import com.dragon.common_utils.ext.upsert
 import com.dragon.ft_main_home.entity.*
 import com.dragon.ft_main_home.repo.HomeRepository
@@ -151,6 +152,14 @@ class ItemTabViewModel @AssistedInject constructor(
         currentPage++
     }
 
+    /**
+     * 存储
+     */
+    fun insertReadHistory(data:List<LocalReadHistoryEntity>){
+        viewModelScope.launch(Dispatchers.IO) {
+            mRepo.insertReadHistory(data)
+        }
+    }
 
     @AssistedFactory
     interface Factory : AssistedViewModelFactory<ItemTabViewModel, HomeArticle> {

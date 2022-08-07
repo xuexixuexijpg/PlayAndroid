@@ -1,5 +1,5 @@
 
-package com.dragon.service_di_app.init
+package com.dragon.playandroid.init
 
 import android.app.Application
 import com.dragon.module_base.service.appinitializers.AppInitializer

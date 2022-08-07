@@ -1,6 +1,8 @@
 package com.dragon.ft_main_home.repo
 
 import android.util.Log
+import com.dragon.common_database.dao.LocalReadHistoryDao
+import com.dragon.common_database.model.LocalReadHistoryEntity
 import com.dragon.ft_main_home.entity.BannerBean
 import com.dragon.ft_main_home.entity.HomeArticleListBean
 import com.dragon.ft_main_home.entity.OfficialAccountEntity
@@ -14,7 +16,16 @@ import javax.inject.Singleton
  * 数据源
  */
 @Singleton
-class HomeRepository @Inject constructor():BaseRepository() {
+class HomeRepository @Inject constructor(
+    private val historyDao: LocalReadHistoryDao
+):BaseRepository() {
+
+    /**
+     * 插入浏览历史
+     */
+    suspend fun insertReadHistory(data:List<LocalReadHistoryEntity>){
+        historyDao.insertOrIgnoreHistory(data)
+    }
 
     /**
      * 获取置顶文章

@@ -1,4 +1,4 @@
-package com.dragon.module_base.utils;
+package com.dragon.common_database.helper;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,16 +15,16 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import kotlin.Suppress;
+
 /**
  * @Description : 文件相关工具类
  */
 
+@Suppress(names = "UNUSED")
 public class FileTool {
     /**
      * @return java.io.File
-     * @Description: 生成文件
-     * @Param: filePath
-     * @Param: fileName
      */
     public static File makeFilePath(String filePath, String fileName) {
         File file = null;

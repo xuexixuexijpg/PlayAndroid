@@ -94,7 +94,6 @@
                     android:ellipsize="end"
                     android:maxEms="20"
                     android:maxLines="1"
-                    android:text="dsdsdsdsd"
                     android:textColor="@color/home_tv"
                     android:textSize="@dimen/home_tv_articledesc_text_size" />
 

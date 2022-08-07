@@ -7,6 +7,7 @@ import androidx.core.os.bundleOf
 import com.airbnb.mvrx.*
 import com.dragon.common_data.constant.Keys
 import com.dragon.common_data.navigation.NavScreenNames
+import com.dragon.common_database.model.LocalReadHistoryEntity
 import com.dragon.ft_main_home.HomeProvider
 import com.dragon.ft_main_home.helpers.carouselSnapBuilder
 import com.dragon.ft_main_home.viewmodle.HomeArticle
@@ -16,6 +17,9 @@ import com.dragon.module_base.base.fragment.BaseEpoxyFragment
 import com.dragon.module_base.base.fragment.simpleController
 import com.dragon.module_base.event.LoadResult
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
+import kotlinx.serialization.json.JsonNull.content
 import javax.inject.Inject
 
 /**
@@ -111,6 +115,9 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                                 id("homearticle$index")
                                 content(homeArticleEntity)
                                 homeArticleClick { _, _, _, _ ->
+                                    var str = ""
+                                    if (!homeArticleEntity.author.isNullOrEmpty())str = homeArticleEntity.author
+                                    else if(!homeArticleEntity.shareUser.isNullOrEmpty())str = homeArticleEntity.shareUser
                                     homProvider.navigateToDeepLink(
                                         activity = requireActivity(),
                                         routePath = NavScreenNames.WEB_ROUTE,
@@ -119,6 +126,17 @@ class HomeItemEpoxyFragment : BaseEpoxyFragment() {
                                             Keys.VALUE to homeArticleEntity.title
                                         )
                                     )
+                                    //插入浏览历史
+                                    itemTabViewModel.insertReadHistory(arrayListOf(
+                                        homeArticleEntity.run {
+                                            LocalReadHistoryEntity(
+                                                id.toLong(),
+                                                link,
+                                                Clock.System.now(),
+                                                str
+                                            )
+                                        }
+                                    ))
                                 }
                             }
                         }

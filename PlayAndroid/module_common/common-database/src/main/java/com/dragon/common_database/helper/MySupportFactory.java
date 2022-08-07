@@ -1,4 +1,4 @@
-package com.dragon.module_base.utils.room;
+package com.dragon.common_database.helper;
 
 import net.sqlcipher.database.SQLiteDatabaseHook;
 

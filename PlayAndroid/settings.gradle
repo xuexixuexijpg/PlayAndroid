@@ -44,3 +44,4 @@ include ':module_common:common-network'
 
 include ':module_ui:ft-main-square'
 include ':module_common:common-data'
+include ':module_common:common-database'

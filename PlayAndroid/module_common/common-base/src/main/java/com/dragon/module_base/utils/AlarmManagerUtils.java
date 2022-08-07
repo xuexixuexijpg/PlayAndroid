@@ -50,7 +50,7 @@ public class AlarmManagerUtils {
         return am;
     }
 
-    @SuppressLint({"NewApi", "ShortAlarm"})
+
     public void getUpAlarmManagerStartWork(Intent intent, int day) {
         //版本适配 System.currentTimeMillis()
         long days = day * (24 * 60 * 60 * 1000);
@@ -106,7 +106,7 @@ public class AlarmManagerUtils {
 //        Log.e("AlarmTaskReceiver", "getUpAlarmManagerStartWork: "+ DateUtil.longToDateStr(calendar.getTimeInMillis()));
     }
 
-    @SuppressLint("NewApi")
+    @SuppressLint({"NewApi", "ObsoleteSdkInt"})
     public void getUpAlarmManagerWorkOnOthers() {
         //高版本重复设置闹钟达到低版本中setRepeating相同效果
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {// 6.0及以上

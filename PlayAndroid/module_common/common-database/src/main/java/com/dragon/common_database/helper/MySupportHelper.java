@@ -1,6 +1,5 @@
-package com.dragon.module_base.utils.room;
+package com.dragon.common_database.helper;
 
-import com.dragon.module_base.utils.FileTool;
 import com.getkeepsafe.relinker.ReLinker;
 
 import net.sqlcipher.database.SQLiteDatabase;

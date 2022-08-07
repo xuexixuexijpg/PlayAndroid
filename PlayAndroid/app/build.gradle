@@ -92,11 +92,21 @@ android {
 
 dependencies {
     implementation Hilt.implHilt
-    implementation project(path: ':module_common:common-base')
-    implementation project(path: ':module_common:common-web-browser')
     kapt Hilt.compilerHilt
     implementation project(path:':module_ui:ft-main')
     implementation project(':module_service:service-di-app')
+    implementation (Hilt.implHilt)
+    kapt(Hilt.compilerHilt)
+    implementation project(":module_common:common-base")
+    implementation project(":module_common:common-network")
+    implementation project(":module_common:common-imageloading")
+    implementation project(":module_common:common-web-browser")
+
+    implementation project(":module_ui:ft-login")
+    implementation project(":module_ui:ft-main")
+    implementation project(":module_ui:ft-main-mine")
+    implementation project(":module_ui:ft-main-home")
+    implementation project(":module_ui:ft-search")
     //内存泄露检测
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 }

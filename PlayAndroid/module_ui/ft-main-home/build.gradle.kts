@@ -41,6 +41,7 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-data")))
     implementation(project(mapOf("path" to ":module_common:common-network")))
     implementation(project(mapOf("path" to ":module_common:common-utils")))
+    implementation(project(mapOf("path" to ":module_common:common-database")))
     kapt(Hilt.compilerHilt)
 //    kapt(OtherLibs.epoxyCompiler)
 //    implementation(OtherLibs.epoxyPaging)
@@ -53,6 +54,8 @@ dependencies {
     implementation(OtherLibs.BRV)
     implementation(OtherLibs.banner)
     implementation(OtherLibs.bannerViewPager)
+
+    implementation(Kotlin.dateTime)
 
 //    implementation("io.github.lapism:search:1.2.1")
 }
