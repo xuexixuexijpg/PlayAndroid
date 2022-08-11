@@ -35,7 +35,7 @@ class WebFragment : BaseFragment(R.layout.fragment_web_browser) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        myActivity.addMenuProvider(object : MenuProvider {
+        requireActivity().addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.web_topappbar_menu, menu)
             }
@@ -60,6 +60,7 @@ class WebFragment : BaseFragment(R.layout.fragment_web_browser) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        myActivity.setSupportActionBar(null)
         webViewHelper.onDestroyView()
         _webViewHelper = null
     }
