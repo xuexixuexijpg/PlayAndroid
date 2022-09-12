@@ -1,84 +1,73 @@
-
 package com.dargon.playandroid.ui
 
-import android.graphics.drawable.Icon
-import android.inputmethodservice.Keyboard
-import android.view.WindowInsets
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-
-import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
+import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-
 import com.dargon.playandroid.navigation.NiaNavHost
-import com.dargon.playandroid.navigation.NiaTopLevelNavigation
-import com.dargon.playandroid.navigation.TOP_LEVEL_DESTINATIONS
 import com.dargon.playandroid.navigation.TopLevelDestination
-import org.w3c.dom.Text
+import com.dragon.common_designsystem.component.*
+import com.dragon.common_designsystem.theme.PlayTheme
 
+@OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class,
+    ExperimentalLayoutApi::class
+)
 @Composable
-fun PlayAndroidApp(windowSizeClass: WindowSizeClass) {
-    NiaTheme {
-        val navController = rememberNavController()
-        val niaTopLevelNavigation = remember(navController) {
-            NiaTopLevelNavigation(navController)
-        }
-
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentDestination = navBackStackEntry?.destination
-
-        NiaBackground {
+fun PlayAndroidApp(
+    windowSizeClass: WindowSizeClass,
+    appState: PlayAppState = rememberPlayAppState(windowSizeClass)
+) {
+    //设置主题
+    PlayTheme {
+        PlayBackground {
             Scaffold(
-                modifier = Modifier,
+                modifier = Modifier.semantics {
+                    testTagsAsResourceId = true
+                },
                 containerColor = Color.Transparent,
                 contentColor = MaterialTheme.colorScheme.onBackground,
                 bottomBar = {
-                    if (windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact ||
-                        windowSizeClass.heightSizeClass == WindowHeightSizeClass.Compact
-                    ) {
-                        NiaBottomBar(
-                            onNavigateToTopLevelDestination = niaTopLevelNavigation::navigateTo,
-                            currentDestination = currentDestination
+                    if (appState.shouldShowBottomBar) {
+                        PlayBottomBar(
+                            destinations = appState.topLevelDestinations,
+                            onNavigateToDestination = appState::navigate,
+                            currentDestination = appState.currentDestination
                         )
                     }
                 }
             ) { padding ->
-                Keyboard.Row(
+                Row(
+                    //https://google.github.io/accompanist/insets/
                     Modifier
                         .fillMaxSize()
-                        .windowInsetsPadding(
-                            WindowInsets.safeDrawing.only(
-                                WindowInsetsSides.Horizontal
-                            )
-                        )
+                        .statusBarsPadding()
                 ) {
-                    if (windowSizeClass.widthSizeClass != WindowWidthSizeClass.Compact &&
-                        windowSizeClass.heightSizeClass != WindowHeightSizeClass.Compact
-                    ) {
+                    //竖导航
+                    if (appState.shouldShowNavRail) {
                         NiaNavRail(
-                            onNavigateToTopLevelDestination = niaTopLevelNavigation::navigateTo,
-                            currentDestination = currentDestination,
+                            destinations = appState.topLevelDestinations,
+                            onNavigateToDestination = appState::navigate,
+                            currentDestination = appState.currentDestination,
                             modifier = Modifier.safeDrawingPadding()
                         )
                     }
 
                     NiaNavHost(
-                        windowSizeClass = windowSizeClass,
-                        navController = navController,
+                        navController = appState.navController,
+                        onBackClick = appState::onBackClick,
+                        onNavigateToDestination = appState::navigate,
                         modifier = Modifier
                             .padding(padding)
                             .consumedWindowInsets(padding)
@@ -91,17 +80,18 @@ fun PlayAndroidApp(windowSizeClass: WindowSizeClass) {
 
 @Composable
 private fun NiaNavRail(
-    onNavigateToTopLevelDestination: (TopLevelDestination) -> Unit,
+    destinations: List<TopLevelDestination>,
+    onNavigateToDestination: (TopLevelDestination) -> Unit,
     currentDestination: NavDestination?,
     modifier: Modifier = Modifier,
 ) {
     NiaNavigationRail(modifier = modifier) {
-        TOP_LEVEL_DESTINATIONS.forEach { destination ->
+        destinations.forEach { destination ->
             val selected =
                 currentDestination?.hierarchy?.any { it.route == destination.route } == true
             NiaNavigationRailItem(
                 selected = selected,
-                onClick = { onNavigateToTopLevelDestination(destination) },
+                onClick = { onNavigateToDestination(destination) },
                 icon = {
                     val icon = if (selected) {
                         destination.selectedIcon
@@ -109,11 +99,11 @@ private fun NiaNavRail(
                         destination.unselectedIcon
                     }
                     when (icon) {
-                        is ImageVectorIcon -> Icon(
+                        is com.dragon.common_designsystem.icon.Icon.ImageVectorIcon -> Icon(
                             imageVector = icon.imageVector,
                             contentDescription = null
                         )
-                        is DrawableResourceIcon -> Icon(
+                        is com.dragon.common_designsystem.icon.Icon.DrawableResourceIcon -> Icon(
                             painter = painterResource(id = icon.id),
                             contentDescription = null
                         )
@@ -125,28 +115,34 @@ private fun NiaNavRail(
     }
 }
 
+/**
+ * 底部导航
+ */
 @Composable
-private fun NiaBottomBar(
-    onNavigateToTopLevelDestination: (TopLevelDestination) -> Unit,
+private fun PlayBottomBar(
+    destinations: List<TopLevelDestination>,
+    onNavigateToDestination: (TopLevelDestination) -> Unit,
     currentDestination: NavDestination?
 ) {
     // Wrap the navigation bar in a surface so the color behind the system
     // navigation is equal to the container color of the navigation bar.
-    Surface(color = MaterialTheme.colorScheme.surface) {
+    Surface(
+        color = MaterialTheme.colorScheme.surface,
+        modifier = Modifier
+            .padding(bottom = 15.dp)
+            .wrapContentHeight()
+    ) {
         NiaNavigationBar(
-            modifier = Modifier.windowInsetsPadding(
-                WindowInsets.safeDrawing.only(
-                    WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
-                )
-            )
+            modifier = Modifier.height(90.dp)
         ) {
-
-            TOP_LEVEL_DESTINATIONS.forEach { destination ->
+            destinations.forEach { destination ->
                 val selected =
                     currentDestination?.hierarchy?.any { it.route == destination.route } == true
+                //底部导航
                 NiaNavigationBarItem(
+                    modifier = Modifier.padding(bottom = 15.dp).fillMaxHeight().align(Alignment.Top),
                     selected = selected,
-                    onClick = { onNavigateToTopLevelDestination(destination) },
+                    onClick = { onNavigateToDestination(destination) },
                     icon = {
                         val icon = if (selected) {
                             destination.selectedIcon
@@ -154,13 +150,14 @@ private fun NiaBottomBar(
                             destination.unselectedIcon
                         }
                         when (icon) {
-                            is ImageVectorIcon -> Icon(
+                            is com.dragon.common_designsystem.icon.Icon.ImageVectorIcon -> Icon(
                                 imageVector = icon.imageVector,
-                                contentDescription = null
+                                contentDescription = null,
                             )
-                            is DrawableResourceIcon -> Icon(
+                            is com.dragon.common_designsystem.icon.Icon.DrawableResourceIcon -> Icon(
                                 painter = painterResource(id = icon.id),
-                                contentDescription = null
+                                contentDescription = null,
+                                modifier = Modifier.height(20.dp)
                             )
                         }
                     },

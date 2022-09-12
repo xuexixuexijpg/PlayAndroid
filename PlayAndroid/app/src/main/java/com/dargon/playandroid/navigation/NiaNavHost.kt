@@ -1,12 +1,15 @@
-
-
 package com.dargon.playandroid.navigation
 
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.NavHost
+import com.dragon.common_navigation.NavigationDestination
+import com.dragon.ft_home.navigation.HomeDestination
+import com.dragon.ft_home.navigation.homeGraph
+import com.dragon.ft_main.navigation.mainGraph
+import com.dragon.ft_mine.navigation.MineDestination
+import com.dragon.ft_mine.navigation.mineGraph
 
 /**
  * Top-level navigation graph. Navigation is organized as explained at
@@ -17,25 +20,28 @@ import androidx.navigation.compose.rememberNavController
  */
 @Composable
 fun NiaNavHost(
-    windowSizeClass: WindowSizeClass,
+    navController: NavHostController,
+    onNavigateToDestination: (NavigationDestination, String) -> Unit,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
-    startDestination: String = ForYouDestination.route
+    startDestination: String = HomeDestination.route
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        forYouGraph(
-            windowSizeClass = windowSizeClass
-        )
-        interestsGraph(
-            navigateToTopic = { navController.navigate("${TopicDestination.route}/$it") },
-            navigateToAuthor = { navController.navigate("${AuthorDestination.route}/$it") },
+        //导航图
+        mainGraph(
+            navigateToHome = {
+                onNavigateToDestination(HomeDestination, HomeDestination.createNavigationRoute(it))
+            },
+            navigateToMine = {
+                onNavigateToDestination(MineDestination, it)
+            },
             nestedGraphs = {
-                topicGraph(onBackClick = { navController.popBackStack() })
-                authorGraph(onBackClick = { navController.popBackStack() })
+                homeGraph()
+                mineGraph()
             }
         )
     }

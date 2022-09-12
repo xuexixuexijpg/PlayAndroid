@@ -7,7 +7,6 @@ dependencyResolutionManagement {
         mavenCentral()
         maven ( url =  "https://maven.aliyun.com/repository/public")
         maven (url = "https://maven.aliyun.com/repository/google")
-        maven (url = "https://repo.huaweicloud.com/repository/maven")
         maven( url = "https://maven.aliyun.com/repository/gradle-plugin")
         maven( url = "https://jitpack.io")
     }

@@ -15,7 +15,7 @@ dependencies {
     implementation("com.github.chuckerteam.chucker:library:3.5.2" )
     implementation(libs.kotlinx.serialization.json)
 //    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    implementation("com.github.liangjingkanji:Net:3.4.10")
+    implementation("com.github.liangjingkanji:Net:3.5.0")
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

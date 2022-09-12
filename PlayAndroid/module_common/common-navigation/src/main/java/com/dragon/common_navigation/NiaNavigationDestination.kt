@@ -5,7 +5,7 @@ package com.dragon.common_navigation
  * Interface for describing the Now in Android navigation destinations
  */
 
-interface PaNavigationDestination {
+interface NavigationDestination {
     /**
      * Defines a specific route this destination belongs to.
      * Route is a String that defines the path to your composable.

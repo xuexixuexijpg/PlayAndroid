@@ -4,20 +4,23 @@
 [versions]
 accompanist = "0.24.8-beta"
 androidDesugarJdkLibs = "1.1.5"
-androidGradlePlugin = "7.2.1"
-androidxActivity = "1.4.0"
-androidxAppCompat = "1.4.2"
-androidxCompose = "1.2.0-beta03"
-androidxComposeMaterial3 = "1.0.0-alpha13"
+androidGradlePlugin = "7.2.2"
+androidxActivity = "1.5.1"
+androidxAppCompat = "1.5.0"
+androidxCompose = "1.2.1"
+androidxComposeCompiler = "1.3.0"
+androidxComposeMaterial3 = "1.0.0-alpha16"
 androidxCore = "1.8.0"
-androidxCustomView = "1.0.0-beta02"
+androidxCustomView = "1.0.0"
 androidxDataStore = "1.0.0"
 androidxEspresso = "3.4.0"
+androidxMetrics = "1.0.0-alpha03"
+androidxTracing = "1.1.0"
 androidxHiltNavigationCompose = "1.0.0"
-androidxLifecycle = "2.5.0-rc01"
+androidxLifecycle = "2.5.1"
 androidxMacroBenchmark = "1.1.0-rc03"
-androidxNavigation = "2.4.2"
-androidxProfileinstaller = "1.2.0-beta03"
+androidxNavigation = "2.5.1"
+androidxProfileinstaller = "1.2.0"
 androidxSavedState = "1.1.0"
 androidxStartup = "1.1.1"
 androidxWindowManager = "1.0.0"
@@ -30,11 +33,11 @@ hilt = "2.42"
 hiltExt = "1.0.0"
 jacoco = "0.8.7"
 junit4 = "4.13.2"
-kotlin = "1.7.0"
-kotlinxCoroutines = "1.6.2"
-kotlinxDatetime = "0.3.3"
+kotlin = "1.7.10"
+kotlinxCoroutines = "1.6.3"
+kotlinxDatetime = "0.4.0"
 kotlinxSerializationJson = "1.3.3"
-ksp = "1.7.0-1.0.6"
+ksp = "1.7.10-1.0.6"
 ktlint = "0.43.0"
 material3 = "1.6.1"
 okhttp = "4.10.0"
@@ -50,7 +53,6 @@ turbine = "0.8.0"
 [libraries]
 accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
-android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-benchmark-macro = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "androidxMacroBenchmark" }
@@ -85,6 +87,8 @@ androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "
 androidx-test-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "androidxUiAutomator" }
 androidx-work-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "androidxWork" }
 androidx-work-testing = { group = "androidx.work", name = "work-testing", version.ref = "androidxWork" }
+androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", version.ref = "androidxMetrics" }
+androidx-tracing-ktx = {group = "androidx.tracing", name="tracing-ktx", version.ref = "androidxTracing" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil"}
 coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil"}
@@ -95,8 +99,6 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-serializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
@@ -111,9 +113,20 @@ retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "re
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
-secrets-gradlePlugin = { group = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", name = "secrets-gradle-plugin", version.ref = "secrets" }
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 spotless-gradlePlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
 
 [plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

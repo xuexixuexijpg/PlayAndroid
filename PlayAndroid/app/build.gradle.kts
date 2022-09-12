@@ -18,7 +18,7 @@ private object BuildTypes {
 
 android {
     defaultConfig {
-        applicationId = "com.dragon.playandroid"
+        applicationId = "com.dragon.playcomposeandroid"
         versionCode =  1
         versionName = "0.0.1"
 
@@ -99,7 +99,14 @@ dependencies {
 
     implementation(project(mapOf("path" to ":module_common:common-navigation")))
     implementation(project(mapOf("path" to ":module_common:common-base")))
+    implementation(project(mapOf("path" to ":module_common:common-imageloading")))
+    implementation(project(mapOf("path" to ":module_common:common-network")))
     implementation(project(mapOf("path" to ":module_common:common-ui")))
+    implementation(project(mapOf("path" to ":module_common:common-designsystem")))
+
+    implementation(project(mapOf("path" to ":module_ui:ft-home")))
+    implementation(project(mapOf("path" to ":module_ui:ft-mine")))
+    implementation(project(mapOf("path" to ":module_ui:ft-main")))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)

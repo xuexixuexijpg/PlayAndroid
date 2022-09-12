@@ -37,6 +37,7 @@ fun PlayBackground(
     content: @Composable () -> Unit
 ) {
     val color = LocalBackgroundTheme.current.color
+    //主题阴影度
     val tonalElevation = LocalBackgroundTheme.current.tonalElevation
     Surface(
         color = if (color == Color.Unspecified) Color.Transparent else color,

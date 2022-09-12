@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dragon.playandroid">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.dargon.playandroid.PlayAndroidApplication"
         android:allowBackup="true"
@@ -10,11 +12,12 @@
         android:icon="@drawable/ic_launcher_foreground"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/Theme.Play.Android"
         >
+        <profileable android:shell="true" tools:targetApi="q" />
+
         <activity
-            android:name="com.dragon.ft_main.MainActivity"
+            android:name="com.dargon.playandroid.MainActivity"
             android:exported="true"
             >
             <intent-filter>

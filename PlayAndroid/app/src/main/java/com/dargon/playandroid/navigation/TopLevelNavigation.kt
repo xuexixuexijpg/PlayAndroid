@@ -2,10 +2,10 @@
 
 package com.dargon.playandroid.navigation
 
-import android.graphics.drawable.Icon
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-
+import com.dragon.common_designsystem.icon.Icon
+import com.dragon.common_navigation.NavigationDestination
 
 /**
  * Routes for the different top level destinations in the application. Each of these destinations
@@ -35,24 +35,13 @@ class NiaTopLevelNavigation(private val navController: NavHostController) {
     }
 }
 
+/**
+ * 导航路径
+ */
 data class TopLevelDestination(
-    val route: String,
+    override val route: String,
+    override val destination: String,
     val selectedIcon: Icon,
     val unselectedIcon: Icon,
     val iconTextId: Int
-)
-
-val TOP_LEVEL_DESTINATIONS = listOf(
-    TopLevelDestination(
-        route = ForYouDestination.route,
-        selectedIcon = DrawableResourceIcon(NiaIcons.Upcoming),
-        unselectedIcon = DrawableResourceIcon(NiaIcons.UpcomingBorder),
-        iconTextId = for_you
-    ),
-    TopLevelDestination(
-        route = InterestsDestination.route,
-        selectedIcon = ImageVectorIcon(NiaIcons.Grid3x3),
-        unselectedIcon = ImageVectorIcon(NiaIcons.Grid3x3),
-        iconTextId = interests
-    )
-)
+): NavigationDestination

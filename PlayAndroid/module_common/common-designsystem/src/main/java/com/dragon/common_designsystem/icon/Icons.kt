@@ -31,6 +31,12 @@ object PlayIcons {
     val ViewDay = Icons.Rounded.ViewDay
     val VolumeOff = Icons.Rounded.VolumeOff
     val VolumeUp = Icons.Rounded.VolumeUp
+
+    //drawable
+    val normalHomeIcon = R.drawable.ic_baseline_home_24
+    val selectHomeIcon = R.drawable.ic_baseline_select_home_24
+    val normalMineIcon = R.drawable.ic_baseline_person_24
+    val selectMineIcon = R.drawable.ic_baseline_select_person_24
 }
 
 
