@@ -44,3 +44,6 @@ include(":module_ui:ft-mine")
 include(":module_common:common-designsystem")
 include(":module_ui:ft-search")
 include(":module_ui:ft-main")
+
+include(":core:data")
+include(":core:database")

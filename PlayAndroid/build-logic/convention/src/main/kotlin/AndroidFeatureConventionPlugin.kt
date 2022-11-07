@@ -39,10 +39,12 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("coil.kt.compose").get())
 
                 add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
-                add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
+                add("implementation", libs.findLibrary("androidx-lifecycle-runtimeCompose").get())
 
                 add("implementation", libs.findLibrary("kotlinx.coroutines.android").get())
 
+                add("implementation", libs.findLibrary("hilt.android").get())
+                //lifecycle的一些扩展
                 add("implementation", libs.findLibrary("hilt.android").get())
                 add("kapt", libs.findLibrary("hilt.compiler").get())
 

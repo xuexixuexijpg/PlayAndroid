@@ -1,5 +1,3 @@
-import org.codehaus.groovy.runtime.ArrayTypeUtils.dimension
-
 plugins{
     id("playandroid.android.application")
     id("playandroid.android.application.compose")
@@ -107,6 +105,7 @@ dependencies {
     implementation(project(mapOf("path" to ":module_ui:ft-home")))
     implementation(project(mapOf("path" to ":module_ui:ft-mine")))
     implementation(project(mapOf("path" to ":module_ui:ft-main")))
+    implementation(project(mapOf("path" to ":module_ui:ft-search")))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
@@ -115,6 +114,7 @@ dependencies {
     implementation(libs.androidx.window.manager)
     implementation(libs.material3)
     implementation(libs.androidx.profileinstaller)
+    implementation(libs.androidx.core.splashscreen)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

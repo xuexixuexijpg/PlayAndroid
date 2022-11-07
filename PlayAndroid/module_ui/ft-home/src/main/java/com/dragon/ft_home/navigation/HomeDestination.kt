@@ -35,8 +35,8 @@ object HomeDestination : NavigationDestination {
 /**
  * 导航图
  */
-fun NavGraphBuilder.homeGraph(){
-    composable(route=HomeDestination.route){
-        HomeRoute()
+fun NavGraphBuilder.homeGraph(navigateToSearch: () -> Unit, navigateToHome: () -> Unit) {
+    composable(route = HomeDestination.route) {
+        HomeRoute(navigateToSearch = navigateToSearch, navigateToHome = navigateToHome)
     }
 }

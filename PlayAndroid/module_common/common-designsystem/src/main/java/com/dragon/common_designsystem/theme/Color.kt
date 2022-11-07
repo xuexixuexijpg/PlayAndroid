@@ -6,6 +6,8 @@ import androidx.compose.ui.graphics.Color
 /**
  * 颜色值
  */
+internal val Dark = Color(0xFF000000)
+internal val Pink10 = Color(0xFFFF6C6C)
 internal val Blue10 = Color(0xFF001F29)
 internal val Blue20 = Color(0xFF003544)
 internal val Blue30 = Color(0xFF004D61)

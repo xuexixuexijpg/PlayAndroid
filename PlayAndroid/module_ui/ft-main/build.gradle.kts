@@ -16,4 +16,8 @@ dependencies {
     implementation(libs.accompanist.flowlayout)
 
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(project(mapOf("path" to ":module_ui:ft-home")))
+    implementation(project(mapOf("path" to ":module_ui:ft-mine")))
+    implementation(project(mapOf("path" to ":module_common:common-designsystem")))
 }

@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.dragon.common_designsystem.theme.Dark
+import com.dragon.common_designsystem.theme.Pink10
 
 /**
  * Now in Android navigation bar item with icon and label content slots. Wraps Material 3
@@ -20,7 +22,6 @@ fun RowScope.NiaNavigationBarItem(
     onClick: () -> Unit,
     icon: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    selectedIcon: @Composable () -> Unit = icon,
     enabled: Boolean = true,
     label: @Composable (() -> Unit)? = null,
     alwaysShowLabel: Boolean = true
@@ -28,17 +29,18 @@ fun RowScope.NiaNavigationBarItem(
     NavigationBarItem(
         selected = selected,
         onClick = onClick,
-        icon = if (selected) selectedIcon else icon,
+        icon = icon,
         modifier = modifier,
         enabled = enabled,
         label = label,
         alwaysShowLabel = alwaysShowLabel,
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedIconColor = NiaNavigationDefaults.navigationContentColor(),
-            selectedTextColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedTextColor = NiaNavigationDefaults.navigationContentColor(),
-            indicatorColor = NiaNavigationDefaults.navigationIndicatorColor()
+            selectedIconColor = Pink10,
+            unselectedIconColor = Dark,
+            selectedTextColor = Pink10,
+//            unselectedTextColor = NiaNavigationDefaults.navigationContentColor(),
+            unselectedTextColor = Dark,
+            indicatorColor =  MaterialTheme.colorScheme.surface
         )
     )
 }

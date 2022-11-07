@@ -1,9 +1,7 @@
 package com.dargon.playandroid.ui
 
 
-import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
@@ -15,27 +13,21 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.dargon.playandroid.navigation.TopLevelDestination
-import com.dragon.common_designsystem.icon.Icon
-import com.dragon.common_designsystem.icon.PlayIcons
 import com.dragon.common_navigation.NavigationDestination
 import com.dragon.common_ui.JankMetricDisposableEffect
-import com.dragon.ft_home.navigation.HomeDestination
-import com.dragon.ft_main.navigation.MainNavigation
-import com.dragon.ft_mine.navigation.MineDestination
-import com.dragon.playandroid.R
 
 @Composable
 fun rememberPlayAppState(
     windowSizeClass: WindowSizeClass,
     navController: NavHostController = rememberNavController()
 ): PlayAppState {
-    NavigationTrackingSideEffect(navController)
+    NavigationTrackingSideEffect(navController) //这里需要消除副作用吗？
     return remember(navController, windowSizeClass) {
         PlayAppState(navController, windowSizeClass)
     }
 }
 
-@Stable
+@Stable //不可变的，提高重组性能
 class PlayAppState(
     val navController: NavHostController,
     private val windowSizeClass: WindowSizeClass
@@ -43,33 +35,6 @@ class PlayAppState(
     val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
-
-    val shouldShowBottomBar: Boolean
-        get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact ||
-                windowSizeClass.heightSizeClass == WindowHeightSizeClass.Compact
-
-    val shouldShowNavRail: Boolean
-        get() = !shouldShowBottomBar
-
-    /**
-     * Top level destinations to be used in the BottomBar and NavRail
-     */
-    val topLevelDestinations: List<TopLevelDestination> = listOf(
-        TopLevelDestination(
-            route = HomeDestination.route,
-            destination = HomeDestination.destination,
-            selectedIcon = Icon.DrawableResourceIcon(PlayIcons.normalHomeIcon),
-            unselectedIcon = Icon.DrawableResourceIcon(PlayIcons.selectHomeIcon),
-            iconTextId = R.string.home
-        ),
-        TopLevelDestination(
-            route = MineDestination.route,
-            destination = MineDestination.destination,
-            selectedIcon = Icon.DrawableResourceIcon(PlayIcons.normalMineIcon),
-            unselectedIcon = Icon.DrawableResourceIcon(PlayIcons.selectMineIcon),
-            iconTextId = R.string.mine
-        )
-    )
 
     /**
      * UI logic for navigating to a particular destination in the app. The NavigationOptions to
@@ -84,7 +49,12 @@ class PlayAppState(
      * @param destination: The [NiaNavigationDestination] the app needs to navigate to.
      * @param route: Optional route to navigate to in case the destination contains arguments.
      */
-    fun navigate(destination: NavigationDestination, route: String? = null) {
+    fun navigate(
+        destination: NavigationDestination,
+        route: String? = null,
+        singleTop: Boolean = true,
+        restore:Boolean = true
+    ) {
         trace("Navigation: $destination") {
             if (destination is TopLevelDestination) {
                 navController.navigate(route ?: destination.route) {
@@ -96,12 +66,15 @@ class PlayAppState(
                     }
                     // Avoid multiple copies of the same destination when
                     // reselecting the same item
-                    launchSingleTop = true
+                    launchSingleTop = singleTop
                     // Restore state when reselecting a previously selected item
-                    restoreState = true
+                    restoreState = restore
                 }
             } else {
-                navController.navigate(route ?: destination.route)
+                navController.navigate(route ?: destination.route) {
+                    launchSingleTop = singleTop
+                    restoreState = restore
+                }
             }
         }
     }

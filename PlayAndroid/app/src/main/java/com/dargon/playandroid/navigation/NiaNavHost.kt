@@ -1,15 +1,17 @@
 package com.dargon.playandroid.navigation
 
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.dragon.common_navigation.NavigationDestination
+import com.dargon.playandroid.ui.PlayAppState
 import com.dragon.ft_home.navigation.HomeDestination
-import com.dragon.ft_home.navigation.homeGraph
+import com.dragon.ft_main.navigation.MainNavigationActions
 import com.dragon.ft_main.navigation.mainGraph
-import com.dragon.ft_mine.navigation.MineDestination
-import com.dragon.ft_mine.navigation.mineGraph
+import com.dragon.ft_search.navigation.SearchDestination
+import com.dragon.ft_search.navigation.searchGraph
 
 /**
  * Top-level navigation graph. Navigation is organized as explained at
@@ -21,28 +23,33 @@ import com.dragon.ft_mine.navigation.mineGraph
 @Composable
 fun NiaNavHost(
     navController: NavHostController,
-    onNavigateToDestination: (NavigationDestination, String) -> Unit,
+    appState: PlayAppState,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    startDestination: String = HomeDestination.route
+    startDestination: String = HomeDestination.route,
+    windowSizeClass: WindowSizeClass,
 ) {
+    val navigationActions = remember(appState) {
+        MainNavigationAction(appState)
+    }
+
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,
     ) {
         //导航图
-        mainGraph(
-            navigateToHome = {
-                onNavigateToDestination(HomeDestination, HomeDestination.createNavigationRoute(it))
-            },
-            navigateToMine = {
-                onNavigateToDestination(MineDestination, it)
-            },
-            nestedGraphs = {
-                homeGraph()
-                mineGraph()
-            }
-        )
+        mainGraph(navigationActions =navigationActions ,windowSizeClass = windowSizeClass)
+        searchGraph()
     }
+}
+
+/**
+ * 首页的导航
+ */
+class MainNavigationAction(private val appState: PlayAppState): MainNavigationActions {
+    override fun navigateToSearch() {
+        appState.navigate(SearchDestination)
+    }
+
 }

@@ -56,5 +56,11 @@ gradlePlugin {
             id = "playandroid.spotless"
             implementationClass = "SpotlessConventionPlugin"
         }
+
+        //hilt
+        register("androidHilt") {
+            id = "playandroid.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
     }
 }

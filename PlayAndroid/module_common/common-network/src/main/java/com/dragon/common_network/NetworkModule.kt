@@ -4,13 +4,11 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.dragon.common_network.converter.SerializationConverter
-import com.drake.net.Net
 import com.drake.net.NetConfig
 import com.drake.net.cookie.PersistentCookieJar
 import com.drake.net.interceptor.LogRecordInterceptor
 import com.drake.net.okhttp.setConverter
 import com.drake.net.okhttp.setDebug
-import com.drake.net.okhttp.setRequestInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,8 +19,9 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
+
 @Module
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Singleton
@@ -47,8 +46,8 @@ object NetworkModule {
                 )
             }
         }
-        // 缓存 50M
-        .cache(Cache(File(context.cacheDir, "api_cache"), 50L * 1024 * 1024))
+        // 缓存 100M
+        .cache(Cache(File(context.cacheDir, "api_cache"), 100L * 1024 * 1024))
         // Adjust the Connection pool to account for historical use of 3 separate clients
         // but reduce the keepAlive to 2 minutes to avoid keeping radio open.
         .connectionPool(ConnectionPool(10, 2, TimeUnit.MINUTES))
@@ -75,7 +74,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun initNetWork(@ApplicationContext context: Context, client: OkHttpClient.Builder): OkHttpClient {
+    fun initNetWork(
+        @ApplicationContext context: Context,
+        client: OkHttpClient.Builder
+    ): OkHttpClient {
         NetConfig.initialize(BaseConfig.BASE_URL, context, client)
         return NetConfig.okHttpClient
     }

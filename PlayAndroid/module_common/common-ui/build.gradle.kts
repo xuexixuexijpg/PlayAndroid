@@ -28,6 +28,7 @@ dependencies {
     api(libs.androidx.compose.ui.util)
     api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.runtime.livedata)
+    api(libs.androidx.lifecycle.runtimeCompose)
     api(libs.androidx.metrics)
     api(libs.androidx.tracing.ktx)
 }
