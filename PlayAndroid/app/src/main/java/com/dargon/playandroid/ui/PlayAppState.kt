@@ -5,6 +5,7 @@ import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.util.trace
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -14,27 +15,43 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.dargon.playandroid.navigation.TopLevelDestination
 import com.dragon.common_navigation.NavigationDestination
+import com.dragon.common_network.utils.NetworkMonitor
 import com.dragon.common_ui.JankMetricDisposableEffect
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 
 @Composable
 fun rememberPlayAppState(
     windowSizeClass: WindowSizeClass,
+    networkMonitor: NetworkMonitor,
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController()
 ): PlayAppState {
-    NavigationTrackingSideEffect(navController) //这里需要消除副作用吗？
-    return remember(navController, windowSizeClass) {
-        PlayAppState(navController, windowSizeClass)
+    NavigationTrackingSideEffect(navController)
+    return remember(navController, coroutineScope, windowSizeClass, networkMonitor) {
+        PlayAppState(navController, coroutineScope, windowSizeClass, networkMonitor)
     }
 }
 
 @Stable //不可变的，提高重组性能
 class PlayAppState(
     val navController: NavHostController,
-    private val windowSizeClass: WindowSizeClass
+    private val coroutineScope: CoroutineScope,
+    private val windowSizeClass: WindowSizeClass,
+    networkMonitor: NetworkMonitor,
 ) {
     val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
+
+    //网络状态
+    val isOffline = networkMonitor.isOnline
+        .stateIn(
+            scope = coroutineScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = false
+        )
 
     /**
      * UI logic for navigating to a particular destination in the app. The NavigationOptions to
@@ -53,7 +70,7 @@ class PlayAppState(
         destination: NavigationDestination,
         route: String? = null,
         singleTop: Boolean = true,
-        restore:Boolean = true
+        restore: Boolean = true
     ) {
         trace("Navigation: $destination") {
             if (destination is TopLevelDestination) {

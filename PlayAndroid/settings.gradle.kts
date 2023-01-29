@@ -23,7 +23,7 @@ rootProject.name = "PlayAndroid"
 include (":app")
 include (":module_common")
 //include (":module_common:common-base")
-//include (":module_common:common-utils")
+include (":module_common:common-utils")
 //include (":module_service")
 include (":module_ui")
 

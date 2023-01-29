@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Play.Splash" parent="NightAdjusted.Theme.Splash">
+        <!--向下兼容-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_background</item>-->
+        <item name="postSplashScreenTheme">@style/Theme.Nia</item>
+
+        <!--https://juejin.cn/post/7026188311198695432#heading-15-->
+
+        <item name="android:windowSplashScreenBrandingImage">@drawable/ic_launcher_foreground</item>
+    </style>
+</resources>

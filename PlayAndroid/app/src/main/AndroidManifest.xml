@@ -19,13 +19,36 @@
         <activity
             android:name="com.dargon.playandroid.MainActivity"
             android:exported="true"
+            android:launchMode="singleTask"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--<activity android:name="com.dargon.playandroid.SplashAdActivity"
+            android:exported="true"
+            android:launchMode="standard"
+           >
+
+        </activity>-->
+
+        <!--https://juejin.cn/post/7080065015197204511#heading-6-->
+        <!--感觉是旧项目中因为存在两次activity的启动慢所以合并后把MainActivity中代码搬到Splash中-->
+        <!--然后在Splash中读取开屏时间做一些强关联任务 本代码中不需要-->
+       <!-- <activity-alias
+            android:name="com.dargon.playandroid.SplashAdActivity"
+            android:targetActivity="com.dargon.playandroid.MainActivity"
+            android:exported="true"
+            tools:replace="android:targetActivity"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>-->
+
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@
 <!--        <item name="colorOnSecondary">@color/black</item>-->
 
         <!-- 应用的主要色调,actionBar默认使用该颜色，Toolbar导航栏的底色 -->
-        <item name="colorPrimary">#FFAAAA</item>
+<!--        <item name="colorPrimary">#FFAAAA</item>-->
         <!-- Status bar color. -->
         <!--<item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>-->
@@ -79,7 +79,20 @@
     </style>
 
     <style name="Theme.Play.Splash" parent="NightAdjusted.Theme.Splash">
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_baseline_person_24</item>
+        <!--向下兼容-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_background</item>-->
         <item name="postSplashScreenTheme">@style/Theme.Nia</item>
+
+        <!--https://juejin.cn/post/7026188311198695432#heading-15-->
+        <!--启动画面背景颜色-->
+<!--        <item name="windowSplashScreenBackground">@color/splashscreen_bg</item>-->
+        <!-- 启动画面icon图标：这里可以是图片、帧动画等-->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_trans_icon</item>
+<!--        <item name="windowSplashScreenIconBackgroundColor">@color/splashscreen_icon_bg</item>-->
+        <!-- icon动画在关闭之前显示的时长：最长时间为1000毫秒-->
+<!--        <item name="windowSplashScreenAnimationDuration">1000</item>-->
+        <!-- 启动画面底部的 Brand 图片-->
+        <!-- Splash退出后的主题-->
+<!--        <item name="postSplashScreenTheme">@style/Theme.Android12_Splash</item>-->
     </style>
 </resources>

@@ -1,10 +1,7 @@
-
-
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id ("kotlin-kapt")
-    id("kotlin-parcelize")
+    id("playandroid.android.library")
+    kotlin("kapt")
+    id("kotlinx-serialization")
 }
 
 dependencies {
@@ -16,4 +13,7 @@ dependencies {
     api("com.github.DylanCaiCoding.Longan:longan:1.0.5")
     // Optional
     api("com.github.DylanCaiCoding.Longan:longan-design:1.0.5")
+    
+    implementation(libs.kotlinx.coroutines.android)
+
 }

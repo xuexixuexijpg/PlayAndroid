@@ -51,6 +51,7 @@ internal fun Project.configureKotlinAndroid(
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
     dependencies {
+        //D8脱糖
         add("coreLibraryDesugaring", libs.findLibrary("android.desugarJdkLibs").get())
     }
 }

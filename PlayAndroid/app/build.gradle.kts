@@ -101,6 +101,7 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:common-network")))
     implementation(project(mapOf("path" to ":module_common:common-ui")))
     implementation(project(mapOf("path" to ":module_common:common-designsystem")))
+    implementation(project(mapOf("path" to ":module_common:common-utils")))
 
     implementation(project(mapOf("path" to ":module_ui:ft-home")))
     implementation(project(mapOf("path" to ":module_ui:ft-mine")))
@@ -115,6 +116,7 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.profileinstaller)
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.lifecycle.process)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

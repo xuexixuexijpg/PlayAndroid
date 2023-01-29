@@ -6,14 +6,13 @@ plugins {
 group = "com.dragon.playandroid.buildlogic"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 dependencies {
     implementation(libs.android.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
-    implementation(libs.spotless.gradlePlugin)
 }
 
 gradlePlugin {
@@ -52,10 +51,10 @@ gradlePlugin {
         }
 
         //这个用来添加声明的
-        register("spotless") {
-            id = "playandroid.spotless"
-            implementationClass = "SpotlessConventionPlugin"
-        }
+//        register("spotless") {
+//            id = "playandroid.spotless"
+//            implementationClass = "SpotlessConventionPlugin"
+//        }
 
         //hilt
         register("androidHilt") {

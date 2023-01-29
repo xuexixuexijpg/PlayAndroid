@@ -19,7 +19,6 @@ import com.dragon.common_designsystem.icon.PlayIcons
 import com.dragon.common_navigation.NavigationDestination
 import com.dragon.common_ui.JankMetricDisposableEffect
 import com.dragon.ft_home.navigation.HomeDestination
-import com.dragon.ft_main.R
 import com.dragon.ft_main.navigation.TopLevelDestination
 import com.dragon.ft_mine.navigation.MineDestination
 
@@ -59,14 +58,14 @@ class MainState(
             destination = HomeDestination.destination,
             selectedIcon = Icon.DrawableResourceIcon(PlayIcons.selectHomeIcon),
             unselectedIcon = Icon.DrawableResourceIcon(PlayIcons.normalHomeIcon),
-            iconTextId = R.string.home
+            iconTextId = com.dragon.ft_home.R.string.home
         ),
         TopLevelDestination(
             route = MineDestination.route,
             destination = MineDestination.destination,
             selectedIcon = Icon.DrawableResourceIcon(PlayIcons.selectMineIcon),
             unselectedIcon = Icon.DrawableResourceIcon(PlayIcons.normalMineIcon),
-            iconTextId = R.string.mine
+            iconTextId = com.dragon.ft_mine.R.string.mine
         )
     )
 

@@ -4,42 +4,64 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.dargon.playandroid.navigation.NiaNavHost
 import com.dragon.common_designsystem.component.PlayBackground
 import com.dragon.common_designsystem.theme.PlayTheme
+import com.dragon.common_network.state.NetworkState
+import com.dragon.common_network.utils.NetworkMonitor
+import com.dragon.playandroid.R
 
 @OptIn(
     ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class,
-    ExperimentalLayoutApi::class
+    ExperimentalLayoutApi::class, ExperimentalLifecycleComposeApi::class
 )
 @Composable
 fun  PlayAndroidApp(
     windowSizeClass: WindowSizeClass,
-    appState: PlayAppState = rememberPlayAppState(windowSizeClass)
+    networkMonitor: NetworkMonitor,
+    appState: PlayAppState = rememberPlayAppState(windowSizeClass,networkMonitor)
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     //设置主题
     PlayTheme {
         PlayBackground {
-            //脚手架
             Scaffold(
-                modifier = Modifier.semantics {
-                    testTagsAsResourceId = true
-                }.fillMaxHeight().fillMaxWidth(),
+                modifier = Modifier
+                    .semantics {
+                        testTagsAsResourceId = true
+                    }
+                    .fillMaxHeight()
+                    .fillMaxWidth(),
                 containerColor = Color.Transparent,
                 contentColor = MaterialTheme.colorScheme.onBackground,
-                snackbarHost = { SnackbarHost(snackbarHostState) },
+                snackbarHost = { SnackbarHost(modifier = Modifier
+                    .navigationBarsPadding(), hostState = snackbarHostState) },
             ) { padding ->
+
+                //网络状态监听
+                val isOffline by appState.isOffline.collectAsStateWithLifecycle()
+                val notConnected = stringResource(R.string.not_connected)
+                LaunchedEffect(isOffline) {
+                    if (isOffline == NetworkState.NONE) snackbarHostState.showSnackbar(
+                        message = notConnected,
+                        duration = SnackbarDuration.Short
+                    )
+                }
+
                 Row(
                     //https://google.github.io/accompanist/insets/
-                    Modifier
-                        .fillMaxWidth().fillMaxHeight()
+                    Modifier.fillMaxSize()
                 ) {
                     NiaNavHost(
                         navController = appState.navController,

@@ -1,9 +1,6 @@
 package com.dragon.ft_home
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import androidx.annotation.DrawableRes
+import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,17 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.dragon.common_ui.widgets.search.Search
 import com.dragon.common_ui.widgets.search.SearchViewState
 import kotlinx.coroutines.flow.StateFlow
-import java.io.ByteArrayOutputStream
 
 
 /**
@@ -77,6 +71,7 @@ fun HeaderSearch(
     searchState: StateFlow<SearchViewState>,
     onSearchQueryChanged: (String) -> Unit
 ) {
+    val context = LocalContext.current
     Row(
         modifier = Modifier
             .padding(5.dp)
@@ -87,7 +82,7 @@ fun HeaderSearch(
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F22e099fb2ed31587aac6aeea565e1be9c5fde254.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665752286&t=7d2096522fe7c0c4a480fc3c2d3e21ba")
-                .error(R.drawable.ic_bg_placeholder)
+                .error(com.dragon.common_designsystem.R.drawable.ic_bg_placeholder)
                 .allowConversionToBitmap(true)
 //                .target {
 //                    val bos = ByteArrayOutputStream();
@@ -121,16 +116,19 @@ fun HeaderSearch(
         )
         //一些图片
         AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
+            model = ImageRequest.Builder(context)
                 .data(R.drawable.ic_baseline_videogame).crossfade(true).build(),
             contentDescription = null,
             modifier = Modifier
                 .size(30.dp)
+                .clickable {
+                    Toast.makeText(context,"游戏点击", Toast.LENGTH_SHORT).show()
+                }
                 .fillMaxHeight()
                 .weight(1F)
         )
         AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
+            model = ImageRequest.Builder(context)
                 .data(R.drawable.ic_baseline_email_24).crossfade(true).build(),
             contentDescription = null,
             modifier = Modifier

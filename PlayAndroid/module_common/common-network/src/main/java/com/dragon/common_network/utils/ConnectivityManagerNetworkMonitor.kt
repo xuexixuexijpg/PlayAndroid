@@ -57,26 +57,35 @@ class ConnectivityManagerNetworkMonitor @Inject constructor(
             //23
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
                 if (activeNetwork == null) NetworkState.NONE
-                if (getNetworkCapabilities(activeNetwork!!) == null) NetworkState.NONE
-                val networkCapabilities = getNetworkCapabilities(activeNetwork!!)!!
-                if (!networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) NetworkState.NONE
-                when {
-                    networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> NetworkState.WIFI
-                    networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> NetworkState.CELLULAR
-                    else -> NetworkState.NONE
+                else {
+                    if (getNetworkCapabilities(activeNetwork) == null) NetworkState.NONE
+                    else {
+                        val networkCapabilities = getNetworkCapabilities(activeNetwork)!!
+                        if (!networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) NetworkState.NONE
+                        else
+                            when {
+                                networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> NetworkState.WIFI
+                                networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> NetworkState.CELLULAR
+                                else -> NetworkState.NONE
+                            }
+                    }
+
                 }
             }
             //其他为旧方法
             else -> {
                 if (activeNetworkInfo == null) NetworkState.NONE
-                if (!activeNetworkInfo!!.isConnected) NetworkState.NONE
                 else {
-                    when (activeNetworkInfo!!.type) {
-                        ConnectivityManager.TYPE_MOBILE -> NetworkState.CELLULAR
-                        ConnectivityManager.TYPE_WIFI -> NetworkState.WIFI
-                        else -> NetworkState.NONE
+                    if (!activeNetworkInfo!!.isConnected) NetworkState.NONE
+                    else {
+                        when (activeNetworkInfo!!.type) {
+                            ConnectivityManager.TYPE_MOBILE -> NetworkState.CELLULAR
+                            ConnectivityManager.TYPE_WIFI -> NetworkState.WIFI
+                            else -> NetworkState.NONE
+                        }
                     }
                 }
+
             }
         }
     }

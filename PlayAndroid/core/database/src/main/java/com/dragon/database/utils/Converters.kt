@@ -4,12 +4,14 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import androidx.room.TypeConverter
 import java.io.ByteArrayOutputStream
 
 /**
  * 图片转换
  */
 class DrawableConverter {
+    @TypeConverter
     fun drawableToByte(bitmap: Drawable?): ByteArray? {
         bitmap?.let {
             if (it is BitmapDrawable) {
@@ -22,7 +24,7 @@ class DrawableConverter {
         }
         return null
     }
-
+    @TypeConverter
     fun byteArrayToDrawable(byteArray: ByteArray?):Drawable? {
         byteArray?.let{
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
