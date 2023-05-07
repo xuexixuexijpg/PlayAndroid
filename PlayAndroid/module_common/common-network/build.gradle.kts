@@ -7,9 +7,11 @@ plugins {
     alias(libs.plugins.ksp)
     id("dagger.hilt.android.plugin")
 }
+android {
+    namespace = "com.dragon.common.network"
+}
 
 dependencies {
-    val rxhttp_version = "3.0.0"
     implementation(libs.coil.kt)
 
     //通知栏监听网络日志

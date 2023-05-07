@@ -3,7 +3,9 @@ plugins {
     id("playandroid.android.library.compose")
     id("playandroid.android.library.jacoco")
 }
-
+android {
+    namespace = "com.dragon.common.ui"
+}
 dependencies {
 //    implementation(project(":core-designsystem"))
 //    implementation(project(":core-model"))

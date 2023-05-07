@@ -11,6 +11,7 @@ android {
     lint {
         checkDependencies = true
     }
+    namespace = "com.dragon.common.designsystem"
 }
 
 dependencies {

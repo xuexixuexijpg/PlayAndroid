@@ -9,7 +9,9 @@ plugins {
     id("dagger.hilt.android.plugin")
     alias(libs.plugins.ksp)
 }
-
+android {
+    namespace = "com.dragon.common.navigation"
+}
 
 dependencies {
     api(libs.androidx.hilt.navigation.compose)

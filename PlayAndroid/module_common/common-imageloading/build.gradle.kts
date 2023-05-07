@@ -6,7 +6,9 @@ plugins {
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
 }
-
+android {
+    namespace = "com.dragon.common.imageloading"
+}
 
 dependencies {
 

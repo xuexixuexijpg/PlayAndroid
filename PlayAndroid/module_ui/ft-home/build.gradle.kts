@@ -7,7 +7,9 @@ plugins {
     id ("kotlinx-serialization")
 }
 
-
+android {
+    namespace = "com.dragon.ui.home"
+}
 dependencies {
     implementation(libs.kotlinx.datetime)
 

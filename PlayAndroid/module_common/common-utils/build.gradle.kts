@@ -3,7 +3,9 @@ plugins {
     kotlin("kapt")
     id("kotlinx-serialization")
 }
-
+android {
+    namespace = "com.dragon.common.utils"
+}
 dependencies {
     api("com.tencent:mmkv-static:1.2.13")
     implementation("androidx.startup:startup-runtime:1.1.1")

@@ -6,7 +6,9 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-
+android {
+    namespace = "com.dragon.ui.mine"
+}
 dependencies {
     implementation(libs.kotlinx.datetime)
 

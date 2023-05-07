@@ -6,7 +6,9 @@ plugins {
     id("dagger.hilt.android.plugin")
     id ("kotlinx-serialization")
 }
-
+android {
+    namespace = "com.dragon.ui.main"
+}
 
 dependencies {
     implementation(libs.kotlinx.datetime)
