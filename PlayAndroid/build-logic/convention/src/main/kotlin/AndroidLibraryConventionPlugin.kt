@@ -3,6 +3,7 @@
 import com.android.build.gradle.LibraryExtension
 import com.dragon.playandroid.configureFlavors
 import com.dragon.playandroid.configureKotlinAndroid
+import com.dragon.playandroid.configureKotlinAndroidToolchain
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -17,7 +18,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 apply("com.android.library")
                 apply("org.jetbrains.kotlin.android")
             }
-
+            configureKotlinAndroidToolchain()
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = 33

@@ -14,7 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
-import com.dragon.common_ui.R
+import com.dragon.common.ui.R as commonR
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,7 +31,7 @@ fun SearchTextField(
         value = value,
         leadingIcon = {
             Icon(
-                painter = painterResource(id = R.drawable.ic_baseline_search_24),
+                painter = painterResource(id = commonR.drawable.ic_baseline_search_24),
                 contentDescription = null
             )
         },
@@ -46,7 +47,7 @@ fun SearchTextField(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Clear,
-                        contentDescription = stringResource(com.dragon.common_ui.R.string.cd_clear_text)
+                        contentDescription = stringResource(commonR.string.cd_clear_text)
                     )
                 }
             }

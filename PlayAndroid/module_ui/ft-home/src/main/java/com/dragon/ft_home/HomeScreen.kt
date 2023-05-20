@@ -21,7 +21,7 @@ import coil.request.ImageRequest
 import com.dragon.common_ui.widgets.search.Search
 import com.dragon.common_ui.widgets.search.SearchViewState
 import kotlinx.coroutines.flow.StateFlow
-
+import com.dragon.ui.home.R
 
 /**
  * 首页
@@ -82,7 +82,7 @@ fun HeaderSearch(
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F22e099fb2ed31587aac6aeea565e1be9c5fde254.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665752286&t=7d2096522fe7c0c4a480fc3c2d3e21ba")
-                .error(com.dragon.common_designsystem.R.drawable.ic_bg_placeholder)
+//                .error(R.drawable.ic_bg_placeholder)
                 .allowConversionToBitmap(true)
 //                .target {
 //                    val bos = ByteArrayOutputStream();

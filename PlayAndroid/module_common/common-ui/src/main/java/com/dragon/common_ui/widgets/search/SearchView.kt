@@ -20,10 +20,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.dragon.common.ui.R as commonR
 import com.dragon.common_ui.Layout.bodyMargin
 import com.dragon.common_ui.Layout.columns
 import com.dragon.common_ui.Layout.gutter
-import com.dragon.common_ui.R
 import com.dragon.common_ui.bodyWidth
 import com.dragon.common_ui.plus
 import kotlinx.coroutines.flow.StateFlow
@@ -72,7 +72,7 @@ internal fun Search(
                 var searchQuery by remember { mutableStateOf(TextFieldValue(state.query)) }
                 var hintStr = state.hintStr
                 if (hintStr.isEmpty()) {
-                    hintStr = stringResource(R.string.hint_search)
+                    hintStr = stringResource(commonR.string.hint_search)
                 }
                 if (textFiledFocus) {
                     SearchTextField(
@@ -101,7 +101,7 @@ internal fun Search(
                         horizontalArrangement = Arrangement.Start
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_baseline_search_24),
+                            painter = painterResource(id = commonR.drawable.ic_baseline_search_24),
                             contentDescription = null,
                             modifier = Modifier
                                 .size(18.dp, 18.dp)

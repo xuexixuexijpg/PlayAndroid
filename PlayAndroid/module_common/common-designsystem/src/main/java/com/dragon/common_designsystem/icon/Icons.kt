@@ -6,7 +6,8 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.dragon.common_designsystem.R
+import com.dragon.common.designsystem.R
+
 
 /**
  *  Material icons are [ImageVector]s, custom icons are drawable resource IDs.

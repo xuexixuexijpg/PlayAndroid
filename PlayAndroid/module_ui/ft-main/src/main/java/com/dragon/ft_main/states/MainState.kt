@@ -58,14 +58,14 @@ class MainState(
             destination = HomeDestination.destination,
             selectedIcon = Icon.DrawableResourceIcon(PlayIcons.selectHomeIcon),
             unselectedIcon = Icon.DrawableResourceIcon(PlayIcons.normalHomeIcon),
-            iconTextId = com.dragon.ft_home.R.string.home
+            iconTextId = com.dragon.ui.home.R.string.home
         ),
         TopLevelDestination(
             route = MineDestination.route,
             destination = MineDestination.destination,
             selectedIcon = Icon.DrawableResourceIcon(PlayIcons.selectMineIcon),
             unselectedIcon = Icon.DrawableResourceIcon(PlayIcons.normalMineIcon),
-            iconTextId = com.dragon.ft_mine.R.string.mine
+            iconTextId = com.dragon.ui.mine.R.string.mine
         )
     )
 
