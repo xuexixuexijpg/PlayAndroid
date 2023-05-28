@@ -10,9 +10,15 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+}
+
 dependencies {
-    implementation(libs.android.gradlePlugin)
-    implementation(libs.kotlin.gradlePlugin)
+    compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.kotlin.gradlePlugin)
 }
 
 gradlePlugin {
@@ -60,6 +66,12 @@ gradlePlugin {
         register("androidHilt") {
             id = "playandroid.android.hilt"
             implementationClass = "AndroidHiltConventionPlugin"
+        }
+
+        /*jvm*/
+        register("jvmLibrary") {
+            id = "palyandroid.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
         }
     }
 }

@@ -35,16 +35,12 @@ android {
         }
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-
     buildTypes {
         getByName(BuildTypes.DEBUG) {
             isMinifyEnabled = false
             isDebuggable = true
 //            applicationIdSuffix = ".${BuildTypes.DEV}"
-            versionNameSuffix = "-${BuildTypes.DEV.toUpperCase()}"
+            versionNameSuffix = "-${BuildTypes.DEV.uppercase()}"
         }
 
         getByName(BuildTypes.RELEASE) {
@@ -82,9 +78,15 @@ android {
         }
     }
 
-    packagingOptions {
+    packaging {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        }
+    }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
         }
     }
     namespace = "com.dragon.playandoird"

@@ -21,7 +21,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.dragon.common_designsystem.component.PlayBackground
 import com.dragon.common_designsystem.theme.PlayTheme
-import com.dragon.playandroid.R
+import com.dragon.playandoird.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -29,7 +29,6 @@ import kotlinx.coroutines.launch
  * 广告启动页 不需要
  */
 @SuppressLint("CustomSplashScreen")
-@Deprecated("不需要，项目无需")
 class SplashAdActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

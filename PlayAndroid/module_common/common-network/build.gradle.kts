@@ -19,7 +19,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.okhttp.net)
 //    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    api("com.github.liangjingkanji:Net:3.5.2")
+    api("com.github.liangjingkanji:Net:3.5.8")
 
     //https://github.com/liujingxing/rxhttp/blob/master/README_zh.md
 //    api("com.github.liujingxing.rxhttp:rxhttp:$rxhttp_version")

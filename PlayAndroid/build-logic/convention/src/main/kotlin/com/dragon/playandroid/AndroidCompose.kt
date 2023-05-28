@@ -6,6 +6,8 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.File
 
 /**
@@ -25,15 +27,17 @@ internal fun Project.configureAndroidCompose(
             kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
         }
 
-        kotlinOptions {
-            freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
-        }
-
         //boom 里面包含了各个compose依赖清单
         dependencies {
             val bom = libs.findLibrary("androidx-compose-bom").get()
             add("implementation", platform(bom))
             add("androidTestImplementation", platform(bom))
+        }
+    }
+
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions {
+            freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
         }
     }
 }
