@@ -33,4 +33,5 @@ dependencies {
     api(libs.androidx.lifecycle.runtimeCompose)
     api(libs.androidx.metrics)
     api(libs.androidx.tracing.ktx)
+    api(libs.lottie)
 }

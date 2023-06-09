@@ -2,26 +2,26 @@
 #参考 https://docs.gradle.org/current/userguide/platforms.html
 
 [versions]
-accompanist = "0.28.0"
+accompanist = "0.30.1"
 androidDesugarJdkLibs = "1.2.2"
 androidGradlePlugin = "8.0.0"
 androidxActivity = "1.7.0"
 androidxAppCompat = "1.5.1"
-androidxComposeBom = "2023.01.00"
+androidxComposeBom = "2023.05.01"
 androidxComposeCompiler = "1.4.5"
-androidxComposeMaterial3 = "1.1.0-alpha06"
+androidxComposeMaterial3 = "1.1.0"
 androidxComposeRuntimeTracing = "1.0.0-alpha01"
 androidxCoreSplashscreen = "1.0.0"
 androidxCore = "1.9.0"
 androidxCustomView = "1.0.0"
-androidxDataStore = "1.0.0"
+androidxDataStore = "1.1.0-alpha04"
 androidxEspresso = "3.4.0"
 androidxMetrics = "1.0.0-alpha03"
 androidxTracing = "1.1.0"
 androidxHiltNavigationCompose = "1.0.0"
-androidxLifecycle = "2.6.0-alpha01"
+androidxLifecycle = "2.6.0"
 androidxMacroBenchmark = "1.1.0"
-androidxNavigation = "2.5.3"
+androidxNavigation = "2.6.0"
 androidxProfileinstaller = "1.2.0"
 androidxSavedState = "1.2.0"
 androidxStartup = "1.1.1"
@@ -31,8 +31,8 @@ androidxTestExt = "1.1.4"
 androidxTestRunner = "1.5.1"
 androidxTestRules = "1.5.0"
 androidxUiAutomator = "2.2.0"
-constraintlayoutCompose = "1.1.0-alpha01"
-androidxWork = "2.7.1"
+constraintlayoutCompose = "1.1.0-alpha04"
+androidxWork = "2.8.0"
 coil = "2.2.0"
 hilt = "2.44.2"
 hiltExt = "1.0.0"
@@ -52,7 +52,8 @@ retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 room = "2.5.0"
 paging3 = "3.1.1"
-paging-compose = "1.0.0-alpha16"
+paging-compose = "1.0.0-alpha19"
+lottie = "6.0.0"
 secrets = "2.0.1"
 turbine = "0.8.0"
 lint = "30.3.1"
@@ -131,6 +132,7 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging3" }
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging-compose" }
+lottie = { group = "com.airbnb.android",name = "lottie-compose",version.ref = "lottie"}
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }

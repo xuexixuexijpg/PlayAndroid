@@ -18,7 +18,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.dragon.common.ui.R as commonR
 import com.dragon.common_ui.Layout.bodyMargin
@@ -28,7 +27,6 @@ import com.dragon.common_ui.bodyWidth
 import com.dragon.common_ui.plus
 import kotlinx.coroutines.flow.StateFlow
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun Search(
     modifier: Modifier = Modifier,
