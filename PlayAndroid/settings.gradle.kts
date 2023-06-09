@@ -47,3 +47,4 @@ include(":module_ui:ft-main")
 
 include(":core:data")
 include(":core:database")
+include(":core:datastore")

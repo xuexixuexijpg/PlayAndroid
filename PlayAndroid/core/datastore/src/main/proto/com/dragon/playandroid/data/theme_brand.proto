@@ -1,0 +1,15 @@
+
+
+syntax = "proto3";
+
+option java_package = "com.dragon.playcomposeandroid.core.datastore";
+option java_multiple_files = true;
+
+/**
+  主题 1 默认 2用户自定义
+ */
+enum ThemeBrandProto {
+  THEME_BRAND_UNSPECIFIED = 0;
+  THEME_BRAND_DEFAULT = 1;
+  THEME_BRAND_USER = 2;
+}
