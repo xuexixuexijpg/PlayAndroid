@@ -14,8 +14,8 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.serialization.json)
-    implementation(project(mapOf("path" to ":module_common:common-imageloading")))
-    implementation(project(mapOf("path" to ":module_common:common-network")))
-    implementation(project(mapOf("path" to ":module_common:common-designsystem")))
-    implementation(project(mapOf("path" to ":module_common:common-base")))
+    implementation(project(mapOf("path" to ":module_common:imageloading")))
+    implementation(project(mapOf("path" to ":module_common:network")))
+    implementation(project(mapOf("path" to ":module_common:designsystem")))
+    implementation(project(mapOf("path" to ":module_common:base")))
 }

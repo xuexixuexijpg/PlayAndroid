@@ -21,5 +21,5 @@ dependencies {
 
     implementation(project(mapOf("path" to ":module_ui:ft-home")))
     implementation(project(mapOf("path" to ":module_ui:ft-mine")))
-    implementation(project(mapOf("path" to ":module_common:common-designsystem")))
+    implementation(project(mapOf("path" to ":module_common:designsystem")))
 }

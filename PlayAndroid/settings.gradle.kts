@@ -23,7 +23,7 @@ rootProject.name = "PlayAndroid"
 include (":app")
 include (":module_common")
 //include (":module_common:common-base")
-include (":module_common:common-utils")
+include (":module_common:utils")
 //include (":module_service")
 include (":module_ui")
 
@@ -32,16 +32,16 @@ include (":module_ui")
 //main
 //include (":module_ui:ft-main")
 
-include (":module_common:common-imageloading")
-include (":module_common:common-network")
+include (":module_common:imageloading")
+include (":module_common:network")
 
 
-include(":module_common:common-navigation")
+include(":module_common:navigation")
 include(":module_ui:ft-home")
-include(":module_common:common-ui")
-include(":module_common:common-base")
+include(":module_common:widgets")
+include(":module_common:base")
 include(":module_ui:ft-mine")
-include(":module_common:common-designsystem")
+include(":module_common:designsystem")
 include(":module_ui:ft-search")
 include(":module_ui:ft-main")
 

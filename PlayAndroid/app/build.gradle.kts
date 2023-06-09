@@ -4,7 +4,7 @@ plugins{
     id("playandroid.android.application.jacoco")
     kotlin("kapt")
     id("jacoco")
-    id("dagger.hilt.android.plugin")
+    id("playandroid.android.hilt")
 //    id("nowinandroid.spotless")
 }
 
@@ -94,16 +94,16 @@ android {
 
 dependencies {
 
-//    implementation(project(mapOf("path" to ":module_common:common-base")))
+implementation(project(mapOf("path" to ":module_common:navigation")))
+    //    implementation(project(mapOf("path" to ":module_common:common-base")))
 //    implementation(project(mapOf("path" to ":module_ui:ft-main")))
 
-    implementation(project(mapOf("path" to ":module_common:common-navigation")))
-    implementation(project(mapOf("path" to ":module_common:common-base")))
-    implementation(project(mapOf("path" to ":module_common:common-imageloading")))
-    implementation(project(mapOf("path" to ":module_common:common-network")))
-    implementation(project(mapOf("path" to ":module_common:common-ui")))
-    implementation(project(mapOf("path" to ":module_common:common-designsystem")))
-    implementation(project(mapOf("path" to ":module_common:common-utils")))
+    implementation(project(mapOf("path" to ":module_common:base")))
+    implementation(project(mapOf("path" to ":module_common:imageloading")))
+    implementation(project(mapOf("path" to ":module_common:network")))
+    implementation(project(mapOf("path" to ":module_common:widgets")))
+    implementation(project(mapOf("path" to ":module_common:designsystem")))
+    implementation(project(mapOf("path" to ":module_common:utils")))
 
     implementation(project(mapOf("path" to ":module_ui:ft-home")))
     implementation(project(mapOf("path" to ":module_ui:ft-mine")))
@@ -120,8 +120,8 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.process)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+//    implementation(libs.hilt.android)
+//    kapt(libs.hilt.compiler)
     //内存泄露检测
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.9.1")
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
 }
