@@ -2,6 +2,7 @@ package com.dargon.playandroid.ui
 
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.consumedWindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -80,7 +81,7 @@ fun  PlayAndroidApp(
                         appState = appState,
                         modifier = Modifier
                             .padding(padding)
-                            .consumedWindowInsets(padding),
+                            .consumeWindowInsets(padding),
                         windowSizeClass = windowSizeClass
                     )
                 }
