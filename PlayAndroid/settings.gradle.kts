@@ -7,7 +7,8 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
@@ -16,6 +17,10 @@ dependencyResolutionManagement {
         maven (url = "https://repo.huaweicloud.com/repository/maven")
         maven( url = "https://maven.aliyun.com/repository/gradle-plugin")
         maven( url = "https://jitpack.io")
+        maven{
+            isAllowInsecureProtocol = true
+            setUrl("http://download.flutter.io")
+        }
     }
 }
 
@@ -48,3 +53,7 @@ include(":module_ui:ft-main")
 include(":core:data")
 include(":core:database")
 include(":core:datastore")
+
+//flutter 配置 https://juejin.cn/post/7246778558248058938
+//include(":flutter_lib")
+//apply { from("flutter_module_config.gradle") }

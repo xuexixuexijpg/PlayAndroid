@@ -93,8 +93,8 @@ android {
 }
 
 dependencies {
-
-implementation(project(mapOf("path" to ":module_common:navigation")))
+//    implementation(project(mapOf("path" to ":flutter")))
+    implementation(project(mapOf("path" to ":module_common:navigation")))
     //    implementation(project(mapOf("path" to ":module_common:common-base")))
 //    implementation(project(mapOf("path" to ":module_ui:ft-main")))
 

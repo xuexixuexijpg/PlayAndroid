@@ -1,0 +1,8 @@
+// Flutter配置
+// https://blog.csdn.net/wz_1992/article/details/122194453?ydreferer=aHR0cHM6Ly93d3cuYmluZy5jb20v
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir,
+        'flutter_lib/.android/include_flutter.groovy'
+))
+include ':flutter_lib'
