@@ -14,6 +14,7 @@ import com.dargon.playandroid.init.ForegroundCheck
 import com.dargon.playandroid.ui.PlayAndroidApp
 import com.dragon.common_network.utils.NetworkMonitor
 import com.dragon.common_utils.gesture.MultiGestureMonitor
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -41,6 +42,8 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
+            val systemUiController = rememberSystemUiController()
+
             PlayAndroidApp(calculateWindowSizeClass(this), networkMonitor)
         }
         gesture = MultiGestureMonitor(this)
