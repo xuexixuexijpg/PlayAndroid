@@ -4,16 +4,22 @@ package com.dargon.playandroid
 //import com.dargon.playandroid.AppInitializers
 import android.annotation.SuppressLint
 import android.app.Application
+import coil.ImageLoader
+import coil.ImageLoaderFactory
 import com.dargon.playandroid.init.AppInitializers
 import com.dargon.playandroid.init.ForegroundCheck
 import com.dargon.playandroid.init.HookManager
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
+import javax.inject.Provider
 
 @HiltAndroidApp
 open class PlayAndroidApplication : Application() {
     @Inject
     lateinit var initializers: AppInitializers
+
+//    @Inject
+//    lateinit var imageLoader:Provider<ImageLoader>
 
     override fun onCreate() {
         super.onCreate()
@@ -41,4 +47,6 @@ open class PlayAndroidApplication : Application() {
             e.printStackTrace()
         }
     }
+
+//    override fun newImageLoader(): ImageLoader = imageLoader.get()
 }

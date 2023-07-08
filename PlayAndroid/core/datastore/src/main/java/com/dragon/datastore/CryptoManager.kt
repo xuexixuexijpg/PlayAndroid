@@ -14,6 +14,7 @@ import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * datastore对流进行加解密

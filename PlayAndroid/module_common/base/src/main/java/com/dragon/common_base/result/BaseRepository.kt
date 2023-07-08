@@ -1,4 +1,4 @@
-package com.dragon.data.repository
+package com.dragon.common_base.result
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

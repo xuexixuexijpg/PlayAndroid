@@ -18,4 +18,7 @@ dependencies {
     implementation(project(mapOf("path" to ":module_common:network")))
     implementation(project(mapOf("path" to ":module_common:designsystem")))
     implementation(project(mapOf("path" to ":module_common:base")))
+    implementation(project(":core:model"))
+    implementation(project(":core:datastore"))
+    implementation(project(":core:database"))
 }

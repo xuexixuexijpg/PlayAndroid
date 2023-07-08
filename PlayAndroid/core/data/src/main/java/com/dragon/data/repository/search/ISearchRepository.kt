@@ -5,7 +5,7 @@ import com.dragon.common_base.network.Dispatcher
 import com.dragon.common_base.network.PlayDispatchers
 import com.dragon.data.model.HotWord
 import com.dragon.data.model.Word
-import com.dragon.data.repository.BaseRepository
+import com.dragon.common_base.result.BaseRepository
 import com.drake.net.Net
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

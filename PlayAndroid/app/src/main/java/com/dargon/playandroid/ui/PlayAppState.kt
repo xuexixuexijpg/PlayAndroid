@@ -37,7 +37,7 @@ fun rememberPlayAppState(
 @Stable //不可变的，提高重组性能
 class PlayAppState(
     val navController: NavHostController,
-    private val coroutineScope: CoroutineScope,
+    private val coroutineScope: CoroutineScope ,
     private val windowSizeClass: WindowSizeClass,
     networkMonitor: NetworkMonitor,
 ) {
