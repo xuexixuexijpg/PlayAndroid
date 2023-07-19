@@ -1,6 +1,7 @@
 
 package com.dragon.common_designsystem.theme
 
+import android.content.res.Configuration
 import android.os.Build
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -212,9 +213,9 @@ fun PlayTheme(
     }
 
     //https://juejin.cn/post/7113953940282015758 适配方案
-    val displayMetrics = LocalContext.current.resources.displayMetrics
+//    val displayMetrics = LocalContext.current.resources.displayMetrics
     val fontScale = LocalDensity.current.fontScale
-    val widthPixels = displayMetrics.widthPixels
+//    val widthPixels = displayMetrics.widthPixels
 
     CompositionLocalProvider(
         LocalGradientColors provides gradientColors,
@@ -226,7 +227,7 @@ fun PlayTheme(
             content = {
                 CompositionLocalProvider(
                     LocalDensity provides Density(
-                        density = widthPixels / 360.0f,
+                        density = dynamicDensity(1280F,800F),
                         fontScale = fontScale
                     )
                 ) {
@@ -235,4 +236,19 @@ fun PlayTheme(
             }
         )
     }
+}
+
+
+/**
+ * 根据UI设计图得出动态密度适配不同屏幕
+ * @param designWidth 填入UI设计图的屏幕短边dp值（绝对宽度）
+ * @param designHeight 填入UI设计图的屏幕长边dp值（绝对高度）
+ */
+@Composable
+private fun dynamicDensity(designWidth: Float, designHeight: Float): Float {
+    val displayMetrics = LocalContext.current.resources.displayMetrics
+    val widthPixels = displayMetrics.widthPixels    //屏幕短边像素（绝对宽度）
+    val heightPixels = displayMetrics.heightPixels  //屏幕长边像素（绝对高度）
+    val isPortrait = LocalContext.current.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT  //判断横竖屏
+    return if (isPortrait) widthPixels / designWidth else heightPixels / designHeight //计算密度
 }
