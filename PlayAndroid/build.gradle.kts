@@ -21,8 +21,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.hilt) apply false
-    id("com.android.library") version "8.0.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.8.20" apply false
+    alias(libs.plugins.ksp) apply false
 //    id("com.android.library") version "7.3.0" apply false
 //    id("org.jetbrains.kotlin.android") version "1.7.10" apply false
 //    id("com.android.library") version "7.3.0" apply false
