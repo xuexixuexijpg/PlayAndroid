@@ -9,6 +9,7 @@ option java_multiple_files = true;
 message UserPreferences{
    string userName = 1;
    string password = 2;
+   string language = 3;
 
   ThemeBrandProto theme_brand = 16;
   DarkThemeConfigProto dark_theme_config = 17;

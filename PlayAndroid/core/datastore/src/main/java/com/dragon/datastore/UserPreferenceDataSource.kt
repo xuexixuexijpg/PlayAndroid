@@ -45,7 +45,16 @@ class UserPreferenceDataSource @Inject constructor(
             },
             useDynamicColor = it.useDynamicColor,
             shouldHideOnboarding = it.shouldHideOnboarding,
+            language = it.language
         )
+    }
+
+    suspend fun setLanguage(string: String){
+        userPreferences.updateData {
+            it.copy {
+                this.language = language
+            }
+        }
     }
 
     suspend fun setThemeBrand(themeBrand: ThemeBrand) {

@@ -7,4 +7,5 @@ data class Userdata (
     val darkThemeConfig: DarkThemeConfig,
     val useDynamicColor: Boolean,
     val shouldHideOnboarding: Boolean,
+    val language : String
 )

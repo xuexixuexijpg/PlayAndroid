@@ -58,3 +58,4 @@ include(":core:model")
 //flutter 配置 https://juejin.cn/post/7246778558248058938
 //include(":flutter_lib")
 //apply { from("flutter_module_config.gradle") }
+include(":module_ui:ft-setting")
