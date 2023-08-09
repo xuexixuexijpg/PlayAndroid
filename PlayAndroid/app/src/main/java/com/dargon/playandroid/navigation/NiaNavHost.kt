@@ -12,6 +12,8 @@ import com.dragon.ft_main.navigation.MainNavigationActions
 import com.dragon.ft_main.navigation.mainGraph
 import com.dragon.ft_search.navigation.SearchDestination
 import com.dragon.ft_search.navigation.searchGraph
+import com.dragon.ft_setting.navigation.SettingDestination
+import com.dragon.ft_setting.navigation.settingGraph
 
 /**
  * Top-level navigation graph. Navigation is organized as explained at
@@ -41,6 +43,7 @@ fun NiaNavHost(
         //导航图
         mainGraph(navigationActions =navigationActions ,windowSizeClass = windowSizeClass)
         searchGraph()
+        settingGraph()
     }
 }
 
@@ -50,6 +53,10 @@ fun NiaNavHost(
 class MainNavigationAction(private val appState: PlayAppState): MainNavigationActions {
     override fun navigateToSearch() {
         appState.navigate(SearchDestination)
+    }
+
+    override fun navigateToSetting() {
+        appState.navigate(SettingDestination)
     }
 
 }

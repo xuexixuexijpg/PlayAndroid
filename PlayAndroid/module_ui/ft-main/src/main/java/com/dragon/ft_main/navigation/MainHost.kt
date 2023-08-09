@@ -27,7 +27,8 @@ fun MainNavHost(
         //从首页跳到搜索页重组了一次，返回之后该导航页重组了两次??
         homeGraph(
             { navigationActions.navigateToSearch() }, //导航到搜索页
-            { navToMine() }) //导航到我的
+            { navToMine() }) //导航到我的,
+        { navigationActions.navigateToSetting() }
         mineGraph()
 
     }

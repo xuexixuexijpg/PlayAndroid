@@ -227,7 +227,7 @@ fun PlayTheme(
             content = {
                 CompositionLocalProvider(
                     LocalDensity provides Density(
-                        density = dynamicDensity(1280F,800F),
+                        density = dynamicDensity(360F,360F),
                         fontScale = fontScale
                     )
                 ) {

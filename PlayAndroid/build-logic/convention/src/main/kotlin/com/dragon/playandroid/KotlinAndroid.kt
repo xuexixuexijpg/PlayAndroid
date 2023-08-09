@@ -60,11 +60,11 @@ internal fun Project.configureKotlinJvm() {
 /**
  * Configure Kotlin's jvm toolchain for Android projects
  */
-internal fun Project.configureKotlinAndroidToolchain() {
-    extensions.configure<KotlinAndroidProjectExtension> {
-        jvmToolchain(17)
-    }
-}
+//internal fun Project.configureKotlinAndroidToolchain() {
+//    extensions.configure<KotlinAndroidProjectExtension> {
+//        jvmToolchain(17)
+//    }
+//}
 
 /**
  * Configure base Kotlin options

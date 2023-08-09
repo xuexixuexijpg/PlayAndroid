@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,7 +32,8 @@ fun HomeRoute(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
     navigateToSearch: () -> Unit,
-    navigateToHome: () -> Unit
+    navigateToHome: () -> Unit,
+    navigateToSetting: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -42,6 +44,9 @@ fun HomeRoute(
             searchState = viewModel.searchState,
             onSearchQueryChanged = viewModel::search
         )
+        Button(onClick = { navigateToSetting() }) {
+
+        }
         LazyColumn(
             contentPadding = PaddingValues(10.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
@@ -122,7 +127,9 @@ fun HeaderSearch(
             modifier = Modifier
                 .size(30.dp)
                 .clickable {
-                    Toast.makeText(context,"游戏点击", Toast.LENGTH_SHORT).show()
+                    Toast
+                        .makeText(context, "游戏点击", Toast.LENGTH_SHORT)
+                        .show()
                 }
                 .fillMaxHeight()
                 .weight(1F)

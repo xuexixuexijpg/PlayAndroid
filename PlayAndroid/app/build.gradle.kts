@@ -113,6 +113,7 @@ dependencies {
     implementation(project(mapOf("path" to ":module_ui:ft-mine")))
     implementation(project(mapOf("path" to ":module_ui:ft-main")))
     implementation(project(mapOf("path" to ":module_ui:ft-search")))
+    implementation(project(mapOf("path" to ":module_ui:ft-setting")))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)

@@ -2,4 +2,6 @@
     <string name="app_name">Play Compose Android</string>
 
     <string name="not_connected">⚠️ You aren’t connected to the internet</string>
+
+    <string name="test">Test</string>
 </resources>

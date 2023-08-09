@@ -11,6 +11,7 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import com.dargon.playandroid.init.ForegroundCheck
+import com.dargon.playandroid.langtest.Test
 import com.dargon.playandroid.ui.PlayAndroidApp
 import com.dragon.common_network.utils.NetworkMonitor
 import com.dragon.common_utils.gesture.MultiGestureMonitor
@@ -44,7 +45,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val systemUiController = rememberSystemUiController()
 
-            PlayAndroidApp(calculateWindowSizeClass(this), networkMonitor)
+//            PlayAndroidApp(calculateWindowSizeClass(this), networkMonitor)
+            Test()
         }
         gesture = MultiGestureMonitor(this)
     }
