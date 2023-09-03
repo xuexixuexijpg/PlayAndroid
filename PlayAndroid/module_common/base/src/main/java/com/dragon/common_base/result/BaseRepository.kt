@@ -1,10 +1,8 @@
 package com.dragon.common_base.result
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 
 open class BaseRepository {
 
@@ -17,7 +15,7 @@ open class BaseRepository {
      * @return Flow<T>
      */
     protected fun<T> request(requestBlock:suspend FlowCollector<T>.() -> Unit): Flow<T> {
-       return flow(block = requestBlock).flowOn(Dispatchers.IO)
+       return flow(block = requestBlock)
     }
 
 

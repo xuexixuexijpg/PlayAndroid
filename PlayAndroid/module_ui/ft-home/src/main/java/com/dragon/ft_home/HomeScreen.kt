@@ -3,10 +3,19 @@ package com.dragon.ft_home
 import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,8 +30,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.dragon.common_ui.widgets.search.Search
 import com.dragon.common_ui.widgets.search.SearchViewState
-import kotlinx.coroutines.flow.StateFlow
 import com.dragon.ui.home.R
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * 首页
@@ -44,9 +53,6 @@ fun HomeRoute(
             searchState = viewModel.searchState,
             onSearchQueryChanged = viewModel::search
         )
-        Button(onClick = { navigateToSetting() }) {
-
-        }
         LazyColumn(
             contentPadding = PaddingValues(10.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
@@ -77,6 +83,7 @@ fun HeaderSearch(
     onSearchQueryChanged: (String) -> Unit
 ) {
     val context = LocalContext.current
+
     Row(
         modifier = Modifier
             .padding(5.dp)
@@ -110,9 +117,7 @@ fun HeaderSearch(
         //搜索条
         Search(
             modifier = Modifier
-                .padding(start = 10.dp)
-                .width(200.dp)
-                .weight(7F),
+                .wrapContentWidth(),
             openDetails = {},
             onSearchQueryChanged = { onSearchQueryChanged(it) },
             stateFlow = searchState,

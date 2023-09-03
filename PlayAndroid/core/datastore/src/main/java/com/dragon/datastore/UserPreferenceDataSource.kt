@@ -12,7 +12,9 @@ import com.dragon.model.User
 import com.dragon.model.Userdata
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UserPreferenceDataSource @Inject constructor(
     private val userPreferences: DataStore<UserPreferences>,
 ) {

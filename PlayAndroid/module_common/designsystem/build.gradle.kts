@@ -15,7 +15,7 @@ android {
 }
 
 dependencies {
-
+    api(project(":module_common:widgets"))
     implementation(libs.androidx.core.ktx)
     api(libs.androidx.compose.foundation)
     api(libs.androidx.compose.foundation.layout)

@@ -14,9 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import com.dragon.common_ui.widgets.langeview.CusLanguage
+import com.dragon.common_ui.widgets.langeview.LocalLanguage
+import com.dragon.common_ui.widgets.langeview.SetLanguage
 
 /**
  * Light default theme color scheme
@@ -174,6 +175,7 @@ fun PlayTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = false,
     androidTheme: Boolean = false,
+    language: CusLanguage =  CusLanguage.Chinese,
     content: @Composable() () -> Unit
 ) {
     val colorScheme = when {
@@ -214,7 +216,7 @@ fun PlayTheme(
 
     //https://juejin.cn/post/7113953940282015758 适配方案
 //    val displayMetrics = LocalContext.current.resources.displayMetrics
-    val fontScale = LocalDensity.current.fontScale
+//    val fontScale = LocalDensity.current.fontScale
 //    val widthPixels = displayMetrics.widthPixels
 
     CompositionLocalProvider(
@@ -226,11 +228,14 @@ fun PlayTheme(
             typography = NiaTypography,
             content = {
                 CompositionLocalProvider(
-                    LocalDensity provides Density(
-                        density = dynamicDensity(360F,360F),
-                        fontScale = fontScale
-                    )
+//                    LocalDensity provides Density(
+//                        density = dynamicDensity(360F,360F),
+//                        fontScale = fontScale
+//                    )
+                    LocalLanguage provides language
                 ) {
+                    //语言
+                    SetLanguage()
                     content()
                 }
             }

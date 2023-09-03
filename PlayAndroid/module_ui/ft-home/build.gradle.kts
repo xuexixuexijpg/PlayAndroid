@@ -18,7 +18,6 @@ dependencies {
     implementation(libs.accompanist.flowlayout)
 
     implementation(libs.kotlinx.serialization.json)
-    implementation(project(mapOf("path" to ":module_common:imageloading")))
 
     implementation(project(mapOf("path" to ":module_common:designsystem")))
     implementation(project(mapOf("path" to ":core:data")))

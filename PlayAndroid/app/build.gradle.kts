@@ -98,22 +98,23 @@ android {
 
 dependencies {
 //    implementation(project(mapOf("path" to ":flutter")))
-    implementation(project(mapOf("path" to ":module_common:navigation")))
+    implementation(project(":module_common:navigation"))
     //    implementation(project(mapOf("path" to ":module_common:common-base")))
 //    implementation(project(mapOf("path" to ":module_ui:ft-main")))
 
-    implementation(project(mapOf("path" to ":module_common:base")))
-    implementation(project(mapOf("path" to ":module_common:imageloading")))
-    implementation(project(mapOf("path" to ":module_common:network")))
-    implementation(project(mapOf("path" to ":module_common:widgets")))
-    implementation(project(mapOf("path" to ":module_common:designsystem")))
-    implementation(project(mapOf("path" to ":module_common:utils")))
+    implementation(project(":module_common:base"))
+    implementation(project(":module_common:network"))
+    implementation(project(":module_common:widgets"))
+    implementation(project(":module_common:designsystem"))
+    implementation(project(":module_common:utils"))
+    implementation(project(":core:data"))
+    implementation(project(":core:model"))
 
-    implementation(project(mapOf("path" to ":module_ui:ft-home")))
-    implementation(project(mapOf("path" to ":module_ui:ft-mine")))
-    implementation(project(mapOf("path" to ":module_ui:ft-main")))
-    implementation(project(mapOf("path" to ":module_ui:ft-search")))
-    implementation(project(mapOf("path" to ":module_ui:ft-setting")))
+    implementation(project(":module_ui:ft-home"))
+    implementation(project(":module_ui:ft-mine"))
+    implementation(project(":module_ui:ft-main"))
+    implementation(project(":module_ui:ft-search"))
+    implementation(project(":module_ui:ft-setting"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
@@ -124,9 +125,9 @@ dependencies {
     implementation(libs.androidx.profileinstaller)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.process)
-
+    implementation(libs.coil.kt)
 //    implementation(libs.hilt.android)
 //    kapt(libs.hilt.compiler)
     //内存泄露检测
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
+    debugImplementation(libs.leakcanary.android)
 }

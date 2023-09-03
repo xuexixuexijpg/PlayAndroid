@@ -21,7 +21,7 @@ enum class Flavor (val dimension : FlavorDimension, val applicationIdSuffix : St
 }
 
 fun Project.configureFlavors(
-    commonExtension: CommonExtension<*, *, *, *>
+    commonExtension: CommonExtension<*, *, *, *, *>,
 ) {
     commonExtension.apply {
         flavorDimensions += FlavorDimension.contentType.name

@@ -1,31 +1,32 @@
 package com.dargon.playandroid
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.dragon.data.repository.user.UserDataRepository
+import com.dragon.model.Userdata
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.Locale
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
-//@HiltViewModel
-class MainActivityViewModel  : ViewModel(
-
-) {
-//    // 使用LiveData来存储和更新语言
-//    private val _language = MutableLiveData(Locale.getDefault().language)
-//    val language: LiveData<String> = _language
-//
-//    // 定义一个方法来切换语言
-//    fun switchLanguage(lang: String) {
-//        _language.value = lang
-//    }
+@HiltViewModel
+class MainActivityViewModel @Inject constructor(
+    userDataRepository: UserDataRepository
+)  : ViewModel() {
+    val uiState: StateFlow<MainActivityUiState> = userDataRepository.userData.map {
+        MainActivityUiState.Success(it)
+    }.stateIn(
+        scope = viewModelScope,
+        initialValue = MainActivityUiState.Loading,
+        started = SharingStarted.WhileSubscribed(5_000),
+    )
 }
 
-// 定义一个枚举类，用于表示不同的语言选项
-enum class Language(val code: String) {
-    ENGLISH("en"),
-    CHINESE("zh"),
-    JAPANESE("ja"),
-    SPANISH("es"),
-    FRENCH("fr"),
-    GERMAN("de")
+sealed interface MainActivityUiState {
+    data object Loading : MainActivityUiState
+    //加载用户保存的数据信息
+    data class Success(val userData: Userdata) : MainActivityUiState
 }

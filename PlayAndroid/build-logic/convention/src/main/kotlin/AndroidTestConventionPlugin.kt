@@ -2,6 +2,7 @@
 
 import com.android.build.gradle.TestExtension
 import com.dragon.playandroid.configureKotlinAndroid
+import com.dragon.playandroid.defaultConfigTargetSdk
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -16,7 +17,7 @@ class AndroidTestConventionPlugin : Plugin<Project> {
 
             extensions.configure<TestExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = 33
+                defaultConfig.targetSdk = defaultConfigTargetSdk
             }
         }
     }

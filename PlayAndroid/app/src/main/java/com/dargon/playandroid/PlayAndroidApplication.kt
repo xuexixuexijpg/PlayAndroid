@@ -6,7 +6,6 @@ import android.annotation.SuppressLint
 import android.app.Application
 import coil.ImageLoader
 import coil.ImageLoaderFactory
-import com.dargon.playandroid.init.AppInitializers
 import com.dargon.playandroid.init.ForegroundCheck
 import com.dargon.playandroid.init.HookManager
 import dagger.hilt.android.HiltAndroidApp
@@ -14,18 +13,18 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 @HiltAndroidApp
-open class PlayAndroidApplication : Application() {
-    @Inject
-    lateinit var initializers: AppInitializers
-
+open class PlayAndroidApplication : Application(),ImageLoaderFactory {
 //    @Inject
-//    lateinit var imageLoader:Provider<ImageLoader>
+//    lateinit var initializers: AppInitializers
+
+    @Inject
+    lateinit var imageLoader:Provider<ImageLoader>
 
     override fun onCreate() {
         super.onCreate()
         //初始化
 //        hookActivityThread()
-        initializers.init(this)
+//        initializers.init(this)
         ForegroundCheck.init(this)
     }
 
@@ -48,5 +47,5 @@ open class PlayAndroidApplication : Application() {
         }
     }
 
-//    override fun newImageLoader(): ImageLoader = imageLoader.get()
+    override fun newImageLoader(): ImageLoader = imageLoader.get()
 }

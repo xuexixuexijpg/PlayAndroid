@@ -34,4 +34,6 @@ dependencies {
     api(libs.androidx.metrics)
     api(libs.androidx.tracing.ktx)
     api(libs.lottie)
+    api(libs.coil.kt)
+    api(libs.coil.kt.compose)
 }

@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("playandroid.android.library")
     id("playandroid.android.library.jacoco")
@@ -8,6 +7,9 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 android {
+    buildFeatures {
+        buildConfig = true
+    }
     namespace = "com.dragon.common.network"
 }
 
@@ -15,11 +17,14 @@ dependencies {
     implementation(libs.coil.kt)
 
     //通知栏监听网络日志
-    implementation("com.github.chuckerteam.chucker:library:3.5.2")
+    debugImplementation ("com.github.chuckerteam.chucker:library:4.0.0")
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.okhttp.net)
 //    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    api("com.github.liangjingkanji:Net:3.5.8")
+    //原来使用的网络封装框架 https://github.com/liangjingkanji/Net
+    implementation(libs.okhttp.logging)
+    api(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
 
     //https://github.com/liujingxing/rxhttp/blob/master/README_zh.md
 //    api("com.github.liujingxing.rxhttp:rxhttp:$rxhttp_version")
