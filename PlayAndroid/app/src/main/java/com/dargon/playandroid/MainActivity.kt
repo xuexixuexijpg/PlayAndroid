@@ -46,7 +46,6 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen() //android12
-
         // Turn off the decor fitting system windows, which allows us to handle insets,
         // including IME animations, and go edge-to-edge
         // This also sets up the initial system bar style based on the platform theme
@@ -99,7 +98,7 @@ class MainActivity : ComponentActivity() {
                 darkTheme = darkTheme,
                 androidTheme = shouldUseAndroidTheme(uiState),
                 dynamicColor = shouldDisableDynamicTheming(uiState),
-                language =  shouldUseLocal(uiState),
+                language = shouldUseLocal(uiState),
             ) {
                 PlayAndroidApp(
                     windowSizeClass = calculateWindowSizeClass(this),

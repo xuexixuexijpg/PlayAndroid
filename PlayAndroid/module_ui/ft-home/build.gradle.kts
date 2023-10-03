@@ -20,5 +20,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(project(mapOf("path" to ":module_common:designsystem")))
+    implementation(project(":module_common:network"))
     implementation(project(mapOf("path" to ":core:data")))
 }

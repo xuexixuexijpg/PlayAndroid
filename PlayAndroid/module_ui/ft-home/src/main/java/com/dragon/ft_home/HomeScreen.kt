@@ -84,32 +84,26 @@ fun HeaderSearch(
 ) {
     val context = LocalContext.current
 
-    Row(
+    Box(
         modifier = Modifier
             .padding(5.dp)
             .height(30.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        contentAlignment = Alignment.Center
     ) {
         //头像
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F22e099fb2ed31587aac6aeea565e1be9c5fde254.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665752286&t=7d2096522fe7c0c4a480fc3c2d3e21ba")
-//                .error(R.drawable.ic_bg_placeholder)
                 .allowConversionToBitmap(true)
-//                .target {
-//                    val bos = ByteArrayOutputStream();
-//                    if (it is BitmapDrawable){
-//                        it.bitmap.compress(Bitmap.CompressFormat.PNG,50,bos)
-//                    }
-//                }
                 .crossfade(true)
                 .build(),
             contentDescription = null,
             modifier = Modifier
                 .clip(CircleShape)
                 .size(30.dp, 30.dp)
-                .weight(1F)
                 .fillMaxHeight()
+                .align(Alignment.CenterStart)
                 .clickable {
                     navigateToHome()
                 },
@@ -124,30 +118,32 @@ fun HeaderSearch(
             focus = false,
             onClickSearchBar = { navigateToSearch() }
         )
-        //一些图片
-        AsyncImage(
-            model = ImageRequest.Builder(context)
-                .data(R.drawable.ic_baseline_videogame).crossfade(true).build(),
-            contentDescription = null,
-            modifier = Modifier
-                .size(30.dp)
-                .clickable {
-                    Toast
-                        .makeText(context, "游戏点击", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                .fillMaxHeight()
-                .weight(1F)
-        )
-        AsyncImage(
-            model = ImageRequest.Builder(context)
-                .data(R.drawable.ic_baseline_email_24).crossfade(true).build(),
-            contentDescription = null,
-            modifier = Modifier
-                .size(30.dp)
-                .fillMaxHeight()
-                .weight(1F)
-        )
+        Row(modifier = Modifier.padding(end = 10.dp).align(Alignment.CenterEnd)) {
+            //一些图片
+            AsyncImage(
+                model = ImageRequest.Builder(context)
+                    .data(R.drawable.ic_baseline_videogame).crossfade(true).build(),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(30.dp)
+                    .clickable {
+                        Toast
+                            .makeText(context, "游戏点击", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    .fillMaxHeight()
+            )
+            AsyncImage(
+                model = ImageRequest.Builder(context)
+                    .data(R.drawable.ic_baseline_email_24).crossfade(true).build(),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(30.dp)
+                    .fillMaxHeight()
+            )
+        }
+
     }
 }
+
 

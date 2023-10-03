@@ -36,4 +36,5 @@ dependencies {
     api(libs.lottie)
     api(libs.coil.kt)
     api(libs.coil.kt.compose)
+    api(libs.androidx.constraintlayout.compose)
 }
