@@ -1,9 +1,9 @@
 plugins {
-    id("playandroid.android.library")
-    id("playandroid.android.library.jacoco")
+    alias(libs.plugins.playandroid.android.library)
+    alias(libs.plugins.playandroid.android.library.jacoco)
+    alias(libs.plugins.playandroid.android.hilt)
     kotlin("kapt")
     id("kotlinx-serialization")
-    id("dagger.hilt.android.plugin")
 }
 
 android {

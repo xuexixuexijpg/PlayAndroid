@@ -1,9 +1,9 @@
 plugins {
-    id("playandroid.android.library")
-    id("playandroid.android.feature")
-    id("playandroid.android.library.compose")
-    id("playandroid.android.library.jacoco")
-    id("dagger.hilt.android.plugin")
+    alias(libs.plugins.playandroid.android.library)
+    alias(libs.plugins.playandroid.android.hilt)
+    alias(libs.plugins.playandroid.android.feature)
+    alias(libs.plugins.playandroid.android.library.compose)
+    alias(libs.plugins.playandroid.android.library.jacoco)
     id ("kotlinx-serialization")
 }
 

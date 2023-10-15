@@ -1,6 +1,7 @@
 plugins {
-    id("playandroid.android.library")
-    id("playandroid.android.hilt")
+    alias(libs.plugins.playandroid.android.library)
+    alias(libs.plugins.playandroid.android.library.jacoco)
+    alias(libs.plugins.playandroid.android.hilt)
     alias(libs.plugins.protobuf)
 }
 android {
@@ -35,6 +36,7 @@ protobuf {
 }
 androidComponents.beforeVariants {
     android.sourceSets.register(it.name) {
+        val buildDir = layout.buildDirectory.get().asFile
         java.srcDir(buildDir.resolve("generated/source/proto/${it.name}/java"))
         kotlin.srcDir(buildDir.resolve("generated/source/proto/${it.name}/kotlin"))
     }

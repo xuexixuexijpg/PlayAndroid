@@ -1,11 +1,10 @@
 plugins{
-    id("playandroid.android.application")
-    id("playandroid.android.application.compose")
-    id("playandroid.android.application.jacoco")
+    alias(libs.plugins.playandroid.android.application)
+    alias(libs.plugins.playandroid.android.application.compose)
+    alias(libs.plugins.playandroid.android.application.jacoco)
+    alias(libs.plugins.playandroid.android.hilt)
     kotlin("kapt")
     id("jacoco")
-    id("playandroid.android.hilt")
-//    id("nowinandroid.spotless")
 }
 
 private object BuildTypes {

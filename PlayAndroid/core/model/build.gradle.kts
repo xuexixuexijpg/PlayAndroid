@@ -1,3 +1,3 @@
 plugins {
-    id("palyandroid.jvm.library")
+    alias(libs.plugins.playandroid.jvm.library)
 }

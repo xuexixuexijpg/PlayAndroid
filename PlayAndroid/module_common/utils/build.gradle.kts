@@ -1,5 +1,5 @@
 plugins {
-    id("playandroid.android.library")
+    alias(libs.plugins.playandroid.android.library)
     kotlin("kapt")
     id("kotlinx-serialization")
 }

@@ -1,7 +1,7 @@
 plugins {
-    id("playandroid.android.library")
-    id("playandroid.android.library.compose")
-    id("playandroid.android.library.jacoco")
+    alias(libs.plugins.playandroid.android.library)
+    alias(libs.plugins.playandroid.android.library.compose)
+    alias(libs.plugins.playandroid.android.library.jacoco)
 }
 android {
     namespace = "com.dragon.common.ui"

@@ -1,6 +1,6 @@
 plugins {
-    id("playandroid.android.library")
-    id("playandroid.android.hilt")
+    alias(libs.plugins.playandroid.android.library)
+    alias(libs.plugins.playandroid.android.hilt)
 }
 android {
     namespace = "com.dragon.common.base"

@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.exclude
+
 buildscript {
     repositories {
         google()
@@ -24,8 +26,4 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.org.jetbrains.kotlin.android) apply false
-//    id("com.android.library") version "7.3.0" apply false
-//    id("org.jetbrains.kotlin.android") version "1.7.10" apply false
-//    id("com.android.library") version "7.3.0" apply false
-//    id("org.jetbrains.kotlin.android") version "1.7.10" apply false
 }

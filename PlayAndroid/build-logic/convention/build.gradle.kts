@@ -70,7 +70,7 @@ gradlePlugin {
 
         /*jvm*/
         register("jvmLibrary") {
-            id = "palyandroid.jvm.library"
+            id = "playandroid.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
         }
     }
