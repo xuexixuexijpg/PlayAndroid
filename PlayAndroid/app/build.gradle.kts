@@ -92,6 +92,7 @@ android {
             isIncludeAndroidResources = true
         }
     }
+
     namespace = "com.dragon.playandoird"
 }
 
@@ -130,3 +131,5 @@ dependencies {
     //内存泄露检测
     debugImplementation(libs.leakcanary.android)
 }
+
+

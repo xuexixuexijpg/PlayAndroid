@@ -3,12 +3,13 @@
 
 [versions]
 accompanist = "0.32.0"
-androidDesugarJdkLibs = "2.0.3"
-androidGradlePlugin = "8.1.2"
+androidDesugarJdkLibs = "2.0.4"
+androidGradlePlugin = "8.2.0"
+androidTools = "31.2.0"
 androidxActivity = "1.8.0"
 androidxAppCompat = "1.6.1"
-androidxComposeBom = "2023.10.00"
-androidxComposeCompiler = "1.5.3"
+androidxComposeBom = "2023.10.01"
+androidxComposeCompiler = "1.5.7"
 androidxComposeMaterial3 = "1.1.0"
 androidxComposeRuntimeTracing = "1.0.0-alpha04"
 androidxCoreSplashscreen = "1.0.1"
@@ -32,32 +33,32 @@ androidxTestRunner = "1.5.1"
 androidxTestRules = "1.5.0"
 androidxUiAutomator = "2.2.0"
 constraintlayoutCompose = "1.1.0-alpha12"
-androidxWork = "2.8.1"
-coil = "2.4.0"
-hilt = "2.48.1"
-hiltExt = "1.0.0"
+androidxWork = "2.9.0"
+coil = "2.5.0"
+hilt = "2.50"
+hiltExt = "1.1.0"
 jacoco = "0.8.7"
 junit4 = "4.13.2"
-kotlin = "1.9.10"
-kotlinxCoroutines = "1.7.1"
+kotlin = "1.9.21"
+kotlinxCoroutines = "1.7.3"
 kotlinxDatetime = "0.4.0"
 kotlinxSerializationJson = "1.5.1"
-ksp = "1.9.10-1.0.13"
+ksp = "1.9.21-1.0.16"
 ktlint = "0.43.0"
 leakcanaryAndroid = "2.12"
 material3 = "1.9.0"
-okhttp = "4.11.0"
+okhttp = "4.12.0"
 protobuf = "3.24.0"
 protobufPlugin = "0.9.3"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "1.0.0"
-room = "2.5.2"
+room = "2.6.1"
 paging3 = "3.2.1"
 paging-compose = "3.2.1"
 lottie = "6.0.0"
 secrets = "2.0.1"
 turbine = "0.12.1"
-lint = "31.1.2"
+
 
 googleOss = "17.0.1"
 googleOssPlugin = "0.10.6"
@@ -113,7 +114,9 @@ androidx-tracing-ktx = { group = "androidx.tracing", name = "tracing-ktx", versi
 androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 
 leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanaryAndroid" }
-lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = "lint" }
+lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = "androidTools" }
+lint-checks = { group = "com.android.tools.lint", name = "lint-checks", version.ref = "androidTools" }
+lint-tests = { group = "com.android.tools.lint", name = "lint-tests", version.ref = "androidTools" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
@@ -150,6 +153,7 @@ google-oss-licenses-plugin = { group = "com.google.android.gms", name = "oss-lic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
